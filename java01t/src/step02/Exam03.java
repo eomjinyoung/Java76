@@ -1,16 +1,23 @@
 /*
- * 주제: JVM의 주요 기능 사용 + 도구정보 이용하기
+ * 주제: 도구가 들어있는 경로(패키지 경로)를 등록하기 
+ * - 문법
+ *   import 패키지경로.*;
+ *   import 패키지경로.도구명;
  */
 package step02;
 
-public class Exam02 {
+// 컴파일러에게 Calendar 도구가 어느 경로에 있는지 알려준다.
+import java.util.Calendar; // 컴파일 할 때만 참조하고, 컴파일 버려진다.
+
+
+public class Exam03 {
   public static void main(String[] args) {
     // 1970년 1월 1일 0시 0분 0초부터 지금까지 경과된 시간(밀리초)
     long t = System.currentTimeMillis();
     System.out.println(t);
     
     // 현재 달력 정보를 달라고 요청한다.
-    java.util.Calendar 달력정보 = java.util.Calendar.getInstance();
+    Calendar 달력정보 = Calendar.getInstance();
     int i = 달력정보.get(1); // 년도
     System.out.println(i);
     i = 달력정보.get(2); // 월 
