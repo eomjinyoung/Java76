@@ -19,11 +19,11 @@ public class Exam08 {
       for (int j = 0; j < 5; j++) {
         scores[i][5] += scores[i][j];
       }
-      avers[i] = scores[i][5] / 5;
+      avers[i] = (float)scores[i][5] / 5;
     }
     
     for (int i = 0; i < 3; i++) {
-      System.out.printf("%s: 총점=%d, 평균=%d\n", 
+      System.out.printf("%s: 총점=%d, 평균=%f\n", 
           names[i],
           scores[i][5], 
           avers[i]);
