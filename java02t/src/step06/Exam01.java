@@ -29,7 +29,7 @@ public class Exam01 {
     String s4 = "Hello";
     if (s1 == s4) 
       System.out.println("s1 == s4");
-    
+
     //4) new 를 사용하여 String 인스턴스를 만들 때는
     //   무조건 새로 만든다.
     String s5 = new String("Hello");
