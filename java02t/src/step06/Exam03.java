@@ -4,6 +4,7 @@
 package step06;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Exam03 {
 
@@ -37,10 +38,11 @@ public class Exam03 {
     System.out.println("-------------");
     
     Scanner sc = new Scanner(System.in);
-    System.out.println("입력>");
+    System.out.println("이메일 입력>");
     String s = sc.nextLine();
     sc.close();
     
+    /*
     int s7 = s.indexOf('@');
     int s8 = s.indexOf('.');
     int length = s.length();
@@ -54,9 +56,22 @@ public class Exam03 {
     } else {
       System.out.println("Email is incorrect");    
     }
-      
+    */
+    
+    System.out.println("----------------------");
+    
     // 정규표현식을 이용하여 이메일을 검사하라!
-    // ?
+    //String regex = "^[0-9a-zA-Z.-_]+@[0-9a-zA-Z]+\\.[a-zA-z]+";
+    String regex = "\\w+@\\w+\\.\\w+";
+    
+    boolean tf = Pattern.matches(regex, s);
+
+    if (tf)
+      System.out.println("email");
+    else
+      System.out.println("not email");
+       
+       
     
   
   }
