@@ -17,10 +17,10 @@ public class Test {
     // 8 - 6 * 3 = ?
     Calculator3 c1 = new Calculator3(); // result 변수가 준비된다.
     
-    c1.plus(8); 
-    c1.minus(6);
-    c1.multiple(3);
-    c1.divide(2);
+    c1.plus(8);  // Calculator2의 plus() 호출
+    c1.minus(6); // Calculator2의 minus() 호출
+    c1.multiple(3); // Calculator3의 multiple() 호출
+    c1.divide(2);   // Calculator3의 divide() 호출
     
     System.out.println(c1.result);
   }
