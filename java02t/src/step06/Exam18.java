@@ -37,6 +37,7 @@ public class Exam18 {
                                // 내부적으로 toString()을 호출한다.
                                // 따라서 굳이 toString()을 호출하여 문자열을
                                // 줄 필요가 없다.
+    System.out.println(formatter.getCalendar().isWeekDateSupported());
   }
 }
 
