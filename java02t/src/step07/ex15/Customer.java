@@ -7,4 +7,12 @@ public class Customer {
   float   height;
   float   weight;
   float   fatRate;
+  
+  @Override
+  public String toString() {
+    return "Customer [name=" + name + ", gender=" + gender + ", age=" + age + ", height=" + height + ", weight="
+        + weight + ", fatRate=" + fatRate + "]";
+  }
+  
+  
 }
