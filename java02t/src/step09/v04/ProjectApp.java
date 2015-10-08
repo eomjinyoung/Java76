@@ -5,7 +5,7 @@
  *   사용자가 입력한 명령어가 add이면,  "추가입니다"를 출력한다.
  *   그 밖의 명령어이면, "해당 명령어를 지원하지 않습니다!"를 출력한다.
  */
-package step09.v03;
+package step09.v04;
 
 import java.util.Scanner;
 
