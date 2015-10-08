@@ -16,6 +16,7 @@ package step08;
 public class Exam01 {
 
   public static void main(String[] args) {
+    System.out.println(args);
     int i = 10;
     int result = m1(i);
     m3(result);
