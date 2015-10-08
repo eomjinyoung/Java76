@@ -1,9 +1,17 @@
 /*
  * 작업 목표:
- * - 사용자가 입력한 명령어가 help이면, "도움말입니다"를 출력한다.
- *   사용자가 입력한 명령어가 list이면, "목록입니다"를 출력한다.
- *   사용자가 입력한 명령어가 add이면,  "추가입니다"를 출력한다.
- *   그 밖의 명령어이면, "해당 명령어를 지원하지 않습니다!"를 출력한다.
+ * - help 명령 처리: 다음과 같이 출력한다.
+[사용법]
+명령
+
+[명령]
+list         학생 목록을 리턴한다.
+add          학생을 추가한다.
+delete       학생을 삭제한다. 
+quit         프로그램을 종료한다.
+ * 
+ * - help 명령을 처리하는 코드를 묶어서 유지보수 하기 좋도록 별도의 메서드로 분리하라!
+ * 
  */
 package step09.v04;
 
@@ -29,7 +37,7 @@ public class ProjectApp {
         System.out.println("삭제입니다.");
         break;  
       case "help":
-        System.out.println("도움말입니다.");
+        doHelp();
         break;
       case "quit":
         break;
@@ -40,6 +48,17 @@ public class ProjectApp {
     
     System.out.println("안녕히가세요!");
     scanner.close();
+  }
+
+  private static void doHelp() {
+    System.out.println("[사용법]");
+    System.out.println("명령");
+    System.out.println();
+    System.out.println("[명령]");
+    System.out.println("list         학생 목록을 리턴한다.");
+    System.out.println("add          학생을 추가한다.");
+    System.out.println("delete       학생을 삭제한다. ");
+    System.out.println("quit         프로그램을 종료한다.");
   }
 
 }
