@@ -1,17 +1,26 @@
 /*
- * 작업 목표: add 명령 처리 (4) - 배열을 이용하여 여러 명의 회원 정보를 저장
+ * 작업 목표: add 명령 처리 (2): main을 제외한 나머지 메서드를 인스턴스 메서드로 변환
+ * - add 명령을 구현한다.
+명령> add
+이름? 홍길동4
+이메일? hong4@test.com
+전화? 111-2222
+기수? 자바76기
+정말 저장하시겠습니까?(y/n) y
+저장되었습니다.
+정말 저장하시겠습니까?(y/n) n
+취소하였습니다.
+ * 
  */
 package step09.v05;
 
 import java.util.Scanner;
 
-public class ProjectApp {
+public class ProjectApp02 {
   Scanner scanner = new Scanner(System.in);
-  Student[] students = new Student[2];
-  int pos; // 저장 위치
 
   public static void main(String[] args) {
-    ProjectApp app = new ProjectApp();
+    ProjectApp02 app = new ProjectApp02();
     app.service();
   }
   
@@ -50,29 +59,22 @@ public class ProjectApp {
   }
   
   private void doAdd() {
-    Student student = new Student();
-    
     System.out.print("이름? ");
-    student.setName(scanner.nextLine());
+    String name = scanner.nextLine();
     
     System.out.print("이메일? ");
-    student.setEmail(scanner.nextLine());
+    String email = scanner.nextLine();
     
     System.out.print("전화? ");
-    student.setTel(scanner.nextLine());
+    String tel = scanner.nextLine();
 
     System.out.print("기수? ");
-    student.setCid(scanner.nextLine());
+    String times = scanner.nextLine();
     
     System.out.print("정말 저장하시겠습니까?(y/n)");
     String yesno = scanner.nextLine();
     if (yesno.toLowerCase().equals("y")) {
-      if (pos < students.length) { 
-        students[pos++] = student;
-        System.out.println("저장되었습니다.");
-      } else {
-        System.out.println("저장소가 모두 찼습니다.\n저장할 수 없습니다!");
-      }
+      System.out.println("저장되었습니다.");
     } else {
       System.out.println("취소하였습니다.");
     }
