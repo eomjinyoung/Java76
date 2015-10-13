@@ -18,6 +18,7 @@ public class StudentSelector {
       Thread.currentThread().sleep(200);
     }
     Thread.currentThread().sleep(2000);
+    selectedNo = (int)(Math.random() * 26);
     System.out.println(names[selectedNo]);
 
   }

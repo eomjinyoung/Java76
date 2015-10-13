@@ -1,17 +1,23 @@
 /*
- * 작업 목표: delete 명령 처리 (3) - 삭제한 항목을 비우지 말고, 뒤의 항목을 앞으로 당길 것.
+ * 작업 목표: delete 명령 처리 (2) - 삭제 여부 묻기, 결과 출력하기
+명령> delete
+회원 번호? 1
+정말 삭제하시겠습니까?(y/n) y
+삭제 되었습니다.
+정말 삭제하시겠습니까?(y/n) n
+취소하였습니다.
  */
 package step09.v07;
 
 import java.util.Scanner;
 
-public class ProjectApp {
+public class ProjectApp02 {
   Scanner scanner = new Scanner(System.in);
   Student[] students = new Student[1000];
   int pos; // 저장 위치
 
   public static void main(String[] args) {
-    ProjectApp app = new ProjectApp();
+    ProjectApp02 app = new ProjectApp02();
     app.service();
   }
   
@@ -98,10 +104,7 @@ public class ProjectApp {
         if (students[no] == null) {
           System.out.println("이미 삭제된 항목입니다.");
         } else {
-          for (int i = no; i < (pos - 1); i++) {
-            students[i] = students[i + 1];
-          }
-          pos--;
+          students[no] = null;
           System.out.println("삭제하였습니다.");
         }
       } else {
