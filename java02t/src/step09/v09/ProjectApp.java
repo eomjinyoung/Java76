@@ -8,9 +8,11 @@ import java.util.Scanner;
 public class ProjectApp {
   Scanner scanner = new Scanner(System.in);
   StudentControl studentControl;
+  ProjectControl projectControl;
   
   public ProjectApp() {
     studentControl = new StudentControl(scanner);
+    projectControl = new ProjectControl(scanner);
   }
   
   public static void main(String[] args) {
@@ -30,6 +32,9 @@ public class ProjectApp {
       case "menu 1":
         studentControl.service();
         break;
+      case "menu 2":
+        projectControl.service();
+        break;  
       case "help":
         doHelp();
         break;
