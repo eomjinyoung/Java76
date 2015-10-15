@@ -1,11 +1,12 @@
 package v02;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProjectControl {
   Scanner scanner;
-  LinkedList<Project> projects = new LinkedList<Project>();
+  ArrayList<Project> projects = new ArrayList<Project>();
   
   public ProjectControl(Scanner scanner) {
     this.scanner = scanner;
@@ -73,11 +74,9 @@ public class ProjectControl {
     System.out.print("정말 저장하시겠습니까?(y/n)");
     String yesno = scanner.nextLine();
     if (yesno.toLowerCase().equals("y")) {
-      if (projects.add(project) == 0) { 
-        System.out.println("저장되었습니다.");
-      } else {
-        System.out.println("저장소가 모두 찼습니다.\n저장할 수 없습니다!");
-      }
+      projects.add(project); 
+      System.out.println("저장되었습니다.");
+      
     } else {
       System.out.println("취소하였습니다.");
     }

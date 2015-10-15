@@ -1,10 +1,11 @@
 package v02;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudentControl {
   Scanner scanner;
-  LinkedList<Student> students = new LinkedList<Student>();
+  ArrayList<Student> students = new ArrayList<Student>();
   
   public StudentControl(Scanner scanner) {
     this.scanner = scanner;
@@ -69,11 +70,8 @@ public class StudentControl {
     System.out.print("정말 저장하시겠습니까?(y/n)");
     String yesno = scanner.nextLine();
     if (yesno.toLowerCase().equals("y")) {
-      if (students.add(student) == 0) { 
-        System.out.println("저장되었습니다.");
-      } else {
-        System.out.println("저장소가 모두 찼습니다.\n저장할 수 없습니다!");
-      }
+      students.add(student);
+      System.out.println("저장되었습니다.");
     } else {
       System.out.println("취소하였습니다.");
     }
