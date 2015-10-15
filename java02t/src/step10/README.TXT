@@ -59,7 +59,14 @@ ex08.Test01 - ArrayList에서 짝수 번째 값을 꺼내기
 ex08.Test02 - ArrayList에서 뒤로부터 값을 꺼내기
 ex08.Test03 - ArrayList에서 앞에서부터 값을 꺼내기
 
-2) Iterator 적용 후      
+2) Iterator 적용 후
+ex08.Test04 - Iterator 클래스를 정의하여 사용한다.
+ex08.Test05 - HashSet의 iterator()를 사용한다.       
+
+[주제: Bucket과 LinkedList에 제네릭 문법 적용]
+ex09.Bucket
+ex09.LinkedList
+
        
        
        

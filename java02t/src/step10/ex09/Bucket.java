@@ -1,4 +1,4 @@
-package v01;
+package step10.ex09;
 
 // Bucket이 다루는 데이터의 타입을 E 라고 가정한다.
 public class Bucket<E> {
