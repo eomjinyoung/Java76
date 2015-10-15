@@ -1,20 +1,19 @@
-package v01;
+package v02;
 
-import java.sql.Date;
 import java.util.Scanner;
 
-public class ProjectControl {
+public class StudentControl {
   Scanner scanner;
-  LinkedList<Project> projects = new LinkedList<Project>();
+  LinkedList<Student> students = new LinkedList<Student>();
   
-  public ProjectControl(Scanner scanner) {
+  public StudentControl(Scanner scanner) {
     this.scanner = scanner;
   }
   
   public void service() {
     String command = null;
     do {
-      System.out.print("프로젝트관리> ");
+      System.out.print("학생관리> ");
       command = scanner.nextLine(); 
       switch (command) {
       case "list":
@@ -25,55 +24,52 @@ public class ProjectControl {
         break;
       case "delete":
         doDelete();
-        break;  
-      case "help":
-        doHelp();
-        break;
+        break; 
       case "main":
         return;
+      case "help":
+        doHelp();
+        break;  
       default:
         System.out.println("해당 명령을 지원하지 않습니다.");
       }
     } while (!command.equals("quit"));
   }
-
+  
   private void doList() {
-    System.out.printf("%-3s %-20s %-10s %-10s %-40s\n", 
-        "No", "Title", "Start", "End", "Members");
-
-    Project project = null;
-    for (int i = 0; i < projects.size(); i++) {
-      project = projects.get(i); // 제네릭을 적용했기 때문에 타입 캐스팅 할 필요가 없다.
-      if (project == null) 
+    Student student = null;
+    for (int i = 0; i < students.size(); i++) {
+      student = students.get(i); // 제네릭 적용! 타입 캐스팅 필요 없다.
+      if (student == null) 
         continue;
-      System.out.printf("% 3d %-20s %3$tY-%3$tm-%3$td %4$s %5$-40s\n", 
+      System.out.printf("%d %s %s %s %s\n", 
           i, 
-          project.getTitle(),
-          project.getStartDate(),
-          project.getEndDate(),
-          project.getMember());
+          student.getName(),
+          student.getEmail(),
+          student.getTel(),
+          student.getCid());
     }
   }
   
   private void doAdd() {
-    Project project = new Project();
+    Student student = new Student();
     
-    System.out.print("프로젝트명? ");
-    project.setTitle(scanner.nextLine());
+    System.out.print("이름? ");
+    student.setName(scanner.nextLine());
     
-    System.out.print("시작일? ");
-    project.setStartDate(Date.valueOf(scanner.nextLine()));
+    System.out.print("이메일? ");
+    student.setEmail(scanner.nextLine());
     
-    System.out.print("종료일? ");
-    project.setEndDate(Date.valueOf(scanner.nextLine()));
+    System.out.print("전화? ");
+    student.setTel(scanner.nextLine());
 
-    System.out.print("멤버? ");
-    project.setMember(scanner.nextLine());
+    System.out.print("기수? ");
+    student.setCid(scanner.nextLine());
     
     System.out.print("정말 저장하시겠습니까?(y/n)");
     String yesno = scanner.nextLine();
     if (yesno.toLowerCase().equals("y")) {
-      if (projects.add(project) == 0) { 
+      if (students.add(student) == 0) { 
         System.out.println("저장되었습니다.");
       } else {
         System.out.println("저장소가 모두 찼습니다.\n저장할 수 없습니다!");
@@ -84,14 +80,13 @@ public class ProjectControl {
   }
   
   private void doDelete() {
-    System.out.print("프로젝트 번호? ");
+    System.out.print("회원 번호? ");
     int no = Integer.parseInt(scanner.nextLine());
     
     System.out.print("정말 삭제하시겠습니까?(y/n)");
     String yesno = scanner.nextLine();
-    
     if (yesno.toLowerCase().equals("y")) {
-      if (projects.remove(no) != null) { 
+      if (students.remove(no) != null) { 
         System.out.println("삭제하였습니다.");
       } else {
         System.out.println("유효하지 않은 번호입니다.");
@@ -106,9 +101,9 @@ public class ProjectControl {
     System.out.println("명령");
     System.out.println();
     System.out.println("[명령]");
-    System.out.println("list         프로젝트 목록을 리턴한다.");
-    System.out.println("add          프로젝트를 추가한다.");
-    System.out.println("delete       프로젝트를 삭제한다. ");
+    System.out.println("list         학생 목록을 리턴한다.");
+    System.out.println("add          학생을 추가한다.");
+    System.out.println("delete       학생을 삭제한다. ");
     System.out.println("main         메인으로 이동한다.");
   }
 }

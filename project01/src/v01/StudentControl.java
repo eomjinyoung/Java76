@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class StudentControl {
   Scanner scanner;
-  LinkedList students = new LinkedList();
+  LinkedList<Student> students = new LinkedList<Student>();
   
   public StudentControl(Scanner scanner) {
     this.scanner = scanner;
@@ -39,8 +39,8 @@ public class StudentControl {
   private void doList() {
     Student student = null;
     for (int i = 0; i < students.size(); i++) {
-      student = (Student)students.get(i);
-      if (student == null) // 배열의 항목이 null인 경우, 다음 항목으로 바로 이동.
+      student = students.get(i); // 제네릭 적용! 타입 캐스팅 필요 없다.
+      if (student == null) 
         continue;
       System.out.printf("%d %s %s %s %s\n", 
           i, 
