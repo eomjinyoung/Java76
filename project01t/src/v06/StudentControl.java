@@ -14,6 +14,7 @@ public class StudentControl extends StorageMenuControl<Student> {
   StudentDeleteCommand deleteHandler = new StudentDeleteCommand();
   StudentHelpCommand helpHandler = new StudentHelpCommand();
 
+  public StudentControl() {}
   
   public StudentControl(Scanner scanner) {
     super(scanner);

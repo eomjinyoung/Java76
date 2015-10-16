@@ -17,6 +17,14 @@ public abstract class MenuControl {
   //    하위 클래스가 반드시 구현하도록 강제할 방법은 없나요?
   // => 해결책: 추상 메서드로 선언하라. 당연히 추상 클래스 만이 추상 메서드를 가질 수 있다.
   public abstract void service(); // 추상 메서드는 구현할 수 없다!!!!!
+
+  public Scanner getScanner() {
+    return scanner;
+  }
+
+  public void setScanner(Scanner scanner) {
+    this.scanner = scanner;
+  }
 }
 
 

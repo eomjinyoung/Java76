@@ -14,6 +14,8 @@ public class ProjectControl extends StorageMenuControl<Project> {
   ProjectDeleteCommand deleteHandler = new ProjectDeleteCommand();
   ProjectHelpCommand helpHandler = new ProjectHelpCommand();
 
+  public ProjectControl() {}
+  
   public ProjectControl(Scanner scanner) {
     super(scanner);
   }
