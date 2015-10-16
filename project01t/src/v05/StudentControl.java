@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import v05.command.StudentAddCommand;
 import v05.command.StudentDeleteCommand;
-import v05.command.StudentDetailCommand;
 import v05.command.StudentHelpCommand;
 import v05.command.StudentListCommand;
 
@@ -14,7 +13,6 @@ public class StudentControl extends StorageMenuControl<Student> {
   StudentAddCommand addHandler = new StudentAddCommand();
   StudentDeleteCommand deleteHandler = new StudentDeleteCommand();
   StudentHelpCommand helpHandler = new StudentHelpCommand();
-  StudentDetailCommand detailHandler = new StudentDetailCommand();
 
   
   public StudentControl(Scanner scanner) {
@@ -41,9 +39,6 @@ public class StudentControl extends StorageMenuControl<Student> {
       case "delete":
         deleteHandler.execute(params);
         break; 
-      case "detail":
-        detailHandler.execute(params);
-        break;  
       case "main":
         return;
       case "help":
