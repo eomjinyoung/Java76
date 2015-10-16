@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import v05.Project;
 
-public class ProjectAddCommand {
+public class ProjectAddCommand implements Command {
   
   public void execute(HashMap<String,Object> params) {
     Scanner scanner = (Scanner)params.get("scanner");

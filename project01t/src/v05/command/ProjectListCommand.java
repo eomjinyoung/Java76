@@ -5,7 +5,8 @@ import java.util.HashMap;
 
 import v05.Project;
 
-public class ProjectListCommand {
+// Command 규칙 적용
+public class ProjectListCommand implements Command {
   public void execute(HashMap<String,Object> params) {
     ArrayList<Project> list = (ArrayList<Project>)params.get("list");
     
