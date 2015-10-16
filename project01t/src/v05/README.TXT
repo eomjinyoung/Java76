@@ -20,6 +20,7 @@ Command 패턴?
 2. ProjectControl과 Command 클래스 사이의 호출 규칙을 정의한다.
    => Command 인터페이스 선언
 3. 각 Command에게 규칙을 적용한다.
+4. StudentControl 클래스에 대해서도 위의 1, 2, 3 단계를 수행하라!
    
  
 
