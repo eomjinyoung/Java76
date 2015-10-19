@@ -28,15 +28,16 @@ ex03 - 멤버 이너 클래스 사용
        => 인스턴스 변수나 인스턴스 메서드를 사용하는 이너 클래스가 필요할 때  
 
 ex04 - 로컬 이너 클래스 적용 전
-
+       => AbstractIterator, EventIterator, ReverseIterator 패키지 멤버 글래스 작성
+       => LinkedList의 iterator(type) 메서드에서 사용
+       
 ex05 - 로컬 이너 클래스 적용 후
        => LinkedList에 AbstractIterator 멤버 이너 클래스를 선언한다.
-       
+       => EventIterator, ReverseIterator를 
+          iterator(type) 메서드의 로컬 이너 클래스로 선언한다.
+          
+ex06 - 익명 이너 클래스 
 
-
-Test02 - member inner class
-Test03 - local inner class
-Test04 - anonymous inner class
  
 
        
