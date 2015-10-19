@@ -76,6 +76,7 @@ public class ProjectApp {
   private void doMenu() {
     System.out.println("1 회원 관리");
     System.out.println("2 프로젝트 관리");
+    System.out.println("3 게시물 관리");
   }
   
   private void doQuit() {
