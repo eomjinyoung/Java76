@@ -27,6 +27,12 @@ ex03 - 멤버 이너 클래스 사용
        => 특정 클래스에서만 사용하는 경우,     
        => 인스턴스 변수나 인스턴스 메서드를 사용하는 이너 클래스가 필요할 때  
 
+ex04 - 로컬 이너 클래스 적용 전
+
+ex05 - 로컬 이너 클래스 적용 후
+       => LinkedList에 AbstractIterator 멤버 이너 클래스를 선언한다.
+       
+
 
 Test02 - member inner class
 Test03 - local inner class
