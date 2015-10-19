@@ -1,7 +1,5 @@
 package step13.ex04;
 
-import step13.ex05.LinkedList;
-
 public class Test01 {
   
   public static void main(String[] args) {
@@ -13,7 +11,7 @@ public class Test01 {
     list.add("44444");
     list.add("55555");
     
-    LinkedList.AbstractIterator iterator = list.iterator("reverse");
+    AbstractIterator iterator = list.iterator("reverse");
     
     while(iterator.hasNext()) {
       System.out.println(iterator.next());
