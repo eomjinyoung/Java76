@@ -13,7 +13,10 @@ ex03 - FileOutputStream, FileInputStream
   => 데이터 출력하기
   => 데이터 읽기
   
-
+ex04 - FileWriter, FileReader
+  => 데이터 출력하기, 데이터 읽기
+   
+  
 4. FileInputStream
   => 데이터 읽기
 5. FileWriter
