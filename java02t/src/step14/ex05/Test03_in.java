@@ -1,8 +1,5 @@
 package step14.ex05;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-
 public class Test03_in {
 
   public static void main(String[] args) throws Exception {

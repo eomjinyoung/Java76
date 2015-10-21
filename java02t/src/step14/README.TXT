@@ -23,6 +23,11 @@ ex04 - FileWriter, FileReader
 ex05 - primitive type 데이터 입/출력하기 
   => 문자열과 int 값 출력하기 
   => 상속을 이용하여 primitive type 데이터를 읽는 기능 추가하기  
+
+ex06 - caching 기법 
+  => 버퍼를 활용하여 파일 읽기 속도를 높이자!
+  
+  
   
 9. 데이터 프로세싱 스트림 클래스 사용법
 10. 데코레이터 패턴 소개
