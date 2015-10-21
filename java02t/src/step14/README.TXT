@@ -20,8 +20,9 @@ ex04 - FileWriter, FileReader
      1) byte / character
      2) data sink / data processing
      
-ex05 - 데이터 프로세싱 스트림
-  => primitive type 데이터 입/출력하기  
+ex05 - primitive type 데이터 입/출력하기 
+  => 문자열과 int 값 출력하기 
+  => 상속을 이용하여 primitive type 데이터를 읽는 기능 추가하기  
   
 9. 데이터 프로세싱 스트림 클래스 사용법
 10. 데코레이터 패턴 소개

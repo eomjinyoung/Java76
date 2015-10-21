@@ -13,7 +13,7 @@ public class StudentSelector {
     int selectedNo = 0;
     for (int i = 0; i < 26; i++) {
       selectedNo = (int)(Math.random() * 26);
-      System.out.println(".(" + names[selectedNo] + ")");
+      System.out.print(".");
       Thread.currentThread().sleep(200);
     }
     Thread.currentThread().sleep(2000);
