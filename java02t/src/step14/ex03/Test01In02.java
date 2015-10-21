@@ -12,7 +12,7 @@ public class Test01In02 {
     //   파일에 끝에 도달했으면 -1 리턴.
     int b;
     while ((b = in.read()) != -1)
-      System.out.println(Integer.toHexString(b));
+      System.out.printf("%02x\n", b);
     
     in.close();
     

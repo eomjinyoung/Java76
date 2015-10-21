@@ -7,7 +7,7 @@ public class Test02Out {
     FileOutputStream out = new FileOutputStream("./test/ex03.test02.txt");
     
     //문자열 출력
-    String str = "Hello, World!\n가각간\n똘똥똠\n";
+    String str = "Hello, World!\n가각간\n똘똥똠?\n";
     
     // 1) JVM 기본 문자집합을 사용하여 바이트 배열을 만든다.
     out.write(str.getBytes()); 
