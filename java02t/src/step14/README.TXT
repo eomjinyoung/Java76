@@ -15,16 +15,14 @@ ex03 - FileOutputStream, FileInputStream
   
 ex04 - FileWriter, FileReader
   => 데이터 출력하기, 데이터 읽기
-   
+  => byte stream과 character stream의 차이점 비교.
+  => 입/출력 클래스 분류
+     1) byte / character
+     2) data sink / data processing
+     
+ex05 - 데이터 프로세싱 스트림
+  => primitive type 데이터 입/출력하기  
   
-4. FileInputStream
-  => 데이터 읽기
-5. FileWriter
-  => 데이터 출력 
-6. FileReader
-  => 데이터 읽기
-7. 바이너리 스트림과 캐릭터 스트림의 차이점
-8. 입출력 클래스 분류
 9. 데이터 프로세싱 스트림 클래스 사용법
 10. 데코레이터 패턴 소개
 11. project01/v07에 파일 입출력 적용
