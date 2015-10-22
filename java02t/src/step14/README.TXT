@@ -44,12 +44,16 @@ ex09 - Decorator 패턴을 적용하여 객체 간의 연결을 쉽게 한다.
 
 ex10 - 자바에서 제공하는 API를 사용하여 입출력하기.     
    
-   
-   
-   
-   
-       
+ex11 - 객체 직력화(Serialization)
+  => serialize: 인스턴스 ---> 바이트 배열   (marshaling)
+  => deserialize: 바이트 배열 ---> 인스턴스 (unmarshaling)
   
-9. 데이터 프로세싱 스트림 클래스 사용법
-10. 데코레이터 패턴 소개
-11. project01/v07에 파일 입출력 적용
+  
+  
+  
+  
+  
+  
+  
+  
+  
