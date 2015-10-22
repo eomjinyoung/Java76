@@ -32,7 +32,8 @@ public class Project {
 
   @Override
   public String toString() {
-    return "Project [title=" + title + ", startDate=" + startDate + ", endDate=" + endDate + ", member=" + member + "]";
+    return this.getTitle() + "," + this.getStartDate().toString() + "," +
+            this.getEndDate().toString() + "," + this.getMember();
   }
 
   public String getTitle() {

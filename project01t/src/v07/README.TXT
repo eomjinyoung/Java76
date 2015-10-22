@@ -6,7 +6,10 @@ File API?
 
 실습:
 1. java02t:step14 패키지의 예제를 먼저 공부하라!
-2. StorageMenuControl 클래스에 파일 저장과 로딩 기능을 넣는다.
+2. StudentControl, ProjectControl, BoardControl 클래스에 
+   파일 저장과 로딩 기능을 넣는다.
+3. Student, Project, Board 클래스에 문자열을 입력 받아 인스턴스를 초기화하는 기능과
+   인스턴스 변수를 문자열로 리턴하는 기능을 추가한다.
 
  
  

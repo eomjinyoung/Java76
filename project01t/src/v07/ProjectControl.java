@@ -1,7 +1,10 @@
 package v07;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -59,10 +62,29 @@ public class ProjectControl extends StorageMenuControl<Project> {
         helpHandler.execute(params);
         break;
       case "main":
+        try {
+          save();
+        } catch (Exception e) {
+          System.out.println("저장 실패!");
+        }
         return;
       default:
         System.out.println("해당 명령을 지원하지 않습니다.");
       }
-    } while (!command.equals("quit"));
+    } while (true);
+  }
+  
+  private void save() throws Exception {
+    FileWriter out = new FileWriter("./data/project.dat");
+    BufferedWriter out2 = new BufferedWriter(out);
+    PrintWriter out3 = new PrintWriter(out2);
+    
+    for (Project p : list) {
+      out3.println(p);
+    }
+    
+    out3.close();
+    out2.close();
+    out.close();
   }
 }

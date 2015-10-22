@@ -27,8 +27,8 @@ public class Board {
   
   @Override
   public String toString() {
-    return "Board [no=" + no + ", title=" + title + ", content=" + content + ", createdDate=" + createdDate
-        + ", writer=" + writer + "]";
+    return this.getTitle() + "," + this.getContent() + "," +
+        this.getCreatedDate().toString() + "," + this.getWriter();
   }
   
   public int getNo() {

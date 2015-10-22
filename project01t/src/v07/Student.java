@@ -29,8 +29,8 @@ public class Student {
   
   @Override
   public String toString() {
-    return "Student [name=" + name + ", email=" + email 
-        + ", tel=" + tel + ", cid=" + cid + "]";
+    return this.getName() + "," + this.getEmail() + "," +
+          this.getTel() + "," + this.getCid();
   }
 
   public String getName() {
