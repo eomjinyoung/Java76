@@ -1,6 +1,7 @@
 package step14.ex08;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class DataOutputStream {
   FileOutputStream outputStream;
@@ -22,6 +23,10 @@ public class DataOutputStream {
     outputStream.write(bytes.length >> 8);
     outputStream.write(bytes.length);
     outputStream.write(bytes);
+  }
+  
+  public void close() throws IOException  {
+    outputStream.close();
   }
 }
 

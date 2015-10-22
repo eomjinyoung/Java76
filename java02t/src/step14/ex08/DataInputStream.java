@@ -1,6 +1,7 @@
 package step14.ex08;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class DataInputStream {
   FileInputStream inputStream;
@@ -25,5 +26,9 @@ public class DataInputStream {
     byte[] bytes = new byte[len];
     inputStream.read(bytes);
     return new String(bytes);
+  }
+  
+  public void close() throws IOException {
+    inputStream.close();
   }
 }
