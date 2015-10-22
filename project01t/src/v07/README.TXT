@@ -6,7 +6,7 @@ File API?
 
 실습:
 1. java02t:step14 패키지의 예제를 먼저 공부하라!
- 
+2. StorageMenuControl 클래스에 파일 저장과 로딩 기능을 넣는다.
 
  
  
