@@ -1,15 +1,15 @@
-package step14.ex06;
+package step14.ex07;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class BufferedInputStream extends FileInputStream {
+import step14.ex05.DataInputStream;
+
+public class BufferedDataInputStream extends DataInputStream {
   byte[] buffer = new byte[8096];
   int len;
   int cursor;
   
-  public BufferedInputStream(String name) throws FileNotFoundException {
+  public BufferedDataInputStream(String name) throws Exception {
     super(name);
   }
   
@@ -23,5 +23,17 @@ public class BufferedInputStream extends FileInputStream {
     return 0x000000ff & buffer[cursor++];
   }
   
+  @Override
+  public int read(byte[] bytes) throws IOException {
+    int i = 0;
+    int b = -1;
+    for (; i < bytes.length; i++) {
+      if ((b = this.read()) == -1)
+        break;
+      bytes[i] = (byte)b;
+    }
+    return i;
+  }
   
+
 }
