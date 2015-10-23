@@ -47,7 +47,7 @@ ex10 - 자바에서 제공하는 API를 사용하여 입출력하기.
 ex11 - 객체 직력화(Serialization)
   => serialize: 인스턴스 ---> 바이트 배열   (marshaling)
   => deserialize: 바이트 배열 ---> 인스턴스 (unmarshaling)
-  
+  => transient 제한자(변경자;modifier)의 활용
   
   
   
