@@ -5,19 +5,22 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Server {
 
   public static void main(String[] args) {
     try (
-      ServerSocket ss = new ServerSocket(8888);
+      ServerSocket ss = new ServerSocket(8888, 5);
     ) {
       System.out.println("클라이언트의 연결 기다림...");
       Socket socket = null;
-      
+      Scanner scanner = new Scanner(System.in);
       while (true) {
         socket = ss.accept();
         echo(socket);
+        System.out.println("잠깐!");
+        scanner.nextLine();
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -38,10 +41,9 @@ public class Server {
       out = new PrintStream(socket.getOutputStream()); 
       
       String message = in.readLine();
-      System.out.printf("클라이언트로부터 받은 메시지: %s\n", message);
+      System.out.println(message);
       
       out.println(message);
-      System.out.printf("서버가 보낸 메시지: %s\n", message);
       
     } catch (Exception e) {
       e.printStackTrace();
