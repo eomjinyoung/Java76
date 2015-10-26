@@ -1,14 +1,18 @@
 package v08.command;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import v08.domain.Project;
+import v08.dao.ProjectDao;
 
 public class ProjectDeleteCommand implements Command {
+  ProjectDao projectDao;
+  
+  public void setProjectDao(ProjectDao projectDao) {
+    this.projectDao = projectDao;
+  }
+  
   public void execute(HashMap<String,Object> params) {
-    ArrayList<Project> list = (ArrayList<Project>)params.get("list");
     Scanner scanner = (Scanner)params.get("scanner");
     
     System.out.print("프로젝트 번호? ");
@@ -18,7 +22,7 @@ public class ProjectDeleteCommand implements Command {
     String yesno = scanner.nextLine();
     
     if (yesno.toLowerCase().equals("y")) {
-      if (list.remove(no) != null) { 
+      if (projectDao.delete(no) != null) { 
         System.out.println("삭제하였습니다.");
       } else {
         System.out.println("유효하지 않은 번호입니다.");

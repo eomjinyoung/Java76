@@ -1,30 +1,16 @@
 package v08.control;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import v08.dao.BoardDao;
 import v08.domain.Board;
 
 public class BoardControl extends StorageMenuControl<Board> {
-
+  BoardDao boardDao;
+  
   public BoardControl() throws Exception {
-    String filename = "./data/board.dat";
-    FileReader in = new FileReader(filename);
-    BufferedReader in2 = new BufferedReader(in);
-    
-    String line = null;
-    
-    while ((line = in2.readLine()) != null) {
-      list.add(new Board(line));
-    }
-    
-    in2.close();
-    in.close();
+    boardDao = new BoardDao();
   }
   
   public BoardControl(Scanner scanner) {
@@ -51,29 +37,11 @@ public class BoardControl extends StorageMenuControl<Board> {
       case "help":
         break;
       case "main":
-        try {
-          save();
-        } catch (Exception e) {
-          System.out.println("저장 실패!");
-        }
+        boardDao.save();
         return;
       default:
         System.out.println("해당 명령을 지원하지 않습니다.");
       }
     } while (true);
-  }
-  
-  private void save() throws Exception {
-    FileWriter out = new FileWriter("./data/board.dat");
-    BufferedWriter out2 = new BufferedWriter(out);
-    PrintWriter out3 = new PrintWriter(out2);
-    
-    for (Board b : list) {
-      out3.println(b);
-    }
-    
-    out3.close();
-    out2.close();
-    out.close();
   }
 }

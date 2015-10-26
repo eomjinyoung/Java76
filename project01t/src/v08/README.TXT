@@ -16,9 +16,14 @@
 3. DAO 클래스들을 담을 패키지를 준비한다.
    dao라는 패키지를 생성하라.
    
-4. StudentControl로부터 프로젝트 데이터를 다루는(저장,로딩) 기능을 분리하여
+4. StudentControl로부터 학생 데이터를 다루는(저장,로딩) 기능을 분리하여
    StudentDao 클래스로 만든다.
    
+5. ProjectControl로부터 프로젝트 데이터를 다루는(저장,로딩) 기능을 분리하여
+   ProjectDao 클래스로 만든다.   
+
+6. BoardControl로부터 게시판 데이터를 다루는(저장,로딩) 기능을 분리하여
+   BoardDao 클래스로 만든다.      
 
  
  

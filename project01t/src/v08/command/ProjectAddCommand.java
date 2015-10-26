@@ -1,17 +1,21 @@
 package v08.command;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import v08.dao.ProjectDao;
 import v08.domain.Project;
 
 public class ProjectAddCommand implements Command {
+  ProjectDao projectDao;
+  
+  public void setProjectDao(ProjectDao projectDao) {
+    this.projectDao = projectDao;
+  }
   
   public void execute(HashMap<String,Object> params) {
     Scanner scanner = (Scanner)params.get("scanner");
-    ArrayList<Project> list = (ArrayList<Project>)params.get("list");
     
     Project project = new Project();
     
@@ -30,7 +34,7 @@ public class ProjectAddCommand implements Command {
     System.out.print("정말 저장하시겠습니까?(y/n)");
     String yesno = scanner.nextLine();
     if (yesno.toLowerCase().equals("y")) {
-      list.add(project); 
+      projectDao.insert(project); 
       System.out.println("저장되었습니다.");
       
     } else {
