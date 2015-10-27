@@ -12,32 +12,32 @@ import v09.server.dao.ProjectDao;
 import v09.server.dao.StudentDao;
 import v09.server.servlet.ProjectAddServlet;
 import v09.server.servlet.ProjectListServlet;
-import v09.server.servlet.Servlet;
 import v09.server.servlet.StudentListServlet;
 
-public class ProjectServer {
-  HashMap<String,Servlet> servletMap = new HashMap<String,Servlet>();
+public class ProjectServer02 {
+  ProjectDao projectDao;
+  StudentDao studentDao;
+  ProjectListServlet    projectListServlet;
+  ProjectAddServlet     projectAddServlet;
+  StudentListServlet    studentListServlet;
   
-  public ProjectServer() {
-    ProjectDao projectDao = new ProjectDao();
+  public ProjectServer02() {
+    projectDao = new ProjectDao();
     
-    ProjectListServlet projectListServlet = new ProjectListServlet();
+    projectListServlet = new ProjectListServlet();
     projectListServlet.setProjectDao(projectDao);
-    servletMap.put("/project/list", projectListServlet);
     
-    ProjectAddServlet projectAddServlet = new ProjectAddServlet();
+    projectAddServlet = new ProjectAddServlet();
     projectAddServlet.setProjectDao(projectDao);
-    servletMap.put("/project/add", projectAddServlet);
     
-    StudentDao studentDao = new StudentDao();
-
-    StudentListServlet studentListServlet = new StudentListServlet();
+    studentDao = new StudentDao();
+    studentListServlet = new StudentListServlet();
+    
     studentListServlet.setStudentDao(studentDao);
-    servletMap.put("/student/list", studentListServlet);
   }
   
   public static void main(String[] args) {
-    ProjectServer server = new ProjectServer();
+    ProjectServer02 server = new ProjectServer02();
     server.execute();
 
   }
@@ -67,23 +67,23 @@ public class ProjectServer {
     {
       String message = in.readLine();
       
-      int i = message.indexOf('?');
-      String command = message.substring(0, 
-                                  (i != -1) ? i : message.length());
-      
       HashMap<String,Object> params = new HashMap<String,Object>();
       params.put("out", out);
       
       extractParamDataFromMessage(params, message);
       
-      Servlet servlet = servletMap.get(command);
-      
-      if (servlet != null) {
-        servlet.service(params);
+      if (message.startsWith("/project/list")) {
+        projectListServlet.service(params);
+        
+      } else if (message.startsWith("/project/add")) {
+        projectAddServlet.service(params);
+        
+      } else if (message.startsWith("/student/list")) {
+        studentListServlet.service(params);
+        
       } else {
         out.println("죄송하지만, 요청하신 명령은 실행할 수 없습니다.");
       }
-      
       out.println();
       
     } catch (Exception e) {
