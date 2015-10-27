@@ -7,8 +7,20 @@
 
 2. 클라이언트 만들기
   - ProjectClient 클래스 생성.
-     
 
+2. 서버 만들기
+  - ProjectServer 클래스 생성.
+  - domain 패키지 생성 => Project VO 클래스 복사.     
+  - exception 패키지 생성 
+    => DaoException 클래스 복사.
+  - dao 패키지 생성
+    => ProjectDao 클래스 복사.
+    => import 변경 
+  - servlet 패키지 생성
+    => Servlet 인터페이스 정의.
+  - ProjectListServlet 클래스 작성.
+    => Servlet 인터페이스 구현
+     
  
  
    
