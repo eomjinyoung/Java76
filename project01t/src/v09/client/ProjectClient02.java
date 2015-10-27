@@ -2,7 +2,7 @@ package v09.client;
 
 import java.util.Scanner;
 
-public class ProjectClient01 {
+public class ProjectClient02 {
   
   private void execute() {
     try (
@@ -14,6 +14,8 @@ public class ProjectClient01 {
       while (true) {
         System.out.print("명령> ");
         command = keyboard.nextLine();
+        if (command.equals("quit"))
+          break;
         System.out.println(command);
       }
       
@@ -24,7 +26,7 @@ public class ProjectClient01 {
   }
   
   public static void main(String[] args) {
-    ProjectClient01 client = new ProjectClient01();
+    ProjectClient02 client = new ProjectClient02();
     client.execute();
   }
 }
