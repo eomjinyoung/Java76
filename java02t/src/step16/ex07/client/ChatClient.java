@@ -21,6 +21,7 @@ public class ChatClient {
       String result = null;
       
       do {
+        System.out.print(">");
         message = keyboard.nextLine();
         out.println(message);
         result = in.readLine();
