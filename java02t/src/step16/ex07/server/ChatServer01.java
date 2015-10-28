@@ -1,5 +1,5 @@
 /*
- * v02 - 다중 클라이언트와의 채팅
+ * v01 - 에코 서버 구현
  */
 
 package step16.ex07.server;
@@ -9,28 +9,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 
-public class ChatServer {
-  ArrayList<PrintStream> outList = new ArrayList<PrintStream>();
-  
-  synchronized public void add(PrintStream out) {
-    outList.add(out);
-  }
-  
-  synchronized public void remove(PrintStream out) {
-    outList.remove(out);
-  }
-  
-  synchronized public void send(String message) {
-    for (PrintStream out : outList) {
-      try {
-        out.println(message);
-      } catch (Exception e) {
-        this.remove(out);
-      }
-    }
-  }
+public class ChatServer01 {
   
   class ChatAgent extends Thread {
     Socket socket;
@@ -47,21 +27,15 @@ public class ChatServer {
         PrintStream out = new PrintStream(socket.getOutputStream());
       ) 
       {
-        // 서버 출력스트림 테이블에 클라이언트 출력스트림을 등록한다.
-        ChatServer.this.add(out);
-        
         String message = null;
         while (true) {
           message = in.readLine();
           if (message.equals("quit")) {
-            ChatServer.this.send("Good bye!");
+            out.println("Good bye!");
             break;
           }
-          ChatServer.this.send(message);
+          out.println(message);
         }
-        
-        //채팅이 끝났으면, 서버 출력스트림 테이블에서 클라이언트 출력스트림을 제거한다.
-        ChatServer.this.remove(out);
         
       } catch (Exception e) {
         e.printStackTrace();
@@ -92,7 +66,7 @@ public class ChatServer {
         "사용법: java [옵션들] step16.ex07.server.ChatServer 포트번호");
       return;
     }
-    ChatServer server = new ChatServer();
+    ChatServer01 server = new ChatServer01();
     server.service(Integer.parseInt(args[0]));
   }
 
