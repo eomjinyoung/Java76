@@ -1,6 +1,6 @@
 /*
  * 클라이언트 각 요청에 대해 스레드를 도입한다.
- * 2) Runnable 인터페이스를 구현하기
+ * 1) Thread 클래스를 상속 받기
  */
 package v09.server;
 
@@ -22,10 +22,10 @@ import v09.server.servlet.StudentAddServlet;
 import v09.server.servlet.StudentDeleteServlet;
 import v09.server.servlet.StudentListServlet;
 
-public class ProjectServer {
+public class ProjectServer04 {
   HashMap<String,Servlet> servletMap = new HashMap<String,Servlet>();
   
-  class RequestHandler implements Runnable {
+  class RequestHandler extends Thread {
     Socket socket;
     public RequestHandler(Socket socket) {
       this.socket = socket;
@@ -69,7 +69,7 @@ public class ProjectServer {
     }
   }
   
-  public ProjectServer() {
+  public ProjectServer04() {
     ProjectDao projectDao = new ProjectDao();
     
     ProjectListServlet projectListServlet = new ProjectListServlet();
@@ -100,7 +100,7 @@ public class ProjectServer {
   }
   
   public static void main(String[] args) {
-    ProjectServer server = new ProjectServer();
+    ProjectServer04 server = new ProjectServer04();
     server.execute();
 
   }
@@ -112,7 +112,7 @@ public class ProjectServer {
     {
       while (true) {
         System.out.println("클라이언트 요청을 기다리는 중...");
-        new Thread(new RequestHandler(ss.accept())).start();
+        new RequestHandler(ss.accept()).start();
       }
     } catch (Exception e) {
       e.printStackTrace();

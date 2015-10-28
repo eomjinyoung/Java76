@@ -10,11 +10,6 @@ import java.util.ArrayList;
 import v09.server.domain.Student;
 import v09.server.exception.DaoException;
 
-
-
-// 데이터의 지속성(persistence)을 관리
-// => 등록(Create), 조회(Read/Retrieve), 변경(Update), 삭제(Delete)를 관리
-// => 이런 기능을 CRUD 라고 부른다.
 public class StudentDao {
   ArrayList<Student> list = new ArrayList<Student>();
   
@@ -53,10 +48,13 @@ public class StudentDao {
 
   public void insert(Student student) {
     list.add(student);
+    this.save();
   }
 
   public Student delete(int no) {
-    return list.remove(no);
+    Student obj = list.remove(no);
+    this.save();
+    return obj;
   }
 }
 
