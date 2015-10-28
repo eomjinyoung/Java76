@@ -59,6 +59,31 @@ ex06 - Quiz
        결과(LF)
        . 결과? 4바이트 정수 값 
               
+ex07 - 다중 클라이언트 채팅 구현
+
+ex08 - 파일 전송 구현 
+  => 클라이언트 사용법
+     > java -cp ./bin step16.ex08.client.FileClient c:/test/a.gif
+     전송 완료!
+     > 
+  
+  => 서버 사용법
+     > java -cp ./bin step16.ex08.server.FileServer c:/test2
+     a.gif 파일 저장 완료!
      
+  => 실행 결과 확인
+     - c:/test2 폴더에 가서 a.gif 이름을 갖는 파일이 있는지 확인하고, 
+       그림판이나 미리보기 등의 프로그램을 사용하여 그림 파일을 출력해 본다.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+       
        
        
