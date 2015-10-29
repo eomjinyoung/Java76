@@ -16,31 +16,23 @@ public class Test04 {
   }
   
   public static void main(String[] args) throws Exception {
-    Class clazz = String.class;
+    Class clazz = Student.class;
+    Student obj = (Student)clazz.newInstance();
+    obj.name = "홍길동";
+    obj.tel = "111-1111";
     
-    Method[] methods = clazz.getMethods(); // public 메서드만 추출한다.
+    //obj.toString();
+    //=> "toString" 이라는 이름을 갖는 메서드를 찾는다.
+    //=> 아규먼트를 받지 않는 메서드이다.
+    Method m = clazz.getMethod("toString");
     
-    for (Method m : methods) {
-      System.out.printf("%s\n", m.getName());
-      printDetail(m);
-    }
+    //메서드 호출
+    //=> 첫 번째 아규먼트는 인스턴스이다.
+    //=> 두 번째 아규먼트부터는 해당 메서드에 전달할 값이다.
+    //   toString()은 아규먼트를 전달할 필요가 없기 때문에 두 번째 아규먼트는 적을 필요가 없다.
+    System.out.println(m.invoke(obj, "okok"));
   }
   
-  private static void printDetail(Method m) {
-    System.out.printf("  변경자: %s\n", Modifier.toString(m.getModifiers()));
-    
-    Class returnType = m.getReturnType();
-    System.out.printf("  리턴타입: %s\n", returnType.getName());
-    
-    Class[] paramTypes = m.getParameterTypes();
-    System.out.print("  파라미터: ");
-    for (Class c : paramTypes) {
-      System.out.print(c.getSimpleName() + ", ");
-    }
-    System.out.println();
-    
-  }
-
 }
 
 
