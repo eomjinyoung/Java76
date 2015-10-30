@@ -4,18 +4,21 @@
 package v10.server;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.lang.reflect.Method;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
 
-import v10.server.context.PropertyFileApplicationContext;
 import v10.server.servlet.Servlet;
 
-public class ProjectServer {
-  PropertyFileApplicationContext context;
+public class ProjectServer01 {
+  HashMap<String,Object> objMap = new HashMap<String,Object>();
   
   class RequestHandler implements Runnable {
     Socket socket;
@@ -43,7 +46,7 @@ public class ProjectServer {
         
         extractParamDataFromMessage(params, message);
         
-        Object servlet = context.getBean(command);
+        Object servlet = objMap.get(command);
         
         if (servlet != null && servlet instanceof Servlet) {
           ((Servlet)servlet).service(params);
@@ -61,14 +64,57 @@ public class ProjectServer {
     }
   }
   
-  public ProjectServer() throws Exception {
-    context = new PropertyFileApplicationContext(
-        "./src/v10/server/application-context.properties");
+  public ProjectServer01() throws Exception {
+    createObjects();
+    injectDependencies();
   }
 
+  private void injectDependencies() throws Exception {
+    Object[] objList = objMap.values().toArray();
+    Object dependency = null;
+    
+    for (Object obj : objList) {
+      for (Method m : obj.getClass().getMethods()) {
+        if (!isSetter(m)) continue;
+        dependency = findObjectByType(m.getParameterTypes()[0]);
+        if (dependency == null) continue;
+        m.invoke(obj, dependency);
+      }
+    }
+  }
+  
+  private boolean isSetter(Method m) {
+    if (m.getName().startsWith("set") 
+        && m.getParameterTypes().length == 1)
+      return true;
+    return false;
+  }
+  
+  private Object findObjectByType(Class<?> type) {
+    Object[] objList = objMap.values().toArray();
+    
+    for (Object obj : objList) {
+      if (type.isInstance(obj))
+        return obj;
+    }
+    return null;
+  }
+  
+  private void createObjects() throws Exception {
+    Properties props = new Properties();
+    props.load(
+        new FileReader("./src/v10/server/application-context.properties"));
+    
+    Class<?> clazz = null;
+    for (Entry<Object,Object> entry : props.entrySet()) {
+      clazz = Class.forName((String)entry.getValue());
+      objMap.put((String)entry.getKey(), clazz.newInstance());
+    }
+  }
+  
   public static void main(String[] args) {
     try {
-      ProjectServer server = new ProjectServer();
+      ProjectServer01 server = new ProjectServer01();
       server.execute();
       
     } catch (Exception e) {
