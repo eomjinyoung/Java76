@@ -1,7 +1,6 @@
 /*
- * @Component 애노테이션이 붙은 클래스를 찾기 위해 
- * 오픈 소스를 사용한다.
- * => Reflections 라이브러리 도입 
+ * 직접 디렉토리를 뒤져서 @Component가 붙은 
+ * 클래스를 찾아 인스턴스를 생성한다.
  */
 package v11.server.context;
 
@@ -10,15 +9,13 @@ import java.io.FileFilter;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import org.reflections.Reflections;
-
 import v11.server.annotation.Component;
 
-public class AnnotionApplicationContext {
+public class AnnotionApplicationContext01 {
   HashMap<String,Object> objMap = new HashMap<String,Object>();
   
-  public AnnotionApplicationContext(String basePackage) throws Exception {
-    createObjects(basePackage);
+  public AnnotionApplicationContext01(String basePackage) throws Exception {
+    createObjects(basePackage, new File("./bin/" + basePackage.replace(".", "/")));
     injectDependencies();
   }
   
@@ -26,14 +23,22 @@ public class AnnotionApplicationContext {
     return objMap.get(name);
   }
   
-  private void createObjects(String packageName) throws Exception {
-    Reflections reflections = new Reflections(packageName);
+  private void createObjects(String packageName, File file) throws Exception {
+    File[] subFiles = file.listFiles(new DirectoryOrClassFilter());
     
+    Class<?> clazz = null;
     Component anno = null;
     String objKey = null;
     
-    for (Class<?> clazz : reflections.getTypesAnnotatedWith(
-                                            Component.class)) {
+    for (File f : subFiles) {
+      if (f.isDirectory()) {
+        createObjects(packageName + "." + f.getName(), f);
+        continue;
+      }
+      // 클래스 파일을 로딩한다.
+      clazz = Class.forName(packageName + "." 
+                    + f.getName().replace(".class", ""));
+      
       // 클래스에서 @Component 애노테이션을 추출한다.
       anno = clazz.getAnnotation(Component.class);
       if (anno == null) // @Component 애노테이션 없으면 다음 항목으로 간다.
