@@ -3,9 +3,11 @@ package v11.server.servlet;
 import java.io.PrintStream;
 import java.util.HashMap;
 
+import v11.server.annotation.Component;
 import v11.server.dao.ProjectDao;
 import v11.server.domain.Project;
 
+@Component("/project/list")
 public class ProjectListServlet implements Servlet {
   ProjectDao projectDao;
   

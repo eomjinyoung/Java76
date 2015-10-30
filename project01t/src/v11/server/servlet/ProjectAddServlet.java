@@ -4,9 +4,11 @@ import java.io.PrintStream;
 import java.sql.Date;
 import java.util.HashMap;
 
+import v11.server.annotation.Component;
 import v11.server.dao.ProjectDao;
 import v11.server.domain.Project;
 
+@Component("/project/add")
 public class ProjectAddServlet implements Servlet {
   ProjectDao projectDao;
   

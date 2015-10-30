@@ -11,11 +11,11 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
 
-import v11.server.context.PropertyFileApplicationContext;
+import v11.server.context.AnnotionApplicationContext;
 import v11.server.servlet.Servlet;
 
 public class ProjectServer {
-  PropertyFileApplicationContext context;
+  AnnotionApplicationContext context;
   
   class RequestHandler implements Runnable {
     Socket socket;
@@ -62,8 +62,7 @@ public class ProjectServer {
   }
   
   public ProjectServer() throws Exception {
-    context = new PropertyFileApplicationContext(
-        "./src/v10/server/application-context.properties");
+    context = new AnnotionApplicationContext("v11.server");
   }
 
   public static void main(String[] args) {

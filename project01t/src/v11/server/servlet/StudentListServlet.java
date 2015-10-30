@@ -4,12 +4,11 @@ import java.io.PrintStream;
 import java.util.ArrayList ;
 import java.util.HashMap;
 
+import v11.server.annotation.Component;
 import v11.server.dao.StudentDao;
 import v11.server.domain.Student;
 
-
-
-// Command 규칙 적용
+@Component("/student/list")
 public class StudentListServlet implements Servlet {
   StudentDao studentDao;
   

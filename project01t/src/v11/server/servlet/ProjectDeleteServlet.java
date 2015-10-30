@@ -3,8 +3,10 @@ package v11.server.servlet;
 import java.io.PrintStream;
 import java.util.HashMap;
 
+import v11.server.annotation.Component;
 import v11.server.dao.ProjectDao;
 
+@Component("/project/delete")
 public class ProjectDeleteServlet implements Servlet {
   ProjectDao projectDao;
   

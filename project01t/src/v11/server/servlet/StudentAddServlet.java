@@ -3,9 +3,11 @@ package v11.server.servlet;
 import java.io.PrintStream;
 import java.util.HashMap;
 
+import v11.server.annotation.Component;
 import v11.server.dao.StudentDao;
 import v11.server.domain.Student;
 
+@Component("/student/add")
 public class StudentAddServlet implements Servlet {
   StudentDao studentDao;
   

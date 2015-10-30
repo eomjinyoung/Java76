@@ -1,16 +1,15 @@
 package v11.server.context;
 
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileFilter;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.Properties;
-import java.util.Map.Entry;
 
-public class PropertyFileApplicationContext {
+public class AnnotionApplicationContext {
   HashMap<String,Object> objMap = new HashMap<String,Object>();
   
-  public PropertyFileApplicationContext(String path) throws Exception {
-    createObjects(path);
+  public AnnotionApplicationContext(String basePackage) throws Exception {
+    createObjects(new File("./bin/" + basePackage.replace(".", "/")));
     injectDependencies();
   }
   
@@ -18,15 +17,25 @@ public class PropertyFileApplicationContext {
     return objMap.get(name);
   }
   
-  private void createObjects(String propPath) throws Exception {
-    Properties props = new Properties();
-    props.load(new FileReader(propPath));
+  private void createObjects(File file) throws Exception {
+    System.out.println(file.getCanonicalPath());
     
+    File[] subFiles = file.listFiles(new DirectoryOrClassFilter());
+    
+    for (File f : subFiles) {
+      if (f.isDirectory())
+        createObjects(f);
+      else 
+        System.out.println(f.getCanonicalPath());
+    }
+    
+    /*
     Class<?> clazz = null;
     for (Entry<Object,Object> entry : props.entrySet()) {
       clazz = Class.forName((String)entry.getValue());
       objMap.put((String)entry.getKey(), clazz.newInstance());
     }
+    */
   }
   
   private void injectDependencies() throws Exception {
@@ -58,5 +67,17 @@ public class PropertyFileApplicationContext {
         return obj;
     }
     return null;
+  }
+  
+  class DirectoryOrClassFilter implements FileFilter {
+    public boolean accept(File pathname) {
+      if (pathname.isDirectory())
+        return true;
+      
+      if (pathname.getName().endsWith(".class"))
+        return true;
+      
+      return false;
+    }
   }
 }

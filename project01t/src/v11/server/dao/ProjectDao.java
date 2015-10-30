@@ -7,9 +7,11 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import v11.server.annotation.Component;
 import v11.server.domain.Project;
 import v11.server.exception.DaoException;
 
+@Component
 public class ProjectDao {
   ArrayList<Project> list = new ArrayList<Project>();
   
