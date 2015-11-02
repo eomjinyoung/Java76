@@ -62,7 +62,7 @@ public class ProjectServer {
   }
   
   public ProjectServer() throws Exception {
-    context = new AnnotionApplicationContext("v11.server");
+    context = new AnnotionApplicationContext("java76.pms");
   }
 
   public static void main(String[] args) {
