@@ -49,6 +49,8 @@ mysql> drop table test01;
 insert into 테이블명(컬럼명, 컬럼명, ...) values('값', 값, ...);
  */
 --예) 모든 컬럼 값 입력
+-- 문자열: 따옴표('')로 표현한다. 쌍따옴표("")는 사용하지 않는다.
+-- 숫자: 따옴표 없이 적는다.
 insert into test01(name, age) values ('홍길동', 20);
 insert into test01(name, age) values ('임꺽정', 30);
 insert into test01(name, age) values ('유관순', 17);
