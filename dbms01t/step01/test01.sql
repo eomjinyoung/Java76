@@ -82,7 +82,7 @@ column, attribute
 => DBMS 전용 데이터 타입이 있다.
 => SQL은 표준이지만, 각 DBMS 마다 자신만의 고유 문법을 추가적으로 제공하고 있다.
 [숫자]
-tinyint(1)
+tinyint(1), bool(1), boolean(1)
 smallint(2)
 mediumint(3)
 int,integer(4)
@@ -112,10 +112,21 @@ longblob, longtext          - 최대 약 42억 자. (가변형)
  * Student와 Project를 저장할 테이블를 정의하시오!
  */
 -- Student 객체 정보를 저장할 테이블
+create table student (
+  name varchar(20),
+  email varchar(100),
+  tel  varchar(20),
+  cid  varchar(50)
+);
 
 
 -- Project 객체 정보를 저장할 테이블
-
+create table project(
+  title     varchar(255),
+  start_dt  datetime,
+  end_dt    datetime,
+  member    varchar(255)
+);
 
 
 
