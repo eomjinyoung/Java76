@@ -7,6 +7,10 @@ step01 - DDL
      일련 번호를 저장하는 컬럼을 pk로 지정하기.
      pk를 사용하여 특정 데이터를 삭제하기
   => test03.sql
+     primary key를 선언하는 다양한 방법
+  => test04.sql
      여러 개의 컬럼을 묶어서 pk로 지정하기.
-     
+
+step02 - DDL2 : alter 명령 사용법
+  =>      
                      
