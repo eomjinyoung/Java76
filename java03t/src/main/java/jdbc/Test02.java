@@ -14,8 +14,8 @@ public class Test02 {
       //1) java.sql.Driver 구현체를 드라이버 관리자에게 등록한다.
       // => com.mysql.jdbc.Driver
       DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-      DriverManager.registerDriver(new org.mariadb.jdbc.Driver());
-      DriverManager.registerDriver(new org.postgresql.Driver());
+      //DriverManager.registerDriver(new org.mariadb.jdbc.Driver());
+      //DriverManager.registerDriver(new org.postgresql.Driver());
       
       //2) DriverManager에게 Connection 객체를 요구한다.
       // => JDBC URL을 통해 사용할 Driver를 선택한다.
