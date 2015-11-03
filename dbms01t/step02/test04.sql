@@ -26,6 +26,11 @@ create table test13 (
   constraint test12_pk primary key (email)
 );
 
+insert into test13(email, tel) values('aaa@test.com', '1111');
+insert into test13(email, tel) values('bbb@test.com', '2222');
+insert into test13(email) values('ccc@test.com');
+insert into test13(email) values('ddd@test.com');
+
 drop table test01;
 drop table test02;
 drop table test03;

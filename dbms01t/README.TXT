@@ -15,6 +15,7 @@ step02 - DDL2
   => test01.sql : alter 명령 사용법
   => test02.sql : null 옵션
   => test03.sql : default 값 지정 
-   
+  => test04.sql : unique
+  => test05.sql : auto increment
      
                      
