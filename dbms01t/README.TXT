@@ -1,4 +1,9 @@
 [주제: SQL 사용법]
+SQL 문법의 분류
+  => DDL(Data Definition Language) : create, alter, drop 등
+  => DML(Data Manipulation Language) : insert, update, delete
+  => DQL(Data Query Language) : select
+  
 step01 - DDL 
   => test01.sql : 테이블 생성, 삭제. 데이터 저장 및 조회. 
     테이블? 여러 개의 컬럼으로 이루어진 데이터 저장 틀. 
@@ -18,4 +23,13 @@ step02 - DDL2
   => test04.sql : unique
   => test05.sql : auto increment
      
-                     
+step03 - DML 
+  => test01.sql : 테스트할 테이블 생성
+  => test02.sql : insert
+  => test03.sql : update
+  => test04.sql : delete
+
+step04 - DQL
+  => test01.sql : 
+
+                    
