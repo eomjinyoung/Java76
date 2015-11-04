@@ -2,6 +2,7 @@ package java76.pms.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -59,15 +60,85 @@ public class ProjectDao {
   }
 
   public int insert(Project project) {
-    return 0;
+    Connection con = null;
+    PreparedStatement stmt = null;
+    
+    try {
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      
+      con = DriverManager.getConnection(url, username, password);
+      
+      stmt = con.prepareStatement(
+          "insert into project(title,sdt,edt,member) values(?,?,?,?)");
+      
+      stmt.setString(1, project.getTitle());
+      stmt.setDate(2, project.getStartDate());
+      stmt.setDate(3, project.getEndDate());
+      stmt.setString(4, project.getMember());
+      
+      return stmt.executeUpdate();
+      
+    } catch (Exception e) {
+      throw new DaoException(e);
+      
+    } finally {
+      try {stmt.close();} catch (Exception e) {}
+      try {con.close();} catch (Exception e) {}
+    }
   }
 
   public int delete(int no) {
-    return 0;
+    Connection con = null;
+    PreparedStatement stmt = null;
+    
+    try {
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      
+      con = DriverManager.getConnection(url, username, password);
+      
+      stmt = con.prepareStatement(
+          "delete from project where pno=?");
+      
+      stmt.setInt(1, no);
+      
+      return stmt.executeUpdate();
+      
+    } catch (Exception e) {
+      throw new DaoException(e);
+      
+    } finally {
+      try {stmt.close();} catch (Exception e) {}
+      try {con.close();} catch (Exception e) {}
+    }
   }
   
   public int update(Project project) {
-    return 0;
+    Connection con = null;
+    PreparedStatement stmt = null;
+    
+    try {
+      DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+      
+      con = DriverManager.getConnection(url, username, password);
+      
+      stmt = con.prepareStatement(
+          "update project set title=?,sdt=?,edt=?,member=? where pno=?");
+      
+      stmt.setString(1, project.getTitle());
+      stmt.setDate(2, project.getStartDate());
+      stmt.setDate(3, project.getEndDate());
+      stmt.setString(4, project.getMember());
+      stmt.setInt(5, project.getNo());
+      
+      return stmt.executeUpdate();
+      
+    } catch (Exception e) {
+      throw new DaoException(e);
+      
+    } finally {
+      try {stmt.close();} catch (Exception e) {}
+      try {con.close();} catch (Exception e) {}
+    }
   }
 }
 

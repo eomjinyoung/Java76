@@ -18,10 +18,10 @@ public class ProjectDeleteServlet implements Servlet {
     int no = Integer.parseInt((String)params.get("no"));
     
     PrintStream out = (PrintStream)params.get("out");
-    try {
-      projectDao.delete(no); 
+    
+    if (projectDao.delete(no) > 0) { 
       out.println("삭제하였습니다.");
-    } catch (Exception e) {
+    } else {
       out.println("해당 번호의 프로젝트가 존재하지 않습니다.");
     }
   }
