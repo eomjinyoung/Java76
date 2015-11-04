@@ -1,6 +1,10 @@
 package java76.pms.domain;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
+  private static final long serialVersionUID = 1L;
+  
   protected String name;
   protected String email;
   protected String tel;

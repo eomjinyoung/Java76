@@ -13,3 +13,10 @@
 3. StudentDao에 JDBC 적용
   => 위와 동일
   
+4. BoardDao에 JDBC 적용
+  => 위와 동일
+  
+  
+  
+  
+  
