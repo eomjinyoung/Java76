@@ -1,18 +1,28 @@
 package java76.pms.domain;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-public class Project implements Serializable {
-  private static final long serialVersionUID = 1L;
-  
-  protected int     no;
+public class Project {
   protected String  title;
   protected Date    startDate;
   protected Date    endDate;
   protected String  member;
   
+  void setValue(String str) {
+    String[] tokens = str.split(",");
+    if (tokens.length < 4)
+      return;
+    title = tokens[0];
+    startDate = Date.valueOf(tokens[1]); // yyyy-MM-dd ---> Date 객체 
+    endDate = Date.valueOf(tokens[2]);
+    member = tokens[3];
+  }
+  
   public Project() {}
+  
+  public Project(String str) {
+    this.setValue(str);
+  }
   
   public Project(String title, Date startDate, Date endDate) {
     this.title = title;
@@ -22,16 +32,8 @@ public class Project implements Serializable {
 
   @Override
   public String toString() {
-    return "Project [no=" + no + ", title=" + title + ", startDate=" + startDate + ", endDate=" + endDate + ", member="
-        + member + "]";
-  }
-
-  public int getNo() {
-    return no;
-  }
-
-  public void setNo(int no) {
-    this.no = no;
+    return this.getTitle() + "," + this.getStartDate().toString() + "," +
+            this.getEndDate().toString() + "," + this.getMember();
   }
 
   public String getTitle() {

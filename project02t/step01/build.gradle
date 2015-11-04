@@ -14,7 +14,6 @@ repositories {
 // compile '그룹명:라이브러리명:버전'
 dependencies {
   compile 'org.reflections:reflections:0.9.10'
-  compile 'mysql:mysql-connector-java:5.1.37'
 }
 
 
