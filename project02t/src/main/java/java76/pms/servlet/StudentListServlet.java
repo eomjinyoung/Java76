@@ -1,7 +1,6 @@
 package java76.pms.servlet;
 
 import java.io.PrintStream;
-import java.util.ArrayList ;
 import java.util.HashMap;
 
 import java76.pms.annotation.Component;
@@ -17,18 +16,14 @@ public class StudentListServlet implements Servlet {
   }
 
   public void service(HashMap<String,Object> params) {
-    ArrayList<Student> list = studentDao.selectList();
     PrintStream out = (PrintStream)params.get("out");
+    out.printf("%-20s %-20s %-20s %-20s\n", 
+        "Email", "Name", "Tel", "Cid");
     
-    Student student = null;
-    for (int i = 0; i < list.size(); i++) {
-      student = list.get(i); // 제네릭 적용! 타입 캐스팅 필요 없다.
-      if (student == null) 
-        continue;
-      out.printf("%d %s %s %s %s\n", 
-          i, 
-          student.getName(),
+    for (Student student : studentDao.selectList()) {
+      out.printf("%-20s, %-20s, %-20s, %-20s\n", 
           student.getEmail(),
+          student.getName(),
           student.getTel(),
           student.getCid());
     }

@@ -15,14 +15,13 @@ public class StudentDeleteServlet implements Servlet {
   }
   
   public void service(HashMap<String,Object> params) {
-    int no = Integer.parseInt((String)params.get("no"));
+    String email = (String)params.get("email");
 
     PrintStream out = (PrintStream)params.get("out");
-    try {
-      studentDao.delete(no); 
+    if (studentDao.delete(email) > 0) { 
       out.println("삭제하였습니다.");
-    } catch (Exception e) {
-      out.println("해당 번호의 학생이 존재하지 않습니다.");
+    } else {
+      out.println("해당 학생이 존재하지 않습니다.");
     }
   }
 }

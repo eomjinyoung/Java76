@@ -8,3 +8,8 @@
   => Project 값 객체를 DB 테이블에 맞추어 변경 => Project.java
     . 프로젝트 번호 필드 추가 
   => ProjectDao 클래스에 JDBC 적용 => ProjectDao.java 
+  => ProjectListServlet, ProjectDeleteServlet 클래스 변경
+
+3. StudentDao에 JDBC 적용
+  => 위와 동일
+  

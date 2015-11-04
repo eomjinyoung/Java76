@@ -6,25 +6,11 @@ public class Student {
   protected String tel;
   protected String cid; // class ID
   
-  void setValue(String str) {
-    String[] tokens = str.split(",");
-    if (tokens.length < 4)
-      return;
-    name = tokens[0];
-    email = tokens[1];
-    tel = tokens[2];
-    cid = tokens[3];
-  }
-  
   public Student() {}
   
-  public Student(String str) {
-    this.setValue(str);
-  }
- 
-  public Student(String name, String tel) {
+  public Student(String name, String email) {
+    this.email = email;
     this.name = name;
-    this.tel = tel;
   }
   
   @Override
