@@ -16,6 +16,10 @@
 4. BoardDao에 JDBC 적용
   => 위와 동일
   
+5. UpdateServlet 추가
+  => BoardUpdateServlet 클래스 작성
+  => ProjectUpdateServlet 클래스 작성
+  => StudentUpdateServlet 클래스 작성
   
   
   
