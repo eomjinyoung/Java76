@@ -1,0 +1,25 @@
+//gradle에서 사용할 플러그인을 추가한다.
+//=> 플러그인을 추가하면 "gradle build..."에서 그 플러그인의 도구를 사용할 수 있다.
+apply plugin: 'java'    // 자바 관련 도구 
+apply plugin: 'eclipse' // 이클립스 관련 설정 파일을 다루는 도구 
+
+
+//자바 의존 라이브러리를 다운로드 받을 서버 지정
+repositories {
+    mavenCentral() // Maven 기본 서버(https://repo1.maven.org/maven2/) 지정
+}
+
+//다운로드 받을 의존 라이브러리 지정
+// compile group: 그룹명, name: 라이브러리명, version: 버전
+// compile '그룹명:라이브러리명:버전'
+dependencies {
+  compile 'org.reflections:reflections:0.9.10'
+  compile 'mysql:mysql-connector-java:5.1.37'
+}
+
+
+
+
+
+
+
