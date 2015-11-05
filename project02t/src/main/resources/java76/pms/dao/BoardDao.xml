@@ -27,4 +27,28 @@ namespace: SQL문을 분류하는 용도로 사용하는 그룹명.
       cre_dt 
     from board
   </select>
+  
+  <insert id="insert" parameterType="java76.pms.domain.Board">
+    insert into board(title,content,pwd,cre_dt) 
+    values(#{title},#{content},#{password},now())
+  </insert>
+  
+  <!-- primitive type인 경우 프로퍼티 이름은 아무거나 지정해도 된다. -->
+  <delete id="delete" parameterType="int">
+    delete from board where bno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="java76.pms.domain.Board">
+    update board set 
+      title=#{title},
+      content=#{content},
+      cre_dt=now()
+    where bno=#{no} and (pwd is null or pwd=#{password})
+  </update>
 </mapper>
+
+
+
+
+
+

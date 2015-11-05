@@ -1,7 +1,5 @@
 package java76.pms.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,17 +7,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java76.pms.annotation.Component;
 import java76.pms.domain.Board;
-import java76.pms.exception.DaoException;
-import java76.pms.util.DBConnectionPool;
 
 @Component
 public class BoardDao {
-  DBConnectionPool dbPool;
-  
-  public void setDBConnectionPool(DBConnectionPool dbPool) {
-    this.dbPool = dbPool;
-  }
-
   SqlSessionFactory sqlSessionFactory;
   
   public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
@@ -43,77 +33,33 @@ public class BoardDao {
   }
 
   public int insert(Board board) {
-    Connection con = null;
-    PreparedStatement stmt = null;
+    // auto-commit 활성화 한다.
+    SqlSession sqlSession = sqlSessionFactory.openSession(true);
     
     try {
-      con = dbPool.getConnection();
-      
-      stmt = con.prepareStatement(
-          "insert into board(title,content,pwd,cre_dt) values(?,?,?,now())");
-      
-      stmt.setString(1, board.getTitle());
-      stmt.setString(2, board.getContent());
-      stmt.setString(3, board.getPassword());
-      
-      return stmt.executeUpdate();
-      
-    } catch (Exception e) {
-      throw new DaoException(e);
-      
+      return sqlSession.insert("java76.pms.dao.BoardDao.insert", board);
     } finally {
-      try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {sqlSession.close();} catch (Exception e) {}
     }
   }
 
   public int delete(int no) {
-    Connection con = null;
-    PreparedStatement stmt = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession(true);
     
     try {
-      con = dbPool.getConnection();
-      
-      stmt = con.prepareStatement(
-          "delete from board where bno=?");
-      
-      stmt.setInt(1, no);
-      
-      return stmt.executeUpdate();
-      
-    } catch (Exception e) {
-      throw new DaoException(e);
-      
+      return sqlSession.delete("java76.pms.dao.BoardDao.delete", no);
     } finally {
-      try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {sqlSession.close();} catch (Exception e) {}
     }
   }
   
   public int update(Board board) {
-    Connection con = null;
-    PreparedStatement stmt = null;
+    SqlSession sqlSession = sqlSessionFactory.openSession(true);
     
     try {
-      con = dbPool.getConnection();
-      
-      stmt = con.prepareStatement(
-          "update board set title=?,content=?,cre_dt=now()"
-          + " where bno=? and (pwd is null or pwd=?)");
-      
-      stmt.setString(1, board.getTitle());
-      stmt.setString(2, board.getContent());
-      stmt.setInt(3, board.getNo());
-      stmt.setString(4, board.getPassword());
-      
-      return stmt.executeUpdate();
-      
-    } catch (Exception e) {
-      throw new DaoException(e);
-      
+      return sqlSession.update("java76.pms.dao.BoardDao.update", board);
     } finally {
-      try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {sqlSession.close();} catch (Exception e) {}
     }
   }
 }
