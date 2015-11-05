@@ -15,7 +15,6 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java76.pms.context.AnnotionApplicationContext;
 import java76.pms.servlet.Servlet;
-import java76.pms.util.DBConnectionPool;
 
 public class ProjectServer {
   AnnotionApplicationContext context;
@@ -82,16 +81,6 @@ public class ProjectServer {
     // 빈 컨테이너에 mybatis 객체 보관
     // 누가 사용하는가? DAO가 SqlSessionFactory 객체를 사용한다.
     context.addBean("sqlSessionFactory", sqlSessionFactory);
-    
-    DBConnectionPool dbPool = new DBConnectionPool(
-        "com.mysql.jdbc.Driver",
-        "jdbc:mysql://localhost:3306/java76db",
-        "java76",
-        "1111");
-    
-    context.addBean("dbPool", dbPool);
-    
-    
   }
 
   public static void main(String[] args) {

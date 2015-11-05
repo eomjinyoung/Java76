@@ -32,6 +32,24 @@ namespace: SQL문을 분류하는 용도로 사용하는 그룹명.
       member 
     from project
   </select>
+  
+  <insert id="insert" parameterType="java76.pms.domain.Project">
+    insert into project(title,sdt,edt,member) 
+    values(#{title},#{startDate},#{endDate},#{member})
+  </insert>
+  
+  <delete id="delete" parameterType="int">
+    delete from project where pno=#{value}
+  </delete>
+  
+  <update id="update" parameterType="java76.pms.domain.Project">
+    update project set 
+      title=#{title},
+      sdt=#{startDate},
+      edt=#{endDate},
+      member=#{member} 
+    where pno=#{no}
+  </update>
 </mapper>
 
 
