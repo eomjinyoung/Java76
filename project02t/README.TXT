@@ -19,7 +19,14 @@
   => 설정 프로퍼티(셋터 메서드)도 추가한다. 프로퍼티명: set/get을 제거하고, 첫 앞파벳 소문자.
      예) getFirstName()/setFirstName() => firstName
      
-6. DAO에 있는 기존 메서드를 SqlSessionFactory를 사용하도록 변경한다.  
+6. DAO에 있는 기존 메서드를 SqlSessionFactory를 사용하도록 변경한다.
+  => SQL Mapper 파일 추가: StudentDao.xml, BoardDao.xml, ProjectDao.xml
+  => 목록에 적용
+    . SQL 맵퍼 파일에 select SQL 추가 
+    . DAO의 selectList() 메서드에 적용
+  => 
+
+
   
   
   
