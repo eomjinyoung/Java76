@@ -2,10 +2,10 @@ package java76.pms.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import java76.pms.annotation.Component;
 import java76.pms.domain.Board;
@@ -20,37 +20,25 @@ public class BoardDao {
     this.dbPool = dbPool;
   }
 
+  SqlSessionFactory sqlSessionFactory;
+  
+  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+    this.sqlSessionFactory = sqlSessionFactory;
+  }
+
   public BoardDao() {}
 
   public List<Board> selectList() {
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-    ArrayList<Board> list = new ArrayList<>();
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     
     try {
-      con = dbPool.getConnection();
-      stmt = con.createStatement();
-      rs = stmt.executeQuery("select bno,title,views,cre_dt from board");
-      
-      Board board = null;
-      while (rs.next()) { 
-        board = new Board();
-        board.setNo(rs.getInt("bno"));
-        board.setTitle(rs.getString("title"));
-        board.setViews(rs.getInt("views"));
-        board.setCreatedDate(rs.getDate("cre_dt"));
-        list.add(board);
-      }
-      return list;
-      
-    } catch (Exception e) {
-      throw new DaoException(e);
-      
+      // selectList()에 주는 값은,
+      // SQL 맵퍼 파일에 정의된 namespace 이름과 sql 아이디이다.
+      return sqlSession.selectList("java76.pms.dao.BoardDao.selectList");
+      // 굳이 예외를 받지 않는다.
+      // selectList()가 던지는 RuntimeException 예외를 그대로 호출자에게 위임할 것이다.
     } finally {
-      try {rs.close();} catch (Exception e) {}
-      try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {sqlSession.close();} catch (Exception e) {}
     }
   }
 

@@ -2,10 +2,10 @@ package java76.pms.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import java76.pms.annotation.Component;
 import java76.pms.domain.Project;
@@ -20,38 +20,20 @@ public class ProjectDao {
     this.dbPool = dbPool;
   }
   
+  SqlSessionFactory sqlSessionFactory;
+  
+  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+    this.sqlSessionFactory = sqlSessionFactory;
+  }
+  
   public ProjectDao() {}
 
   public List<Project> selectList() {
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-    ArrayList<Project> list = new ArrayList<>();
-    
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      con = dbPool.getConnection();
-      stmt = con.createStatement();
-      rs = stmt.executeQuery("select pno,title,sdt,edt,member from project");
-      
-      Project project = null;
-      while (rs.next()) { 
-        project = new Project();
-        project.setNo(rs.getInt("pno"));
-        project.setTitle(rs.getString("title"));
-        project.setStartDate(rs.getDate("sdt"));
-        project.setEndDate(rs.getDate("edt"));
-        project.setMember(rs.getString("member"));
-        list.add(project);
-      }
-      return list;
-      
-    } catch (Exception e) {
-      throw new DaoException(e);
-      
+      return sqlSession.selectList("java76.pms.dao.ProjectDao.selectList");
     } finally {
-      try {rs.close();} catch (Exception e) {}
-      try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {sqlSession.close();} catch (Exception e) {}
     }
   }
 

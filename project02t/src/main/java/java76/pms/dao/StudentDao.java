@@ -2,10 +2,10 @@ package java76.pms.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import java76.pms.annotation.Component;
 import java76.pms.domain.Student;
@@ -20,37 +20,20 @@ public class StudentDao {
     this.dbPool = dbPool;
   }
   
+  SqlSessionFactory sqlSessionFactory;
+  
+  public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+    this.sqlSessionFactory = sqlSessionFactory;
+  }
+  
   public StudentDao() {}
 
   public List<Student> selectList() {
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-    ArrayList<Student> list = new ArrayList<>();
-    
+    SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      con = dbPool.getConnection();
-      stmt = con.createStatement();
-      rs = stmt.executeQuery("select name,email,tel,cid from student");
-      
-      Student student = null;
-      while (rs.next()) { 
-        student = new Student();
-        student.setName(rs.getString("name"));
-        student.setEmail(rs.getString("email"));
-        student.setTel(rs.getString("tel"));
-        student.setCid(rs.getString("cid"));
-        list.add(student);
-      }
-      return list;
-      
-    } catch (Exception e) {
-      throw new DaoException(e);
-      
+      return sqlSession.selectList("java76.pms.dao.StudentDao.selectList");
     } finally {
-      try {rs.close();} catch (Exception e) {}
-      try {stmt.close();} catch (Exception e) {}
-      dbPool.returnConnection(con);
+      try {sqlSession.close();} catch (Exception e) {}
     }
   }
 
