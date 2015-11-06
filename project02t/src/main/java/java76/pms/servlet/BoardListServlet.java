@@ -16,6 +16,7 @@ public class BoardListServlet implements Servlet {
   }
 
   public void service(HashMap<String,Object> params) {
+    //페이징 처리
     int pageNo = 1;
     int pageSize = 10;
     
@@ -27,11 +28,23 @@ public class BoardListServlet implements Servlet {
       pageSize = Integer.parseInt((String)params.get("pageSize"));
     }
     
+    //정렬 처리
+    String keyword = "no";
+    String align = "desc";
+    
+    if (params.get("keyword") != null) {
+      keyword = (String)params.get("keyword");
+    }
+    
+    if (params.get("align") != null) {
+      align = (String)params.get("align");
+    }
+    
     PrintStream out = (PrintStream)params.get("out");
     out.printf("%-3s %-20s %-3s %-10s\n", 
         "No", "Title", "Views", "Date");
     
-    for (Board board : boardDao.selectList(pageNo, pageSize)) {
+    for (Board board : boardDao.selectList(pageNo, pageSize, keyword, align)) {
       out.printf("%-3d %-20s %-3d %-10s\n", 
           board.getNo(),
           board.getTitle(),
