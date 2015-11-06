@@ -17,12 +17,23 @@ public class ProjectListServlet implements Servlet {
 
   @Override
   public void service(HashMap<String, Object> params) {
-    PrintStream out = (PrintStream)params.get("out");
+    int pageNo = 1;
+    int pageSize = 10;
     
+    if (params.get("pageNo") != null) {
+      pageNo = Integer.parseInt((String)params.get("pageNo"));
+    }
+    
+    if (params.get("pageSize") != null) {
+      pageSize = Integer.parseInt((String)params.get("pageSize"));
+    }
+    
+    PrintStream out = (PrintStream)params.get("out");
     out.printf("%-3s %-20s %-10s %-10s %-40s\n", 
         "No", "Title", "Start", "End", "Members");
     
-    for (Project project : projectDao.selectList()) {
+    
+    for (Project project : projectDao.selectList(pageNo, pageSize)) {
       out.printf("% 3d %-20s %3$tY-%3$tm-%3$td %4$s %5$-40s\n", 
           project.getNo(), 
           project.getTitle(),

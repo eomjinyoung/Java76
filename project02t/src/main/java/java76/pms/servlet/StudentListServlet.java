@@ -16,11 +16,22 @@ public class StudentListServlet implements Servlet {
   }
 
   public void service(HashMap<String,Object> params) {
+    int pageNo = 1;
+    int pageSize = 10;
+    
+    if (params.get("pageNo") != null) {
+      pageNo = Integer.parseInt((String)params.get("pageNo"));
+    }
+    
+    if (params.get("pageSize") != null) {
+      pageSize = Integer.parseInt((String)params.get("pageSize"));
+    }
+    
     PrintStream out = (PrintStream)params.get("out");
     out.printf("%-20s %-20s %-20s %-20s\n", 
         "Email", "Name", "Tel", "Cid");
     
-    for (Student student : studentDao.selectList()) {
+    for (Student student : studentDao.selectList(pageNo, pageSize)) {
       out.printf("%-20s, %-20s, %-20s, %-20s\n", 
           student.getEmail(),
           student.getName(),

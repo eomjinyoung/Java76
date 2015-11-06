@@ -1,5 +1,6 @@
 package java76.pms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,10 +19,14 @@ public class ProjectDao {
   
   public ProjectDao() {}
 
-  public List<Project> selectList() {
+  public List<Project> selectList(int pageNo, int pageSize) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
-      return sqlSession.selectList("java76.pms.dao.ProjectDao.selectList");
+      HashMap<String,Object> paramMap = new HashMap<>();
+      paramMap.put("startIndex", (pageNo - 1) * pageSize);
+      paramMap.put("length", pageSize);
+      
+      return sqlSession.selectList("java76.pms.dao.ProjectDao.selectList",paramMap);
     } finally {
       try {sqlSession.close();} catch (Exception e) {}
     }
