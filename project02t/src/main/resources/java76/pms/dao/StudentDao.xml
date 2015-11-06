@@ -15,7 +15,16 @@
 		  tel,
 		  cid 
 		from student
-		order by name asc, email asc
+		order by
+		<choose>
+      <when test="keyword == 'email'"> email </when>
+      <when test="keyword == 'tel'"> tel </when>
+      <otherwise> name </otherwise>
+    </choose>
+    <choose>
+      <when test="align == 'desc'">desc</when>
+      <otherwise>asc</otherwise>
+    </choose>
 		limit #{startIndex}, #{length}
 	</select>
 

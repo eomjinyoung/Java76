@@ -27,11 +27,24 @@ public class StudentListServlet implements Servlet {
       pageSize = Integer.parseInt((String)params.get("pageSize"));
     }
     
+    //정렬 처리
+    String keyword = "no";
+    String align = "desc";
+    
+    if (params.get("keyword") != null) {
+      keyword = (String)params.get("keyword");
+    }
+    
+    if (params.get("align") != null) {
+      align = (String)params.get("align");
+    }
+    
     PrintStream out = (PrintStream)params.get("out");
     out.printf("%-20s %-20s %-20s %-20s\n", 
         "Email", "Name", "Tel", "Cid");
     
-    for (Student student : studentDao.selectList(pageNo, pageSize)) {
+    for (Student student : studentDao.selectList(
+        pageNo, pageSize, keyword, align)) {
       out.printf("%-20s, %-20s, %-20s, %-20s\n", 
           student.getEmail(),
           student.getName(),

@@ -28,12 +28,25 @@ public class ProjectListServlet implements Servlet {
       pageSize = Integer.parseInt((String)params.get("pageSize"));
     }
     
+    //정렬 처리
+    String keyword = "no";
+    String align = "desc";
+    
+    if (params.get("keyword") != null) {
+      keyword = (String)params.get("keyword");
+    }
+    
+    if (params.get("align") != null) {
+      align = (String)params.get("align");
+    }
+    
     PrintStream out = (PrintStream)params.get("out");
     out.printf("%-3s %-20s %-10s %-10s %-40s\n", 
         "No", "Title", "Start", "End", "Members");
     
     
-    for (Project project : projectDao.selectList(pageNo, pageSize)) {
+    for (Project project : projectDao.selectList(
+        pageNo, pageSize, keyword, align)) {
       out.printf("% 3d %-20s %3$tY-%3$tm-%3$td %4$s %5$-40s\n", 
           project.getNo(), 
           project.getTitle(),

@@ -19,12 +19,15 @@ public class ProjectDao {
   
   public ProjectDao() {}
 
-  public List<Project> selectList(int pageNo, int pageSize) {
+  public List<Project> selectList(int pageNo, int pageSize,
+      String keyword, String align) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     try {
       HashMap<String,Object> paramMap = new HashMap<>();
       paramMap.put("startIndex", (pageNo - 1) * pageSize);
       paramMap.put("length", pageSize);
+      paramMap.put("keyword", keyword);
+      paramMap.put("align", align);
       
       return sqlSession.selectList("java76.pms.dao.ProjectDao.selectList",paramMap);
     } finally {
