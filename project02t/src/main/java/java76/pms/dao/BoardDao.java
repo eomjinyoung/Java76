@@ -1,5 +1,6 @@
 package java76.pms.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,15 +19,16 @@ public class BoardDao {
 
   public BoardDao() {}
 
-  public List<Board> selectList() {
+  public List<Board> selectList(int pageNo, int pageSize) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     
     try {
-      // selectList()에 주는 값은,
-      // SQL 맵퍼 파일에 정의된 namespace 이름과 sql 아이디이다.
-      return sqlSession.selectList("java76.pms.dao.BoardDao.selectList");
-      // 굳이 예외를 받지 않는다.
-      // selectList()가 던지는 RuntimeException 예외를 그대로 호출자에게 위임할 것이다.
+      HashMap<String,Object> paramMap = new HashMap<>();
+      paramMap.put("startIndex", (pageNo - 1) * pageSize);
+      paramMap.put("length", pageSize);
+      
+      return sqlSession.selectList(
+          "java76.pms.dao.BoardDao.selectList", paramMap);
     } finally {
       try {sqlSession.close();} catch (Exception e) {}
     }
