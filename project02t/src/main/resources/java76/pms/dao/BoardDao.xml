@@ -5,13 +5,12 @@
 
 <mapper namespace="java76.pms.dao.BoardDao">
 
-  <resultMap type="java76.pms.domain.Board" id="boardMap">
+  <resultMap type="board" id="boardMap">
     <id column="bno" property="no"/>
     <result column="cre_dt" property="createdDate"/>
   </resultMap>
 
-  <select id="selectList" resultMap="boardMap" 
-          parameterType="java.util.HashMap">
+  <select id="selectList" resultMap="boardMap" parameterType="map">
     select 
       bno,
       title,
@@ -31,7 +30,7 @@
     limit #{startIndex}, #{length}
   </select>
   
-  <insert id="insert" parameterType="java76.pms.domain.Board">
+  <insert id="insert" parameterType="board">
     insert into board(title,content,pwd,cre_dt) 
     values(#{title},#{content},#{password},now())
   </insert>
@@ -41,7 +40,7 @@
     delete from board where bno=#{value}
   </delete>
   
-  <update id="update" parameterType="java76.pms.domain.Board">
+  <update id="update" parameterType="board">
     update board set 
       title=#{title},
       content=#{content},

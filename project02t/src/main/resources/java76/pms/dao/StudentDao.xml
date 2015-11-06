@@ -8,8 +8,7 @@
 	<!-- SQL문은 <select>, <insert>, <update>, <delete> 엘리먼트에 작성한다. => id 속성: 
 		SQL문을 찾을 때 사용할 아이디. 가능한 DAO의 메서드 이름과 같게 하라! => resultType 속성: select 결과를 
 		담을 값 객체 이름. fully qualified name. -->
-	<select id="selectList" resultType="java76.pms.domain.Student"
-		      parameterType="java.util.HashMap">
+	<select id="selectList" resultType="student" parameterType="map">
 		select
 		  name,
 		  email,
@@ -20,7 +19,7 @@
 		limit #{startIndex}, #{length}
 	</select>
 
-	<insert id="insert" parameterType="java76.pms.domain.Student">
+	<insert id="insert" parameterType="student">
 		insert into student(name,email,tel,cid)
 		values(#{name},#{email},#{tel},#{cid})
 	</insert>
@@ -29,7 +28,7 @@
 		delete from student where email=#{value}
 	</delete>
 
-	<update id="update" parameterType="java76.pms.domain.Student">
+	<update id="update" parameterType="student">
 		update student set
 		name=#{name},
 		tel=#{tel},

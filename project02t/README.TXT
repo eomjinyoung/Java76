@@ -16,8 +16,17 @@
 사용예) 조회수 내림차순 정렬
 > localhost/board/list?keyword=views&align=desc
 
+=> 프로젝트 정렬 기능 추가
+  keyword: title, startDate, endDate, pno(default, desc)
+
+=> 학생 정렬 기능 추가
+  keyword: email, tel, name(default, asc)
+
+
 3. 별명 붙이기 
-  => 긴 클래스 이름 대신 짧은 별명 사용하기  
+  => 긴 클래스 이름 대신 짧은 별명 사용하기 
+  => mybatis-config.xml 파일 변경
+   
 
   
   
