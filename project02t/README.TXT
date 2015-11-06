@@ -1,39 +1,27 @@
-[주제: SQL 추가 문법과 mybatis 고급 기법]
-1. 페이징 처리
-  => xxxDao.xml의 selectList에 limit 문법 추가
-  => xxxDao의 selectList() 변경
-  => xxxListServlet 클래스 변경
-  
-2. 정렬 기능 구현 => mysql의 dynamic sql 문법 
-> localhost/board/list
+[주제: Spring IoC Container 도입]
+1. IoC(Inversion of Control) 컨테이너
+  => IoC(역제어) => Event 처리, Dependency Injection(의존 객체 주입)
+  => IoC 컨테이너 => Bean 컨테이너
+     . 객체 관리(생성, 소멸)
+     . 의존 객체 주입
 
-사용예) 게심물 번호 오름차순 정렬
-> localhost/board/list?keyword=no&align=asc
-
-사용예) 제목 내림차순 정렬
-> localhost/board/list?keyword=title&align=desc
-
-사용예) 조회수 내림차순 정렬
-> localhost/board/list?keyword=views&align=desc
-
-=> 프로젝트 정렬 기능 추가
-  keyword: title, startDate, endDate, pno(default, desc)
-
-=> 학생 정렬 기능 추가
-  keyword: email, tel, name(default, asc)
+2. 실습
+1) build.gradle에 의존 라이브러리 등록
+2) 기존 IoC 컨테이너(=Bean Container=Instance Container
+   =AnnotationApplicationContext)를 스프링 IoC 컨테이너로 교체한다.
+3) 스프링 IoC 컨테이너의 설정 파일 생성
+  - java76/pms/application-context.xml
+4) DAO와 Servlet 클래스에 의존 객체 주입 애노테이션을 추가한다.
+  - @Autowired  
+5) mybatis-spring 연동 의존 라이브러리 추가
+  - apache DB 커넥션 풀 라이브러리도 추가한다. (검색어: apache dbcp)
+6) 스프링 설정 파일에 mybatis 객체 준비 추가
+7) mybatis-config.xml 삭제
 
 
-3. 별명 붙이기 
-  => 긴 클래스 이름 대신 짧은 별명 사용하기 
-  => mybatis-config.xml 파일 변경
+
+
+
+
+ 
    
-
-  
-  
-  
-  
-  
-  
-  
-  
-     
