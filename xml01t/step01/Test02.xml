@@ -4,6 +4,18 @@ Well-formed XML?
 => XML 작성 규칙에 따라 작성된 XML 데이터.
 => 규칙 -->
 
+<!-- XML 문서는 반드시 XML 선언으로 시작해야 한다. 
+속성
+=> version : 필수 속성. 1.0 값만 가능.
+=> encoding: 선택 속성. XML 문서를 작성할 때 사용한 문자 집합.
+=> standalone: 선택 속성. yes 또는 no. 문서를 해석하는데 DTD가 있어야 한다면 no.
+=> 반드시 문서의 시작 부분에 위치해야 한다. 
+-->
+<!--
+<?xml version="1.0"?>
+-->
+
+	
 <!-- 1) 루트 엘리먼트는 한 개여야 한다. -->
 <!--  
 <students></students> 
@@ -54,7 +66,7 @@ Well-formed XML?
   <first-name></first-name> <=== OK
   <first-name ></first-name      > <=== OK
   < first-name></ first-name> <=== 오류!
-</student>
+</student> 
  -->
  
 <!-- 6) 엘리먼트끼리 중첩될 수 없다. 부모-자식 관계가 명확해야 한다. -->
@@ -63,6 +75,8 @@ Well-formed XML?
 <name>데이터<i>데이터<b>데이터</b></i><b><i>데이터</i></b>데이터</name> <=== OK
 -->
 
+<!-- 7) 엘리먼트의 이름은 대/소문자를 구분한다. -->
+<test></test>
 
 
 

@@ -12,9 +12,9 @@ public class Computer3 {
     this.ram = ram;
   }
   
-  public Computer3(int ram, String model) {
+  public Computer3(int ram, String maker) {
     System.out.println("Computer(int, String)");
-    this.model = model;
+    this.maker = maker;
     this.ram = ram;
   }
   

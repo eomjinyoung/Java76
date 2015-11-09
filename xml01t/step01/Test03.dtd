@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!ELEMENT students (student*)>
 
 <!ELEMENT student (name,kor,math,eng,gender?)>
