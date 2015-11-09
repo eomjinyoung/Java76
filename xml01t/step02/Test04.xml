@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE student SYSTEM "Test04.dtd">
+<!-- 자식 엘리먼트가 나열된 순서대로 작성해야 한다. 순서 바꾸면 오류 발생!-->
+<student>
+	<name></name>
+	<age></age>
+	<tel></tel>
+</student>
+

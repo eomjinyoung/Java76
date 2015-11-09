@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 속성의 타입(열거형)
+(값|값|값)    열거형.
+-->
+<!ELEMENT student EMPTY>
+<!ATTLIST student
+  name      CDATA #REQUIRED
+  gender    (man|woman|trans) "man"
+>
