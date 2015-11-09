@@ -4,3 +4,10 @@ step01
   > Test02.java - 스프링 IoC 컨테이너를 이용한 객체 생성
   > Test03.java - 빈의 아이디(id)와 이름(name) 
   > Test04.java - 빈의 이름과 별명 알아내기
+  > Test05.java - 익명 빈 
+  
+step02
+  > Test01.java - 생성자 지정하기 
+  > Test02.java - 다양한 타입을 갖는 생성자 호출하기
+  > Test03.java - 아규먼트의 타입을 지정하지 않을 때, String 타입 우선됨.
+  > Test04.java - 아규먼트를 설정하는 다양한 방법
