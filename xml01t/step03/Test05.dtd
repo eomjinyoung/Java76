@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT projects (student*,project*)>
+
+<!-- 속성의 타입(식별자참조)
+IDREF    ID 값을 저장해야 한다.
+-->
+<!ELEMENT student EMPTY>
+<!ATTLIST student
+  name      CDATA #REQUIRED
+  gender    (man|woman|trans) "man"
+  email     ID #REQUIRED
+>
+
+<!ELEMENT project EMPTY>
+<!ATTLIST project
+  title   CDATA #REQUIRED
+  owner   IDREF #REQUIRED
+>
+
+
+
+
+
+
+
