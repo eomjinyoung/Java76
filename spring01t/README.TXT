@@ -22,9 +22,16 @@ step04
   > Test01.java - 의존 객체 주입
   > Test02.java - 프로퍼티에 직접 객체를 생성하여 넣기   
   
-  
-  
-  
+step05
+  > Test01.java - 배열 프로퍼티 값 설정하기  
+  > Test02.java - List 프로퍼티 값 설정하기
+  > Test03.java - Set 프로퍼티 값 설정하기
+  > Test04.java - Map 프로퍼티 값 설정하기 
+
+step06
+  > Test01.java - 스태틱 Factory Method 호출하기
+  > Test02.java - 인스턴스 팩토리 메서드 호출하기
+  > Test03.java - 스프링에서 제안한 FactoryBean의 구현체 호출하기    
   
   
   
