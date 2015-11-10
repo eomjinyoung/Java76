@@ -12,3 +12,19 @@ step02
   > Test03.java - 아규먼트의 타입을 지정하지 않을 때, String 타입 우선됨.
   > Test04.java - 아규먼트를 설정하는 다양한 방법
   > Test05.java - 아규먼트의 순서 지정하기 
+  
+step03
+  > Test01.java - 프로퍼티 값 설정하기
+  > Test02.java - <bean>의 속성을 이용하여 프로퍼티 값 설정하기
+  > Test03.java - <bean>의 속성을 이용하여 생성자 호출하기
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
