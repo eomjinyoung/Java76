@@ -17,7 +17,10 @@ step03
   > Test01.java - 프로퍼티 값 설정하기
   > Test02.java - <bean>의 속성을 이용하여 프로퍼티 값 설정하기
   > Test03.java - <bean>의 속성을 이용하여 생성자 호출하기
-  
+
+step04
+  > Test01.java - 의존 객체 주입
+  > Test02.java - 프로퍼티에 직접 객체를 생성하여 넣기   
   
   
   
