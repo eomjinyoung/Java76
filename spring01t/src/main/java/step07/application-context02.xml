@@ -34,14 +34,15 @@
   
   <!-- 2) java.text.SimpleDateFormat 클래스 사용 -->
   <bean id="dateFormat" class="java.text.SimpleDateFormat">
-    <constructor-arg value="yyyy-MM-dd"/>
+    <!-- <constructor-arg value="yyyy-MM-dd"/> -->
+    <constructor-arg value="MM/dd/yyyy"/>
   </bean>
   <bean id="h3" class="step07.HDD">
     <property name="capacity"    value="500"/>
     <property name="rpm"         value="7200"/>  
     <property name="createdDate">
       <bean factory-bean="dateFormat" factory-method="parse">
-        <constructor-arg value="2015-11-11"/>
+        <constructor-arg value="11/18/2015"/>
       </bean>
     </property>
   </bean>    

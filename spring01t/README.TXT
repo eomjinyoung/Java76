@@ -36,7 +36,7 @@ step06
 step07
   > Test01.java - 빈 생성 정책(bean scope): singleton과 prototype 비교
   > Test02.java - 날짜 프로퍼티 값 입력하기
-  
+  > Test03.java - PropertyEditor를 이용하여 날짜 변환기 설치하기 
   
   
   
