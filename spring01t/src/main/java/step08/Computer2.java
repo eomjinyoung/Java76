@@ -1,14 +1,16 @@
-package step07;
+package step08;
 
 import java.util.Map;
 
-public class Computer {
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Computer2 {
   protected String    model;
   protected String    maker;
   protected int       ram;
   protected float     speed;
-  protected Monitor   monitor;
-  protected HDD       storage;
+  @Autowired protected Monitor   monitor;
+  @Autowired protected HDD       storage;
   protected Map<String,String> specs;
   
   @Override
@@ -44,12 +46,14 @@ public class Computer {
     return monitor;
   }
   public void setMonitor(Monitor monitor) {
+    System.out.println("setMonitor()");
     this.monitor = monitor;
   }
   public HDD getStorage() {
     return storage;
   }
   public void setStorage(HDD storage) {
+    System.out.println("setStorage()");
     this.storage = storage;
   }
   public Map<String, String> getSpecs() {

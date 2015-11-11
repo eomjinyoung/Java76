@@ -1,6 +1,8 @@
-package step07;
+package step08;
 
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Computer {
   protected String    model;
@@ -43,13 +45,17 @@ public class Computer {
   public Monitor getMonitor() {
     return monitor;
   }
+  @Autowired
   public void setMonitor(Monitor monitor) {
+    System.out.println("setMonitor()");
     this.monitor = monitor;
   }
   public HDD getStorage() {
     return storage;
   }
+  @Autowired
   public void setStorage(HDD storage) {
+    System.out.println("setStorage()");
     this.storage = storage;
   }
   public Map<String, String> getSpecs() {

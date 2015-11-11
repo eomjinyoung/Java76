@@ -1,14 +1,24 @@
-package step07;
+package step09;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Computer {
   protected String    model;
   protected String    maker;
   protected int       ram;
   protected float     speed;
-  protected Monitor   monitor;
-  protected HDD       storage;
+  
+  //주의! 
+  // 필드의 이름으로 객체를 찾는 것이 아니라,
+  // 필드(변수)의 타입으로 객체를 찾는다.
+  @Autowired protected Monitor   monitor;
+  
+  @Autowired protected HDD       storage;
+  
   protected Map<String,String> specs;
   
   @Override
@@ -44,12 +54,14 @@ public class Computer {
     return monitor;
   }
   public void setMonitor(Monitor monitor) {
+    System.out.println("setMonitor()");
     this.monitor = monitor;
   }
   public HDD getStorage() {
     return storage;
   }
   public void setStorage(HDD storage) {
+    System.out.println("setStorage()");
     this.storage = storage;
   }
   public Map<String, String> getSpecs() {

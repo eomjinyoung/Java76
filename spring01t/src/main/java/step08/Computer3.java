@@ -1,14 +1,20 @@
-package step07;
+package step08;
 
 import java.util.Map;
 
-public class Computer {
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Computer3 {
   protected String    model;
   protected String    maker;
   protected int       ram;
   protected float     speed;
+  
+  @Autowired(required=false) // 기본은 필수 항목이다. => 주입할 객체가 없으면 오류가 발생한다. 
   protected Monitor   monitor;
-  protected HDD       storage;
+  
+  @Autowired protected HDD       storage;
+  
   protected Map<String,String> specs;
   
   @Override
@@ -44,12 +50,14 @@ public class Computer {
     return monitor;
   }
   public void setMonitor(Monitor monitor) {
+    System.out.println("setMonitor()");
     this.monitor = monitor;
   }
   public HDD getStorage() {
     return storage;
   }
   public void setStorage(HDD storage) {
+    System.out.println("setStorage()");
     this.storage = storage;
   }
   public Map<String, String> getSpecs() {

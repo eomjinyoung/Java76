@@ -39,5 +39,17 @@ step07
   > Test03.java - PropertyEditor를 이용하여 날짜 변환기 설치하기 
   > Test03.java - Custom Property Editor 만들기 두 번째 방법
   
+step08
+  > Test01.java - @Autowired 애노테이션을 처리 전
+  > Test02.java - @Autowired 애노테이션을 처리 
+  > Test03.java - @Autowired는 필드에 붙여도 된다. 
+  > Test04.java - @Autowired의 required 속성 
+  > Test05.java - 주입할 수 있는 의존 객체가 여러 개일 경우 오류 발생! 
+  > Test06.java - @Qualifier를 사용하여 주입할 객체를 지정한다.
+  > Test07.java - @Autowired + @Qualifier = @Resource
   
-   
+stepd09
+  > Test01.java - @Component 애노테이션 사용  
+  
+  
+  
