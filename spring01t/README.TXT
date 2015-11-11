@@ -33,6 +33,9 @@ step06
   > Test02.java - 인스턴스 팩토리 메서드 호출하기
   > Test03.java - 스프링에서 제안한 FactoryBean의 구현체 호출하기    
   
+step07
+  > Test01.java - 빈 생성 정책(bean scope): singleton과 prototype 비교
+  > Test02.java - 날짜 프로퍼티 값 입력하기
   
   
   
