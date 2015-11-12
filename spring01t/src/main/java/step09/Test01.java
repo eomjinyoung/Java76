@@ -8,7 +8,7 @@ public class Test01 {
   public static void main(String[] args) {
     ApplicationContext context = new ClassPathXmlApplicationContext(
         "step09/application-context01.xml");
-    
+ 
     // @Component 애노테이션을 통해 객체가 자동 생성된 경우,
     // 객체의 이름은 클래스명이다.
     // 단, 클래스 이름이 대문자로 시작한다면 첫 알파벳을 소문자로 바꾼 이름을 사용한다.

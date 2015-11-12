@@ -51,5 +51,12 @@ step08
 stepd09
   > Test01.java - @Component 애노테이션 사용  
   
+step10
+  > Test01.java - 객체 생성 및 프로퍼티 설정 순서
+
+step11
+  > Test01.java - log4j 사용 개요!
+  > Test02.java - log4j의 로깅 객체 생성과 사용 => 클래스 단위
   
+    
   
