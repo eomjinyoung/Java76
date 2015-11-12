@@ -1,67 +1,43 @@
 package step11;
 
-import java.net.ServerSocket;
-import java.net.Socket;
-
 import org.apache.log4j.Logger;
+
+import step11.sub.C;
 
 public class Test04 {
   static Logger logger = Logger.getLogger(Test04.class);
   
   public static void main(String[] args) {
-    // 1) Appender(출력 담당자) 지정
-    // log4j.rootCategory=출력등급, 출력담당자이름
-    // 예) log4j.rootCategory=TRACE, stdout
-    // 
-    // 출력 담당자 이름?
-    // => 마음대로 짓는다.
-    // 
-    // 2) 출력 담당자의 유형을 설정하기
-    // log4j.appender.stdout=출력담당자의유형
-    // 예) log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-    // 
-    // 출력 담당자의 유형?
-    // ConsoleAppender    : 콘솔창으로 출력
-    // FileAppender       : 파일로 출력
-    // SocketAppender     : 네트워크로 출력
-    // JDBCAppend         : DB로 출력
-    // ...
+    // 출력 대상 별로 등급을 설정하기 
+    // log4j.rootCategory=TRACE, stdout
+    // => rootCatetory는 root의 등급을 지정
+    //    각 Logger에 대해 특별히 등급을 지정하지 않으면 rootCategory 등급을 사용한다.
+    // => 등급 지정 예)
+    // rootCategory(TRACE)
+    //    ==> step11.A
+    //    ==> step11.B(ERROR)
+    //           ==> sub(INFO)
     //
-    // 3) 출력 형식 선언
-    // log4j.appender.출력담당자이름.layout=출력형식
-    // 예) log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+    // => 패키지나 클래스에 대해 등급 지정하기
+    // log4j.category.패키지명=로그등급
+    // log4j.category.패키지명.클래스명=로그등급
+    // 참고!
+    //   category 대신 logger라고 지정해도 된다.
     // 
-    // 출력 형식?
-    // SimpleLayout       : 단순한 출력
-    // HTMLLayout         : HTML 태그로 출력
-    // PatternLayout      : 특정 패턴에 맞춰 출력
-    // XMLLayout          : XML 태그로 출력 
-    // 
-    //
-    // 4) PatternLayout의 패턴 지정
-    // log4j.appender.stdout.layout.ConversionPattern=패턴
-    // 예) log4j.appender.stdout.layout.ConversionPattern=%d{ABSOLUTE} %5p %t %c{2}:%L - %m%n
-    //
-    // 패턴?
-    // %패턴명령
-    // 예) %5p %t
-    //
-    // 패턴 명령?
-    // %n      : 줄 바꿈 
-    // %p      : 로깅 등급 이름
-    // %5p     : 출력 칸 수 지정 => 5문자 
-    // %m      : 로그 메시지 
-    // %d{HH:mm:ss yyyy-MM-dd}  : 날짜 및 시간 출력. 
-    //        날짜 및 시간 형식은 java.text.SimpleDateFormat 클래스를 참조하라!
-    // %t      : 스레드 이름
-    //
+    // => 등급을 지정하지 않으면 rootCategory 등급을 사용한다.
+    A a = new A();
+    B b = new B();
+    C c = new C();
+    
+    a.m();
+    b.m();
+    c.m();
     logger.fatal("fatal 레벨 로그....");
     logger.error("error 레벨 로그....");
     logger.warn("warn 레벨 로그....");
     logger.info("info 레벨 로그....");
     logger.debug("debug 레벨 로그....");
     logger.trace("trace 레벨 로그....");
-    
   }
 
 }

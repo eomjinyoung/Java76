@@ -54,7 +54,7 @@ public class Test03 {
     // %d{HH:mm:ss yyyy-MM-dd}  : 날짜 및 시간 출력. 
     //        날짜 및 시간 형식은 java.text.SimpleDateFormat 클래스를 참조하라!
     // %t      : 스레드 이름
-    //
+    // %c      : Logger의 카테고리 이름 출력.
     logger.fatal("fatal 레벨 로그....");
     logger.error("error 레벨 로그....");
     logger.warn("warn 레벨 로그....");
