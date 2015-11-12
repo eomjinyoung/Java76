@@ -25,7 +25,11 @@ public class Test02 {
     //
     //출력 등급에 따른 출력 범위
     // TRACE > DEBUG > INFO > WARN > ERROR > FATAL
-    //즉, 출력 등급을 DEBUG로 설정하면 DEBUG 이하의 로그는 모두 출력된다. 
+    //즉, 출력 등급을 DEBUG로 설정하면 DEBUG 이하의 로그는 모두 출력된다.
+    //
+    //출력 등급을 조정하는 방법
+    //log4j.rootCategory=TRACE, stdout
+    //
     logger.fatal("fatal 레벨 로그....");
     logger.error("error 레벨 로그....");
     logger.warn("warn 레벨 로그....");

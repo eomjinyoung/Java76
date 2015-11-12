@@ -56,7 +56,17 @@ step10
 
 step11
   > Test01.java - log4j 사용 개요!
-  > Test02.java - log4j의 로깅 객체 생성과 사용 => 클래스 단위
+  > Test02.java - log4j의 로깅 객체 생성과 사용 => 클래스 단위, 이름으로 묶기
+                  출력 등록 조정하기
+  > Test03.java - 출력 담당자(appender) 지정. => ConsoleAppender 사용
+                  출력 형식 선언 => SimpleLayout, HTMLLayout, 
+                                 XMLLayout, PatternLayout
+                  출력 패턴 지정
+  > Test04.java - 출력 대상을 지정                                 
+                                 
+                                 
+                                 
+                  
   
     
   
