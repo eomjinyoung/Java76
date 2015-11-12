@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<style>
+body {
+  padding: 30px;
+}
+#content {
+  border: 1px solid gray;
+  width: 600px;
+  height: 400px;
+  text-align: center;
+}
+
+#keywordBox {
+  margin-top: 150px;
+  height: 100px
+  text-align: center;
+}
+
+#keyword {
+  font-size: 40px;
+}
+
+.caption {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#okCount {
+  color: blue;
+}
+
+#passCount {
+  color: red;
+}
+#timeoutBox {
+  text-align: center;
+}
+#timeout {
+  font-size: 30px;
+}
+</style>
+</head>
+<body>
+<div id='timeoutBox'>
+  <span id='timeout'>1200</span>초
+</div>
+<div id='content' class="container">
+<div id='toolbar'>
+	<button id='btnPass' type='button' class="btn btn-danger" >다음</button>
+	<button id='btnOk' type='button' class="btn btn-success" >정답</button>
+	<span class='caption'>정답:</span> 
+	<span id='okCount' class='caption'>0</span>,
+	<span class='caption'>통과:</span> 
+	<span id='passCount' class='caption'>0</span>
+</div>
+
+<div id='keywordBox'>
+  <span id='keyword'>자바<br>프로그래밍</span>
+</div>
+
+<button id='btnStart' type='button' class="btn btn-primary" >시작</button>
+</div>
+
+
+<script>
+$('#btnOk').click(function(){
+	$('#okCount').text(parseInt($('#okCount').text()) + 1); 
+	nextKeyword();
+});
+
+$('#btnPass').click(function(){
+	$('#passCount').text(parseInt($('#passCount').text()) + 1); 
+  nextKeyword();
+});
+
+$('#btnStart').click(function(){
+  startGame();
+});
+
+function nextKeyword() {
+	if (keywords.length == 0) {
+		alert("끝!");
+		stopGame();		
+		return;
+	}
+	var no = Math.floor(Math.random() * keywords.length);
+	$('#keyword').html(keywords[no]);
+	keywords.splice(no,1);
+}
+
+function stopGame() {
+	$('#btnOk').off();
+  $('#btnPass').off();
+} 
+
+function startGame() {
+	nextKeyword();
+	var timer = setInterval(function(){
+		  var sec = parseInt($('#timeout').text());
+		  $('#timeout').text(sec - 1);
+		  if (sec == 1) {
+		    clearInterval(timer);
+		    stopGame();
+		  }
+		},1000);
+	$('#btnStart').css('display','none');
+	
+}
+
+var keywords2 = [
+  '하하하<br>방법론','그렇군요<br>메모리','푸헐....','무엇인지',
+  '하하하2<br>방법론','그렇군요2<br>메모리','푸헐....2','무엇인지2',
+  '하하하3<br>방법론','그렇군요3<br>메모리','푸헐....3','무엇인지3'
+];
+
+var keywords = [
+  'Java','JVM','컴파일','Garbage','Garbage Collector','상속','다형성','캡슐화',
+  '오버로딩','오버라이딩','추상클래스','인터페이스','스프링 프레임워크','private',
+  'protectd','public','생성자','this','super','클래스','스태틱 메서드','스태틱 변수',
+  '인스턴스 메서드','final','인터프리터','JDK','JRE','CLASSPATH',
+  'JAR','패키지','main()','primitive type(원시타입)','이스케이프 문자',
+  '파라미터','XML','DTD','XML Schema','element','인스턴스','스태틱 블록',
+  '로컬 변수','커넥션 풀', '싱글톤(Singleton) 패턴','데코레이터 패턴',
+  '팩토리 메서드 패턴', '퍼사드(Facade)패턴', '빌더 패턴', '플라이웹이트(Flyweight) 패턴',
+  'throw', 'RuntimeException', '대기열', 'Reflection API', 
+  '일반화(Generalization)','전문화(Specialization)','인터페이스','finally',
+  '스택(Stack)','큐(Queue)','맵(Map)','해시코드','애노테이션','컴맨드(Command)패턴',
+  '이터레이터(Iterator) 패턴','직렬화(Serialization)','스레드','세마포어(Semaphore)',
+  '뮤텍스(Mutex)','Runnable','DBMS','SQL','DDL','DML','주키(primary key)',
+  '후보키(Candidate key)','JDBC','JDBC Type 2 드라이버','CRUD',
+  'IoC(Inversion Of Control)','DI(Dependency Injection)','중첩클래스',
+  'top level inner class','anonymous inner class','local inner class',
+  'member inner class','암시적 형변환','명시적 형변환','형변환',
+  '제네릭(Generic)','힙(Heap)','메서드 에리어(Method Area)','그래들(Gradle)',
+  '앤트(Ant)','메이븐(Maven)','인스턴스 블록','셋(Set)<br>데이터구조','링크드리스트(Linked List)',
+  '프로퍼티','필드','수퍼클래스','DAO','UML','재귀호출','PreparedStatement',
+  'ResultSet','IoC 컨테이너','Bean 컨테이너','CBD(Component-based Development)',
+  '컨텍스트 스위칭','프로세스 스케줄링','부팅','디자인 패턴','동기화','synchonized',
+  '라운드 로빈(Round Robin)<br>프로세스 스케줄링','우선순위(Priority)<br>프로세스 스케줄링',
+  'Connectionless<br>네트워크','프로토콜<br>네트워크','transient','추상화',
+  'Low Coupling','High Cohesion','@Component','@Autowired','@Resource',
+  '@Qualifier','Log4J','프로세스','OOP','프레임워크','2의 보수',
+  '댕글링 포인터(Dangling Pointer)','댕글링 오브젝트(Dangling Object)',
+  '네임스페이스(namespace)','레퍼런스','FactoryBean','PropertyEditor',
+  'SQL 맵퍼', 'ORM', 'Entity<br>방법론', 'Boundary<br>방법론', 'Control<br>방법론'
+];
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
