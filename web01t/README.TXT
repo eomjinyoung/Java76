@@ -19,8 +19,9 @@
   => Servers 뷰 > start 메뉴
 
 6. 톰캣 작업 폴더는 어디에?
+  => 이클립스워크스페이스폴더/.metadata/.plugins/org.eclipse.wst.server.core/tmp0
    배치 폴더는 어디에?
-   이클립스워크스페이스폴더/.metadata/.
+  => tmp0/wtpwebapps/
 => MacOSX의 Finder는 기본으로 .으로 시작하는 이름을 가진 폴더를 출력하지 않는다.
    숨김 파일(디렉토리)를 보이게 하는 방법?
    defaults write com.apple.finder AppleShowAllFiles -boolean true ; killall Finder
