@@ -10,17 +10,49 @@
   <servlet>
     <!-- 서블릿 별명을 선언한다. 공백을 포함할 수 있다. 마음대로 작성하라. 
          그러나 프로그래밍의 일관성을 위해 클래스 이름으로 작성하는 것이 좋다. -->
-    <servlet-name>hello servlet</servlet-name>
-    <servlet-class>servlet.HelloServlet</servlet-class>
+    <servlet-name>Servlet01</servlet-name>
+    <servlet-class>servlet.Servlet01</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet02</servlet-name>
+    <servlet-class>servlet.Servlet02</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet03</servlet-name>
+    <servlet-class>servlet.Servlet03</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet04</servlet-name>
+    <servlet-class>servlet.Servlet04</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet05</servlet-name>
+    <servlet-class>servlet.Servlet05</servlet-class>
   </servlet>
   
   <!-- 서블릿 클래스에 URL을 부여한다. -->
   <servlet-mapping>
-    <servlet-name>hello servlet</servlet-name>
+    <servlet-name>Servlet01</servlet-name>
     <!-- URL 이름을 작성할 때 공백을 주어서는 안된다. 확장자명은 마음대로.
          사용자가 웹 브라우저에서 요청할 때는 다음과 같이 요청해야 한다.
-         http://localhost:8080/web01/ohora/hi -->
-    <url-pattern>/ohora/hi</url-pattern>
+         http://localhost:8080/web01/exam/servlet01 -->
+    <url-pattern>/exam/servlet01</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet02</servlet-name>
+    <url-pattern>/exam/servlet02</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet03</servlet-name>
+    <url-pattern>/exam/servlet03</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet04</servlet-name>
+    <url-pattern>/exam/servlet04</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet05</servlet-name>
+    <url-pattern>/exam/servlet05</url-pattern>
   </servlet-mapping>
 
 </web-app>
