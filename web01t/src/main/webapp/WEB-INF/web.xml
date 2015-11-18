@@ -29,6 +29,10 @@
     <servlet-name>Servlet05</servlet-name>
     <servlet-class>servlet.Servlet05</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Servlet06</servlet-name>
+    <servlet-class>servlet.Servlet06</servlet-class>
+  </servlet>
   
   <!-- 서블릿 클래스에 URL을 부여한다. -->
   <servlet-mapping>
@@ -53,6 +57,10 @@
   <servlet-mapping>
     <servlet-name>Servlet05</servlet-name>
     <url-pattern>/exam/servlet05</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet06</servlet-name>
+    <url-pattern>/exam/servlet06</url-pattern>
   </servlet-mapping>
 
 </web-app>
