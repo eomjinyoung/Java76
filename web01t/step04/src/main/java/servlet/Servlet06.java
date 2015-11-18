@@ -27,6 +27,7 @@ import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 
 public class Servlet06 extends GenericServlet {
   private static final long serialVersionUID = 1L;
@@ -44,7 +45,7 @@ public class Servlet06 extends GenericServlet {
     System.out.println(name);
     System.out.println(age);
     System.out.println(tel);
-    
+    ((HttpServletResponse)response).sendRedirect("http://www.naver.com");    
   }
  
 }
