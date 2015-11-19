@@ -10,7 +10,6 @@
     <servlet-name>Servlet01</servlet-name>
     <servlet-class>servlet.Servlet01</servlet-class>
   </servlet>
-  <!--  
   <servlet>
     <servlet-name>Servlet02</servlet-name>
     <servlet-class>servlet.Servlet02</servlet-class>
@@ -35,12 +34,11 @@
     <servlet-name>Servlet07</servlet-name>
     <servlet-class>servlet.Servlet07</servlet-class>
   </servlet>
-  -->
+
   <servlet-mapping>
     <servlet-name>Servlet01</servlet-name>
-    <url-pattern>/step06/servlet01</url-pattern>
+    <url-pattern>/step05/servlet01</url-pattern>
   </servlet-mapping>
-  <!-- 
   <servlet-mapping>
     <servlet-name>Servlet02</servlet-name>
     <url-pattern>/step05/servlet02</url-pattern>
@@ -65,7 +63,6 @@
     <servlet-name>Servlet07</servlet-name>
     <url-pattern>/step05/servlet07</url-pattern>
   </servlet-mapping>
-   -->
 </web-app>
 
 
