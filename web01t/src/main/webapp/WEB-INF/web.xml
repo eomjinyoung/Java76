@@ -14,7 +14,6 @@
     <servlet-name>Servlet02</servlet-name>
     <servlet-class>servlet.Servlet02</servlet-class>
   </servlet>
-  <!--  
   <servlet>
     <servlet-name>Servlet03</servlet-name>
     <servlet-class>servlet.Servlet03</servlet-class>
@@ -26,12 +25,15 @@
   <servlet>
     <servlet-name>Servlet05</servlet-name>
     <servlet-class>servlet.Servlet05</servlet-class>
-  </servlet>
+  </servlet> 
   <servlet>
     <servlet-name>Servlet06</servlet-name>
     <servlet-class>servlet.Servlet06</servlet-class>
   </servlet>
-  -->
+  <servlet>
+    <servlet-name>Servlet07</servlet-name>
+    <servlet-class>servlet.Servlet07</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Servlet01</servlet-name>
@@ -41,24 +43,26 @@
     <servlet-name>Servlet02</servlet-name>
     <url-pattern>/step05/servlet02</url-pattern>
   </servlet-mapping>
-  <!-- 
   <servlet-mapping>
     <servlet-name>Servlet03</servlet-name>
-    <url-pattern>/exam/servlet03</url-pattern>
+    <url-pattern>/step05/servlet03</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Servlet04</servlet-name>
-    <url-pattern>/exam/servlet04</url-pattern>
+    <url-pattern>/step05/servlet04</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Servlet05</servlet-name>
-    <url-pattern>/exam/servlet05</url-pattern>
+    <url-pattern>/step05/servlet05</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>Servlet06</servlet-name>
-    <url-pattern>/exam/servlet06</url-pattern>
+    <url-pattern>/step05/servlet06</url-pattern>
   </servlet-mapping>
-  -->
+  <servlet-mapping>
+    <servlet-name>Servlet07</servlet-name>
+    <url-pattern>/step05/servlet07</url-pattern>
+  </servlet-mapping>
 </web-app>
 
 

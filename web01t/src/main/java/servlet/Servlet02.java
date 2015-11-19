@@ -46,6 +46,7 @@ public class Servlet02 extends GenericServlet {
     out.printf("getServletPath(): %s\n", httpReq.getServletPath());
     out.printf("getHeader(User-Agent): %s\n", 
         httpReq.getHeader("User-Agent"));
+    
     //요청 예) 
     //http://192.168.0.29:8080/web01t/step05/servlet02?name=okok&age=20
     //
