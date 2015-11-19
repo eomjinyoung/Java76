@@ -42,6 +42,7 @@ public class ProjectListServlet extends HttpServlet {
       align = request.getParameter("align");
     }
     
+    response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.printf("%-3s %-20s %-10s %-10s %-40s\n", 
         "No", "Title", "Start", "End", "Members");

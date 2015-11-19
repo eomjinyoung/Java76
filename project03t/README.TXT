@@ -1,3 +1,12 @@
-[주제: GenericServle 대신 HttpServlet 클래스 사용하기]
+[주제: 서블릿 기술 응용]
 1. 기존 서블릿들의 수퍼 클래스를 HttpServlet으로 교체한다.
   - GET/POST 요청을 구분하여 처리한다.
+  
+2. 추가, 변경 서블릿에 Refresh 적용
+  - 추가, 변경한 후 간단한 결과 메시지를 출력하고 1초 후에 목록을 출력한다.
+  
+3. 삭제 서블릿에 Redirect 적용
+  - 삭제한 후 즉시 목록을 출력한다.
+  
+4. 한글이 깨지지 않도록 응답을 설정하라.
+  - response.setContentType("text/plain;charset=UTF-8");

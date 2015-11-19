@@ -42,6 +42,7 @@ public class StudentListServlet extends HttpServlet {
       align = request.getParameter("align");
     }
     
+    response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.printf("%-20s %-20s %-20s %-20s\n", 
         "Email", "Name", "Tel", "Cid");

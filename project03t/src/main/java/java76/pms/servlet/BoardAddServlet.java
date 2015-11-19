@@ -27,8 +27,11 @@ public class BoardAddServlet extends HttpServlet {
     BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
     boardDao.insert(board);
     
+    response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("저장되었습니다.");
+    
+    response.setHeader("Refresh", "1;url=list");
   }
 }
 

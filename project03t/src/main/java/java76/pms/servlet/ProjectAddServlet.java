@@ -26,11 +26,14 @@ public class ProjectAddServlet extends HttpServlet {
     project.setEndDate(Date.valueOf(request.getParameter("endDate")));
     project.setMember(request.getParameter("member"));
     
+    response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
     ProjectDao projectDao = ContextLoader.context.getBean(ProjectDao.class);
     projectDao.insert(project); 
     
     out.println("저장되었습니다.");
+    
+    response.setHeader("Refresh", "1;url=list");
   }
 }
 

@@ -1,7 +1,6 @@
 package java76.pms.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,13 +19,9 @@ public class BoardDeleteServlet extends HttpServlet {
       throws ServletException, IOException {
     int no = Integer.parseInt(request.getParameter("no"));
 
-    PrintWriter out = response.getWriter();
     BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+    boardDao.delete(no);
     
-    if (boardDao.delete(no) > 0) { 
-      out.println("삭제하였습니다.");
-    } else {
-      out.println("해당 게시물이 존재하지 않습니다.");
-    }
+    response.sendRedirect("list");
   }
 }

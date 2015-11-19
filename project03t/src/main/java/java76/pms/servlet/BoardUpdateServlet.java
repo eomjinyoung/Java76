@@ -25,6 +25,7 @@ public class BoardUpdateServlet extends HttpServlet {
     board.setContent(request.getParameter("content"));
     board.setPassword(request.getParameter("password"));
 
+    response.setContentType("text/plain;charset=UTF-8");
     PrintWriter out = response.getWriter();
     BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
     
@@ -33,6 +34,8 @@ public class BoardUpdateServlet extends HttpServlet {
     } else {
       out.println("해당 게시물이 존재하지 않거나 암호가 맞지 않습니다.");
     }
+    
+    response.setHeader("Refresh", "1;url=list");
   }
 }
 

@@ -10,11 +10,11 @@
     <servlet-name>Servlet01</servlet-name>
     <servlet-class>servlet.Servlet01</servlet-class>
   </servlet>
-  <!--  
   <servlet>
     <servlet-name>Servlet02</servlet-name>
     <servlet-class>servlet.Servlet02</servlet-class>
   </servlet>
+  <!--  
   <servlet>
     <servlet-name>Servlet03</servlet-name>
     <servlet-class>servlet.Servlet03</servlet-class>
@@ -40,11 +40,11 @@
     <servlet-name>Servlet01</servlet-name>
     <url-pattern>/step06/servlet01</url-pattern>
   </servlet-mapping>
-  <!-- 
   <servlet-mapping>
     <servlet-name>Servlet02</servlet-name>
-    <url-pattern>/step05/servlet02</url-pattern>
+    <url-pattern>/step06/servlet02</url-pattern>
   </servlet-mapping>
+  <!-- 
   <servlet-mapping>
     <servlet-name>Servlet03</servlet-name>
     <url-pattern>/step05/servlet03</url-pattern>
