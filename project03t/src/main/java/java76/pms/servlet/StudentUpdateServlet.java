@@ -36,6 +36,9 @@ public class StudentUpdateServlet extends HttpServlet {
       else
         out.println("유효하지않습니다.");
      
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      rd.include(request, response);
+      
       response.setHeader("Refresh", "1;url=list");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");

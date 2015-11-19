@@ -37,6 +37,9 @@ public class BoardUpdateServlet extends HttpServlet {
         out.println("해당 게시물이 존재하지 않거나 암호가 맞지 않습니다.");
       }
       
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      rd.include(request, response);
+      
       response.setHeader("Refresh", "1;url=list");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");

@@ -38,6 +38,9 @@ public class ProjectUpdateServlet extends HttpServlet {
         out.println("해당 프로젝트가 존재하지 않습니다");
       }
   
+      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      rd.include(request, response);
+      
       response.setHeader("Refresh", "1;url=list");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
