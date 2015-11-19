@@ -3,6 +3,7 @@ package java76.pms.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,23 +20,28 @@ public class BoardUpdateServlet extends HttpServlet {
   public void doGet(
       HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
-    Board board = new Board();
-    board.setNo(Integer.parseInt(request.getParameter("no")));
-    board.setTitle(request.getParameter("title"));
-    board.setContent(request.getParameter("content"));
-    board.setPassword(request.getParameter("password"));
-
-    response.setContentType("text/plain;charset=UTF-8");
-    PrintWriter out = response.getWriter();
-    BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
-    
-    if (boardDao.update(board) > 0) {
-      out.println("변경되었습니다.");  
-    } else {
-      out.println("해당 게시물이 존재하지 않거나 암호가 맞지 않습니다.");
+    try {
+      Board board = new Board();
+      board.setNo(Integer.parseInt(request.getParameter("no")));
+      board.setTitle(request.getParameter("title"));
+      board.setContent(request.getParameter("content"));
+      board.setPassword(request.getParameter("password"));
+  
+      response.setContentType("text/plain;charset=UTF-8");
+      PrintWriter out = response.getWriter();
+      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+      
+      if (boardDao.update(board) > 0) {
+        out.println("변경되었습니다.");  
+      } else {
+        out.println("해당 게시물이 존재하지 않거나 암호가 맞지 않습니다.");
+      }
+      
+      response.setHeader("Refresh", "1;url=list");
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
     }
-    
-    response.setHeader("Refresh", "1;url=list");
   }
 }
 

@@ -2,6 +2,7 @@ package java76.pms.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +18,16 @@ public class BoardDeleteServlet extends HttpServlet {
   public void doGet(
       HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
-    int no = Integer.parseInt(request.getParameter("no"));
-
-    BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
-    boardDao.delete(no);
-    
-    response.sendRedirect("list");
+    try {
+      int no = Integer.parseInt(request.getParameter("no"));
+  
+      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+      boardDao.delete(no);
+      
+      response.sendRedirect("list");
+    } catch (Exception e) {
+      RequestDispatcher rd = request.getRequestDispatcher("/error");
+      rd.forward(request, response);
+    }
   }
 }

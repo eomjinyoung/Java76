@@ -57,6 +57,10 @@
     <servlet-name>StudentDeleteServlet</servlet-name>
     <servlet-class>java76.pms.servlet.StudentDeleteServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ErrorServlet</servlet-name>
+    <servlet-class>java76.pms.servlet.ErrorServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>BoardListServlet</servlet-name>
@@ -107,6 +111,10 @@
   <servlet-mapping>
     <servlet-name>StudentDeleteServlet</servlet-name>
     <url-pattern>/student/delete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ErrorServlet</servlet-name>
+    <url-pattern>/error</url-pattern>
   </servlet-mapping>
 
 </web-app>
