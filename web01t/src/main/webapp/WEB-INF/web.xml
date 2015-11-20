@@ -38,6 +38,10 @@
     <servlet-name>CommonServlet</servlet-name>
     <servlet-class>servlet.CommonServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Servlet07</servlet-name>
+    <servlet-class>servlet.Servlet07</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Servlet01</servlet-name>
@@ -70,6 +74,10 @@
   <servlet-mapping>
     <servlet-name>CommonServlet</servlet-name>
     <url-pattern>/step06/commonservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet07</servlet-name>
+    <url-pattern>/step06/servlet07</url-pattern>
   </servlet-mapping>
 </web-app>
 
