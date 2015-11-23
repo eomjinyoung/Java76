@@ -16,4 +16,7 @@
   - forward 사용하라!
     
 6. 각 서블릿의 실행 결과 아래에 애플리케이션의 권한을 명기하라!
-  - include를 사용하라.  
+  - include를 사용하라.
+  
+7. ServletContext에 스프링 IoC 컨테이너를 저장하라!
+  -     
