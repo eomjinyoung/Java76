@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 
@@ -26,7 +27,10 @@ public class BoardAddServlet extends HttpServlet {
       board.setContent(request.getParameter("content"));
       board.setPassword(request.getParameter("password"));
   
-      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+      ApplicationContext iocContainer = 
+          (ApplicationContext)this.getServletContext()
+                                  .getAttribute("iocContainer");
+      BoardDao boardDao = iocContainer.getBean(BoardDao.class);
       boardDao.insert(board);
       
       response.setContentType("text/plain;charset=UTF-8");

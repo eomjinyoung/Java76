@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.BoardDao;
 
 public class BoardDeleteServlet extends HttpServlet {  
@@ -21,7 +22,10 @@ public class BoardDeleteServlet extends HttpServlet {
     try {
       int no = Integer.parseInt(request.getParameter("no"));
   
-      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+      ApplicationContext iocContainer = 
+          (ApplicationContext)this.getServletContext()
+                                  .getAttribute("iocContainer");
+      BoardDao boardDao = iocContainer.getBean(BoardDao.class);
       boardDao.delete(no);
       
       response.sendRedirect("list");

@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java76.pms.ContextLoader;
+import org.springframework.context.ApplicationContext;
+
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 
@@ -50,7 +51,10 @@ public class BoardListServlet extends HttpServlet {
       out.printf("%-3s %-20s %-3s %-10s\n", 
           "No", "Title", "Views", "Date");
       
-      BoardDao boardDao = ContextLoader.context.getBean(BoardDao.class);
+      ApplicationContext iocContainer = 
+          (ApplicationContext)this.getServletContext()
+                                  .getAttribute("iocContainer");
+      BoardDao boardDao = iocContainer.getBean(BoardDao.class);
       
       for (Board board : boardDao.selectList(pageNo, pageSize, keyword, align)) {
         out.printf("%-3d %-20s %-3d %-10s\n", 

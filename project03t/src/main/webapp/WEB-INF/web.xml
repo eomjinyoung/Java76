@@ -5,6 +5,12 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
   version="3.1"
   metadata-complete="true">
+  
+<!-- 리스너 등록하기 -->  
+  <listener>
+    <listener-class>java76.pms.listener.ContextLoaderListener</listener-class>
+  </listener>
+
 
 <!-- 필터 등록하기 -->
   <filter>

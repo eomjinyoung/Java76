@@ -27,7 +27,14 @@
     -.-; => tomcat 8에서 GET 요청은 의미 없음.
             tomcat 7에서 GET 요청은 server.xml에 설정한다.
   
-  
+8. ServletContextListener를 통해 스프링 IoC 컨테이너 준비하기.
+  - ContextLoaderListener.java 클래스를 작성한다.
+  - 스프링 IoC 컨테이너를 준비하는 코드를 넣는다.
+  - ServletContext 저장소에 스프링 IoC 컨테이너를 보관한다.
+  - 우리가 만든 ContextLoader.java 클래스를 삭제하라!
+  - 스프링 IoC 컨테이너를 사용하는 모든 서블릿을 변경하라!   
+  - web.xml에 리스너 등록하라!
+  - 그리고 테스트 하라!
   
   
   
