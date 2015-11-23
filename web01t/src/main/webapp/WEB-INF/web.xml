@@ -15,9 +15,42 @@
     <filter-name>Filter02</filter-name>
     <filter-class>filter.Filter02</filter-class>
   </filter>
+  <filter>
+    <filter-name>Filter03</filter-name>
+    <filter-class>filter.Filter03</filter-class>
+  </filter>
+  <filter>
+    <filter-name>Filter04</filter-name>
+    <filter-class>filter.Filter04</filter-class>
+  </filter>
+  <filter>
+    <filter-name>Filter05</filter-name>
+    <filter-class>filter.Filter05</filter-class>
+    <!-- Filter05가 참조할 값을 다음과 같이 초기화 파라미터 태그로 지정할 수 있다. -->
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>name</param-name>
+      <param-value>홍길동</param-value>
+    </init-param>
+  </filter>
   
 <!-- 필터를 실행할 URL 지정하기 -->
 <!-- URL이 같으면 먼저 선언한 필터를 먼서 실행한다. -->
+  <filter-mapping>
+    <filter-name>Filter05</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Filter04</filter-name>
+    <url-pattern>*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>Filter03</filter-name>
+    <url-pattern>/step08/*</url-pattern>
+  </filter-mapping>
   <filter-mapping>
     <filter-name>Filter01</filter-name>
     <url-pattern>/step08/servlet01</url-pattern>
@@ -27,16 +60,30 @@
     <url-pattern>/step08/servlet01</url-pattern>
   </filter-mapping>
 
-
   <servlet>
     <servlet-name>Servlet01</servlet-name>
     <servlet-class>servlet.Servlet01</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>Servlet02</servlet-name>
+    <servlet-class>servlet.Servlet02</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Servlet03</servlet-name>
+    <servlet-class>servlet.Servlet03</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Servlet01</servlet-name>
     <url-pattern>/step08/servlet01</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet02</servlet-name>
+    <url-pattern>/step08/servlet02</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Servlet03</servlet-name>
+    <url-pattern>/test/servlet03</url-pattern>
   </servlet-mapping>
 
 </web-app>

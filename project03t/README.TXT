@@ -18,5 +18,22 @@
 6. 각 서블릿의 실행 결과 아래에 애플리케이션의 권한을 명기하라!
   - include를 사용하라.
   
-7. ServletContext에 스프링 IoC 컨테이너를 저장하라!
-  -     
+7. 클라이언트가 보낸 요청 데이터에 대해 문자 집합을 지정하는 코드를 필터에 넣기.
+  - CharacterEncodingFilter.java 클래스 작성
+  - web.xml에 필터를 등록한다. 문자집합 이름은 필터 초기화 파라미터로 선언한다.
+  - 이 필터 클래스에서 요청 데이터의 문자 집합을 지정하라!
+  - POST 요청 데이터의 문자집합을 설정하는 모든 서블릿에서 해당 코드를 제거하라!
+    xxxAddServlet, xxxUpdateServlet
+    -.-; => tomcat 8에서 GET 요청은 의미 없음.
+            tomcat 7에서 GET 요청은 server.xml에 설정한다.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+      
