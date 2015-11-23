@@ -21,7 +21,23 @@
 
 [실습]
 Servlet01.java
-  - ServletRequest 보관소 사용하기 
+  - ServletRequest 보관소를 사용하여 forwarding 서블릿끼리 데이터 공유하기 
+
+Servlet02.java, Servlet02Sum.java, Servlet02Aver.java
+  - ServletRequest 보관소를 사용하여 including 서블릿끼리 데이터 공유하기
+
+Servlet03Step1.java, Servlet03Step2.java, Servlet03Step3.java
+  - HttpSession 보관소를 사용하여 서블릿끼리 데이터 공유하기
+
+Servlet04Step1.java, Servlet04Step2.java
+  - 타임아웃이 된 다음에 HttpSession이 무효화 되는 것을 확인하기 
+  - Step1 서블릿을 실행한 후, 타임아웃 시간이 지난 후 Step2를 실행하면 
+    Step1에서 세션에 저장한 값을 꺼낼 수 없다. => 세션이 무효화 됐기 때문이다.
+    
+Servlet05Login.java, Servlet05Main.java, Servlet05Logout.java
+  - Logout 서블릿을 사용하여 세션을 강제 무효화시키기. 
+    => 로그아웃이 이 방법을 사용한다.
+       
   
 
       
