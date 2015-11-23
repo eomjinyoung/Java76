@@ -38,7 +38,9 @@ Servlet05Login.java, Servlet05Main.java, Servlet05Logout.java
   - Logout 서블릿을 사용하여 세션을 강제 무효화시키기. 
     => 로그아웃이 이 방법을 사용한다.
        
-  
+Servlet06Step1.java, Servlet06Step2.java
+  - ServletContext 보관소를 사용하여 모든 서블릿들이 공유하는 데이터 보관하기.
+     
 
       
       
