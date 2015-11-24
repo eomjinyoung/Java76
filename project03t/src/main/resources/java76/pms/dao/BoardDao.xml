@@ -47,6 +47,17 @@
       cre_dt=now()
     where bno=#{no} and (pwd is null or pwd=#{password})
   </update>
+  
+  <select id="selectOne" resultMap="boardMap" parameterType="int">
+    select 
+      bno,
+      title,
+  	  content,
+      views,
+      cre_dt 
+    from board
+    where bno=#{no}
+  </select>
 </mapper>
 
 

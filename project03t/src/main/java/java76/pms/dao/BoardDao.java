@@ -65,6 +65,16 @@ public class BoardDao {
       try {sqlSession.close();} catch (Exception e) {}
     }
   }
+
+  public Board selectOne(int no) {
+    SqlSession sqlSession = sqlSessionFactory.openSession(true);
+    
+    try {
+      return sqlSession.selectOne("java76.pms.dao.BoardDao.selectOne", no);
+    } finally {
+      try {sqlSession.close();} catch (Exception e) {}
+    }
+  }
 }
 
 
