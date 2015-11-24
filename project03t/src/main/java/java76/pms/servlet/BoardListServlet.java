@@ -22,7 +22,6 @@ public class BoardListServlet extends HttpServlet {
       HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
-      //페이징 처리
       int pageNo = 1;
       int pageSize = 10;
       
@@ -34,7 +33,6 @@ public class BoardListServlet extends HttpServlet {
         pageSize = Integer.parseInt(request.getParameter("pageSize"));
       }
       
-      //정렬 처리
       String keyword = "no";
       String align = "desc";
       
@@ -46,26 +44,48 @@ public class BoardListServlet extends HttpServlet {
         align = request.getParameter("align");
       }
       
-      response.setContentType("text/plain;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      out.printf("%-3s %-20s %-3s %-10s\n", 
-          "No", "Title", "Views", "Date");
-      
       ApplicationContext iocContainer = 
           (ApplicationContext)this.getServletContext()
-                                  .getAttribute("iocContainer");
+          .getAttribute("iocContainer");
       BoardDao boardDao = iocContainer.getBean(BoardDao.class);
       
-      for (Board board : boardDao.selectList(pageNo, pageSize, keyword, align)) {
-        out.printf("%-3d %-20s %-3d %-10s\n", 
-            board.getNo(),
-            board.getTitle(),
-            board.getViews(),
-            board.getCreatedDate());
+      response.setContentType("text/html;charset=UTF-8");
+      PrintWriter out = response.getWriter();
+      
+      out.println("<!DOCTYPE html>");
+      out.println("<html>");
+      out.println("<head>");
+      out.println("  <meta charset='UTF-8'>");
+      out.println("  <title>게시판-목록</title>");
+      out.println("</head>");
+      out.println("<body>");
+      out.println("<h1>게시판</h1>");
+      out.println("<table border='1'>");
+      out.println("  <tr>");
+      out.println("    <th>번호</th>");
+      out.println("    <th>제목</th>");
+      out.println("    <th>조회수</th>");
+      out.println("    <th>등록일</th>");
+      out.println("  </tr>");
+      
+      for (Board board : boardDao.selectList(
+                              pageNo, pageSize, keyword, align)) {
+        out.println("  <tr>");
+        out.printf("    <td>%s</td>\n", board.getNo());
+        out.printf("    <td><a href='update?no=%d'>%s</a></td>\n", 
+            board.getNo(), board.getTitle());
+        out.printf("    <td>%s</td>\n", board.getViews());
+        out.printf("    <td>%s</td>\n", board.getCreatedDate());
+        out.println("  </tr>");
       }
       
+      out.println("</table>");
+           
       RequestDispatcher rd = request.getRequestDispatcher("/copyright");
       rd.include(request, response);
+      
+      out.println("</body>");
+      out.println("</html>");
       
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");

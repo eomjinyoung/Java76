@@ -15,14 +15,21 @@
 => test05.html
 
 3) b, i, strong - 키워드를 강조하는 태그
+   address - 웹 사이트에 대한 간략한 정보나 권리 등을 표현하는 태그
 => test06.html
 
 4) a - 외부에 연결된 문서를 표현하는 태그
 => test07.html
 
+
+
 3. 구조화된 데이터를 표현하는 태그
 1) table, tr, th, td - 데이터를 테이블로 표현하는 태그
+=> test08.html
+=> test09.html : 셀 병합
+
 2) ol, ul, li - 데이터를 목록으로 표현하는 태그
+=> test10.html
 
 4. 그룹으로 묶는 태그
 1) div - UI 컴포넌트를 묶을 때 사용하는 태그

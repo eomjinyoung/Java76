@@ -16,11 +16,11 @@ public class CopyrightServlet extends HttpServlet {
       HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     
-    response.setContentType("text/plain;charset=UTF-8");
+    response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
-    out.println("--------------------------------------------");
-    out.println("이 웹 애플리케이션의 모든 권리는 Java76기에 있습니다.");
-    out.println("--------------------------------------------");
+    out.println("<p><address>");
+    out.println("이 웹 애플리케이션의 모든 권리는 Java76기에 있습니다. &copy; Java76.");
+    out.println("</address></p>");
     
   }
   
