@@ -46,11 +46,15 @@ public class BoardDao {
     }
   }
 
-  public int delete(int no) {
+  public int delete(int no, String password) {
     SqlSession sqlSession = sqlSessionFactory.openSession(true);
     
     try {
-      return sqlSession.delete("java76.pms.dao.BoardDao.delete", no);
+      HashMap<String,Object> paramMap = new HashMap<>();
+      paramMap.put("no", no);
+      paramMap.put("password", password);
+      
+      return sqlSession.delete("java76.pms.dao.BoardDao.delete", paramMap);
     } finally {
       try {sqlSession.close();} catch (Exception e) {}
     }

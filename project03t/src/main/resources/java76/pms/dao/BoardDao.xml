@@ -35,9 +35,9 @@
     values(#{title},#{content},#{password},now())
   </insert>
   
-  <!-- primitive type인 경우 프로퍼티 이름은 아무거나 지정해도 된다. -->
-  <delete id="delete" parameterType="int">
-    delete from board where bno=#{value}
+  <delete id="delete" parameterType="map">
+    delete from board 
+  	where bno=#{no} and (pwd is null or pwd=#{password})
   </delete>
   
   <update id="update" parameterType="board">
