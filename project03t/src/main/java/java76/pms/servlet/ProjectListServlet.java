@@ -45,31 +45,57 @@ public class ProjectListServlet extends HttpServlet {
         align = request.getParameter("align");
       }
       
-      response.setContentType("text/plain;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      out.printf("%-3s %-20s %-10s %-10s %-40s\n", 
-          "No", "Title", "Start", "End", "Members");
-      
       ApplicationContext iocContainer = 
           (ApplicationContext)this.getServletContext()
-                                  .getAttribute("iocContainer");
+          .getAttribute("iocContainer");
       ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
+
+      response.setContentType("text/html;charset=UTF-8");
+      PrintWriter out = response.getWriter();
+      
+      out.println("<!DOCTYPE html>");
+      out.println("<html>");
+      out.println("<head>");
+      out.println("  <meta charset='UTF-8'>");
+      out.println("  <title>프로젝트-목록</title>");
+      out.println("</head>");
+      out.println("<body>");
+      out.println("<h1>프로젝트</h1>");
+      
+      out.println("<a href='form.html'>새 프로젝트</a><br>");
+      
+      out.println("<table border='1'>");
+      out.println("  <tr>");
+      out.println("    <th>번호</th>");
+      out.println("    <th>프로젝트명</th>");
+      out.println("    <th>시작일</th>");
+      out.println("    <th>종료일</th>");
+      out.println("    <th>회원</th>");
+      out.println("  </tr>");
       
       for (Project project : projectDao.selectList(
           pageNo, pageSize, keyword, align)) {
-        out.printf("% 3d %-20s %3$tY-%3$tm-%3$td %4$s %5$-40s\n", 
-            project.getNo(), 
-            project.getTitle(),
-            project.getStartDate(),
-            project.getEndDate(),
-            project.getMember());
+        out.println("  <tr>");
+        out.printf("    <td>%s</td>\n", project.getNo());
+        out.printf("    <td><a href='update?no=%d'>%s</a></td>\n", 
+            project.getNo(), project.getTitle());
+        out.printf("    <td>%s</td>\n", project.getStartDate());
+        out.printf("    <td>%s</td>\n", project.getEndDate());
+        out.printf("    <td>%s</td>\n", project.getMember());
+        out.println("  </tr>");
       }
+      
+      out.println("</table>");
       
       RequestDispatcher rd = request.getRequestDispatcher("/copyright");
       rd.include(request, response);
       
+      out.println("</body>");
+      out.println("</html>");
+      
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
+      request.setAttribute("error", e);
       rd.forward(request, response);
     }
   }

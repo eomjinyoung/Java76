@@ -45,30 +45,56 @@ public class StudentListServlet extends HttpServlet {
         align = request.getParameter("align");
       }
       
-      response.setContentType("text/plain;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      out.printf("%-20s %-20s %-20s %-20s\n", 
-          "Email", "Name", "Tel", "Cid");
-      
       ApplicationContext iocContainer = 
           (ApplicationContext)this.getServletContext()
-                                  .getAttribute("iocContainer");
+          .getAttribute("iocContainer");
       StudentDao studentDao = iocContainer.getBean(StudentDao.class);
+
+      response.setContentType("text/html;charset=UTF-8");
+      PrintWriter out = response.getWriter();
+      
+      out.println("<!DOCTYPE html>");
+      out.println("<html>");
+      out.println("<head>");
+      out.println("  <meta charset='UTF-8'>");
+      out.println("  <title>학생-목록</title>");
+      out.println("</head>");
+      out.println("<body>");
+      out.println("<h1>학생</h1>");
+      
+      out.println("<a href='form.html'>새 학생</a><br>");
+      
+      out.println("<table border='1'>");
+      out.println("  <tr>");
+      out.println("    <th>이메일</th>");
+      out.println("    <th>이름</th>");
+      out.println("    <th>전화</th>");
+      out.println("    <th>기수</th>");
+      out.println("  </tr>");
+      
       
       for (Student student : studentDao.selectList(
           pageNo, pageSize, keyword, align)) {
-        out.printf("%-20s, %-20s, %-20s, %-20s\n", 
-            student.getEmail(),
-            student.getName(),
-            student.getTel(),
-            student.getCid());
+        out.println("  <tr>");
+        out.printf("    <td>%s</td>\n", student.getEmail());
+        out.printf("    <td><a href='update?email=%s'>%s</a></td>\n", 
+            student.getEmail(), student.getName());
+        out.printf("    <td>%s</td>\n", student.getTel());
+        out.printf("    <td>%s</td>\n", student.getCid());
+        out.println("  </tr>");
       }
+      
+      out.println("</table>");
       
       RequestDispatcher rd = request.getRequestDispatcher("/copyright");
       rd.include(request, response);
       
+      out.println("</body>");
+      out.println("</html>");
+      
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
+      request.setAttribute("error", e);
       rd.forward(request, response);
     }
   }

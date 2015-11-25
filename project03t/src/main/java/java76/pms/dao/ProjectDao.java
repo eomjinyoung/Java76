@@ -62,6 +62,16 @@ public class ProjectDao {
       try {sqlSession.close();} catch (Exception e) {}
     }
   }
+  
+  public Project selectOne(int no) {
+    SqlSession sqlSession = sqlSessionFactory.openSession(true);
+    
+    try {
+      return sqlSession.selectOne("java76.pms.dao.ProjectDao.selectOne", no);
+    } finally {
+      try {sqlSession.close();} catch (Exception e) {}
+    }
+  }
 }
 
 

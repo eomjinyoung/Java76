@@ -63,6 +63,17 @@ namespace: SQL문을 분류하는 용도로 사용하는 그룹명.
       member=#{member} 
     where pno=#{no}
   </update>
+  
+  <select id="selectOne" resultMap="projectMap" parameterType="int">
+    select 
+      pno,
+      title,
+      sdt,
+      edt,
+      member 
+    from project
+    where pno=#{no}
+  </select>
 </mapper>
 
 

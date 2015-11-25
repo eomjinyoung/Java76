@@ -1,7 +1,6 @@
 package java76.pms.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ public class StudentAddServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void doGet(
+  public void doPost(
       HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
@@ -28,9 +27,6 @@ public class StudentAddServlet extends HttpServlet {
       student.setTel(request.getParameter("tel"));
       student.setCid(request.getParameter("cid"));
   
-      response.setContentType("text/plain;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      
       ApplicationContext iocContainer = 
           (ApplicationContext)this.getServletContext()
                                   .getAttribute("iocContainer");
@@ -38,14 +34,11 @@ public class StudentAddServlet extends HttpServlet {
       
       studentDao.insert(student);
       
-      out.println("저장되었습니다.");
+      response.sendRedirect("list");
       
-      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
-      rd.include(request, response);
-      
-      response.setHeader("Refresh", "1;url=list");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
+      request.setAttribute("error", e);
       rd.forward(request, response);
     }
   }

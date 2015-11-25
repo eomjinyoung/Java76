@@ -56,6 +56,7 @@ public class BoardDeleteServlet extends HttpServlet {
       response.setHeader("Refresh", "2;url=list");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
+      request.setAttribute("error", e);
       rd.forward(request, response);
     }
   }
