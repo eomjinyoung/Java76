@@ -16,4 +16,36 @@
 4. Declaration 태그의 사용
   - 서블릿 클래스에 필드나 메서드를 추가하고 싶을 때
   - Test04.jsp
-     
+
+5. 스크립트릿에서 사용할 클래스를 임포트하기
+  - page 지시어의 import 속성을 사용하여 클래스 패키지 정보를 기술한다.  
+  - Test05.jsp  
+  
+6. JSP 내장 변수 (built-in variables) 
+  - _jspService() 메서드 안에 공식적으로 선언된 변수.
+  - JSP 엔진은 클래스를 자동 생성할 때 반드시 다음 변수를 _jspService() 메서드에 
+    선언해야 한다.
+    request: HttpServletRequest
+    response: HttpServletResponse
+    pageContext: PageContext
+    session: HttpSession
+    application: ServletContext
+    config: ServletConfig
+    out: JspWriter
+    page: Object (서블릿 인스턴스 자신을 가리킴. 즉 this와 같다.)
+    error: Exception (오류를 처리하는 페이지라서 선언할 때만 이 변수가 생성된다.)
+
+* whitespace? space(공백), new line, tab    
+    
+    
+    
+    
+    
+  
+  
+  
+  
+  
+    
+  
+   
