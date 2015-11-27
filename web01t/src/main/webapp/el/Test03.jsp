@@ -17,6 +17,8 @@ application.setAttribute("v5", "컨텍스트 값...");
 <%--EL을 사용하여 보관소에서 값 꺼내기
 => 문법
    ${보관소명.객체이름}
+객체 이름 중간에 공백이나 특수 문자를 포함할 경우 다음의 문법을 사용하면 된다.
+   ${보관소명["객체이름"]}
 => 보관소명 
 "pageScope"         ---> JspContext
 "requestScope"      ---> ServletRequest
@@ -25,11 +27,18 @@ application.setAttribute("v5", "컨텍스트 값...");
  --%>
 
 v1 = ${applicationScope.v1}
-v2 = ${sessionScope.v2}
-v3 = ${requestScope.v3}
-v4 = ${pageScope.v4}
-v5 = ${v5} <%-- scope을 생략하면 findAttribute()와 동일한 방법으로 찾는다. --%>
+v1 = ${applicationScope["v1"]}
 
+v2 = ${sessionScope.v2}
+v1 = ${sessionScope["v2"]}
+
+v3 = ${requestScope.v3}
+v1 = ${requestScope["v3"]}
+
+v4 = ${pageScope.v4}
+v1 = ${pageScope["v4"]}
+
+v5 = ${v5} <%-- scope을 생략하면 findAttribute()와 동일한 방법으로 찾는다. --%>
 
 
 

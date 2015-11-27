@@ -45,7 +45,15 @@
   - Test07.jsp
   
 [JSP Expression Language 사용법]
-    
+EL 표기법과 객체 범위
+  - Test01.jsp : 보관소에서 데이터를 꺼내는 일반적인 방법
+  - Test02.jsp : PageContext.findAttribute() 사용법
+  - Test03.jsp : EL 문법을 사용하여 객체 꺼내기
+  - Test04.jsp : 맵에 저장된 데이터 꺼내기
+  - Test05.jsp : 객체의 프로퍼티 값 꺼내기
+  - Test06.jsp : OGNL을 사용하여 계층 구조의 값 꺼내기
+
+  
     
     
     
