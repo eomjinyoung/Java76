@@ -36,7 +36,15 @@
     error: Exception (오류를 처리하는 페이지라서 선언할 때만 이 변수가 생성된다.)
 
 * whitespace? space(공백), new line, tab    
-    
+
+[JSP 액션 태그 사용법]
+<jsp:useBean> 
+  - Test06.jsp
+  
+<jsp:include>, <jsp:forward>     
+  - Test07.jsp
+  
+[JSP Expression Language 사용법]
     
     
     
