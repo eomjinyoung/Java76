@@ -19,7 +19,9 @@ Controller: Model과 View가 사용할 데이터를 가공한다.
 4. <jsp:include> 적용
   - Copyright.jsp 실행 결과를 포함하기.     
   
-  
+5. EL 적용
+  - BoardList.jsp에 EL 문법을 적용하여 게시물 값을 출력한다.
+    
   
   
   
