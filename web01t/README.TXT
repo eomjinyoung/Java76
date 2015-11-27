@@ -52,6 +52,24 @@ EL 표기법과 객체 범위
   - Test04.jsp : 맵에 저장된 데이터 꺼내기
   - Test05.jsp : 객체의 프로퍼티 값 꺼내기
   - Test06.jsp : OGNL을 사용하여 계층 구조의 값 꺼내기
+  - Test07.jsp : EL 내장 객체 사용법
+  - Test08.jsp : 리터럴 표기
+  - Test09.jsp : 배열, List, Map, 객체에서 값 꺼내기
+  - Test10.jsp : EL 연산자
+ 
+[JSTL(JSP Standard Tag Library) 사용법]
+=> JSP 확장 태그. => 라이브러리 파일을 별도로 다운로드 해야 한다.
+=> build.gradle에 JSTL 라이브러리 추가
+ 
+Test01.jsp : JSP 페이지에서 JSTL 태그 사용하기
+
+
+
+
+
+
+
+
 
   
     

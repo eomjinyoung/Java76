@@ -21,7 +21,7 @@ Controller: Model과 View가 사용할 데이터를 가공한다.
   
 5. EL 적용
   - BoardList.jsp에 EL 문법을 적용하여 게시물 값을 출력한다.
-    
+  - 게시물 상세보기 및 변경에도 JSP, EL, JSTL 적용하라!  
   
   
   
