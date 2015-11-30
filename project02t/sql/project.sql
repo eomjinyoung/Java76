@@ -34,3 +34,6 @@ create table board (
   pwd     varchar(20),
   constraint board_pk primary key (bno)
 );
+
+alter table student
+  add column pwd varchar(20);
