@@ -11,15 +11,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%-- JSTL에서 제공하는 라이브러리
-=> Core: http://java.sun.com/jsp/jstl/core
+=> Core: http://java.sun.com/jsp/jstl/core (c)
    - 변수 다루기, 조건문/반복문, URL 다루기, 기타
-=> XML: http://java.sun.com/jsp/jstl/xml
+=> XML: http://java.sun.com/jsp/jstl/xml  (x)
    - XML 다루기
-=> Internationalization: http://java.sun.com/jsp/jstl/fmt
+=> Internationalization: http://java.sun.com/jsp/jstl/fmt  (fmt)
    - 국제화 지원, 메시지 형식 다루기, 숫자와 날짜 데이터의 형식 다루기
-=> SQL: http://java.sun.com/jsp/jstl/sql
+=> SQL: http://java.sun.com/jsp/jstl/sql  (sql)
    - SQL 다루기
-=> Functions: http://java.sun.com/jsp/jstl/functions
+=> Functions: http://java.sun.com/jsp/jstl/functions  (fn)
    - 컬렉션 및 문자열 다루기 
 --%>
 <%
