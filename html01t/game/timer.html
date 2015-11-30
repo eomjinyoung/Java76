@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>타이머</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<style>
+#timerBox {
+  height: 120px;
+  width: 200px;
+  margin: 100px auto;
+  border: 1px solid gray;
+  text-align: center;
+}
+#timer {
+  font-size: 50px;
+}
+</style>
+</head>
+<body>
+<div id='timerBox'>
+  <span id='timer'>5</span>초<br>
+<button id='btnStart' type='button' class="btn btn-primary" >시작</button>
+</div>
+
+
+
+
+<script>
+var alarm = new Audio('bell.mp3');
+
+$('#btnStart').click(function() {
+	$('#btnStart').text('타이머 가동 중...');
+	$('#btnStart').off();
+	$('#btnStart').attr('disabled', 'disabled');
+	
+	var timer = setInterval(function(){
+		var sec = parseInt($('#timer').text()) - 1;
+		$('#timer').text(sec);
+		if (sec == 0) {
+      $('#timer').text(140);
+      alarm.play();
+      return;
+		}
+	}, 1000);
+	
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
