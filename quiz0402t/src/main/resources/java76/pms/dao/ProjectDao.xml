@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+namespace: SQL문을 분류하는 용도로 사용하는 그룹명.
+           프로그래밍의 일관성을 위해서 가능한 DAO의 패키지명과 같게 하라!
+ -->
+<mapper namespace="java76.pms.dao.ProjectDao">
+
+  <resultMap type="project" id="projectMap">
+    <id column="pno" property="no"/>
+    <result column="sdt" property="startDate"/>
+    <result column="edt" property="endDate"/>
+  </resultMap>
+  
+  
+
+</mapper>
+
+
+
+
+
