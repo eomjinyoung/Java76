@@ -1,7 +1,6 @@
 package java76.pms.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -31,70 +30,13 @@ public class ProjectUpdateServlet extends HttpServlet {
       ProjectDao projectDao = iocContainer.getBean(ProjectDao.class);
       
       Project project = projectDao.selectOne(no);
+      request.setAttribute("project", project);
       
       response.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("  <meta charset='UTF-8'>");
-      out.println("  <title>프로젝트-상세정보</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>프로젝트 정보</h1>");
-      
-      if (project != null) {
-        out.println("<form id='form1' action='update' method='post'>");
-        out.println("<table border='1'>");
-        out.println("<tr>");
-        out.println("  <th>번호</th>");
-        out.printf("  <td><input type='text' name='no' value='%d' readonly></td>\n", 
-            project.getNo());
-        out.println("</tr>");
-        out.println("<tr>");
-        out.println("  <th>프로젝트명</th>");
-        out.printf("  <td><input type='text' name='title' value='%s'></td>\n", 
-            project.getTitle());
-        out.println("</tr>");
-        out.println("<tr>");
-        out.println("  <th>시작일</th>");
-        out.printf("  <td><input type='date' name='startDate' value='%s'></td>\n", 
-            project.getStartDate());
-        out.println("</tr>");
-        out.println("<tr>");
-        out.println("  <th>종료일</th>");
-        out.printf("  <td><input type='date' name='endDate' value='%s'></td>\n", 
-            project.getEndDate());
-        out.println("</tr>");
-        out.println("<tr>");
-        out.println("  <th>회원</th>");
-        out.printf("  <td><input type='text' name='member' value='%s'></td>\n", 
-            project.getMember());
-        out.println("</tr>");
-        out.println("</table>");
-        
-        out.println("<p>");
-        out.println("<button name='update' type='submit'>변경</button>");
-        out.println("<button name='delete' type='submit' onclick='deleteProject()'>삭제</button>");
-        out.println("</p>");
-        
-        out.println("</form>");
-        
-      } else {
-        out.println("<p>해당 번호의 프로젝트를 찾을 수 없습니다.</p>");
-      }
-      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      RequestDispatcher rd = request.getRequestDispatcher(
+          "/project/ProjectDetail.jsp");
       rd.include(request, response);
       
-      out.println("<script>");
-      out.println("function deleteProject() {");
-      out.println("  document.getElementById('form1').action = 'delete';");
-      out.println("}");
-      out.println("</script>");
-      
-      out.println("</body>");
-      out.println("</html>");
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
       request.setAttribute("error", e);
@@ -124,26 +66,12 @@ public class ProjectUpdateServlet extends HttpServlet {
         return;
       } 
       
+      request.setAttribute("errorCode", "401");
+
       response.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = response.getWriter();
-      
-      out.println("<!DOCTYPE html>");
-      out.println("<html>");
-      out.println("<head>");
-      out.println("  <meta charset='UTF-8'>");
-      out.println("  <title>프로젝트-변경</title>");
-      out.println("</head>");
-      out.println("<body>");
-      out.println("<h1>프로젝트 변경 오류</h1>");
-      out.println("<p>해당 프로젝트가 존재하지 않습니다.</p>");
-      
-      RequestDispatcher rd = request.getRequestDispatcher("/copyright");
+      RequestDispatcher rd = request.getRequestDispatcher(
+          "/project/ProjectAuthError.jsp");
       rd.include(request, response);
-      
-      out.println("</body>");
-      out.println("</html>");
-      
-      response.setHeader("Refresh", "2;url=list");
       
     } catch (Exception e) {
       RequestDispatcher rd = request.getRequestDispatcher("/error");
