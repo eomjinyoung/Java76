@@ -26,5 +26,8 @@ Controller: Model과 View가 사용할 데이터를 가공한다.
 6. 프로젝트 및 학생 관리에도 JSP, EL, JSTL 적용  
 
 7. 로그인/로그아웃 구현
-  - /webapp/auth/loginform.jsp 작성
+  - /webapp/auth/LoginForm.jsp 작성
   - LoginServlet.java 클래스 작성
+  - LogoutServlet.java 클래스 작성
+  - /webapp/auth/Header.jsp 작성
+  

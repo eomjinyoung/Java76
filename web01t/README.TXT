@@ -25,9 +25,12 @@
 7. 쿠키와 세션의 관계
   - Servlet10.java 클래스 작성  
 
-8. 로그인 구현
-
-
+8. 파일 업로드
+  - /webapp/file/UploadForm.jsp 작성
+  - Servlet11.java 클래스 작성 (멀티파트 데이터 처리 전)
+  - Servlet12.java 클래스 작성 (멀티파트 데이터 처리)
+  - Servlet13.java 클래스 작성 (원래 파일명 대신 임의 파일명으로 저장)
+  - Servlet14.java 클래스 작성 (MultipartHelper 클래스 사용) 
 
 
 
