@@ -42,18 +42,3 @@ public class Servlet10 extends HttpServlet {
   }
 }
 
-/* 요청 헤더 예:
-GET /web01t/otherpath/servlet06 HTTP/1.1
-Host: localhost:8080
-Connection: keep-alive
-Accept: text/html,application/xhtml+xml...
-Upgrade-Insecure-Requests: 1
-User-Agent: Mozilla/5.0 (Macintosh; Intel ...
-Accept-Encoding: gzip, deflate, sdch
-Accept-Language: ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4
-Cookie: name=hong    <--- 웹 브라우저는 사용 범위가 /web01t로 설정된 쿠키만 보냈다. 
- */
-
-
-
-

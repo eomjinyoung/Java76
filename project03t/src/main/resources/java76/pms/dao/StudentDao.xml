@@ -54,6 +54,16 @@
 		from student
 		where email=#{email}
 	</select>
+	
+	<select id="login" resultType="student" parameterType="map">
+		select
+		  name,
+		  email,
+		  tel,
+		  cid 
+		from student
+		where email=#{email} and pwd=#{password}
+	</select>
 </mapper>
 
 

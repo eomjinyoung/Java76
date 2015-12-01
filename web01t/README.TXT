@@ -19,12 +19,13 @@
 
 6. 로그인 화면에 쿠키 적용
   - 이메일 저장을 체크하면 다음에 로그인 폼을 출력할 때 이메일이 보여짐.
-  - /webapp/loginform.jsp 작성
+  - /webapp/auth/loginform.jsp 작성
   - Servlet09.java 클래스 작성 
   
 7. 쿠키와 세션의 관계
   - Servlet10.java 클래스 작성  
 
+8. 로그인 구현
 
 
 
