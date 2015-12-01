@@ -10,6 +10,9 @@
   <title>학생-상세정보</title>
 </head>
 <body>
+
+<jsp:include page="/Header.jsp"/>
+
 <h1>학생2</h1>
 <form id='form1' action='update' method='post'>
 <table border='1'>

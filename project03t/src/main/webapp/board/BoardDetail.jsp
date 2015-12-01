@@ -11,6 +11,9 @@
   <title>게시판-상세정보</title>
 </head>
 <body>
+
+<jsp:include page="/Header.jsp"/>
+
 <h1>게시물 정보(with JSP + EL + JSTL)</h1>
 
 <c:if test="${not empty board}">

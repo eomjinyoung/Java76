@@ -10,6 +10,9 @@
   <title>프로젝트-목록</title>
 </head>
 <body>
+
+<jsp:include page="/Header.jsp"/>
+
 <h1>프로젝트2</h1>
 <a href='form.html'>새 프로젝트</a><br>
 <table border='1'>

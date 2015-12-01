@@ -11,6 +11,9 @@
   <title>학생-목록</title>
 </head>
 <body>
+
+<jsp:include page="/Header.jsp"/>
+
 <h1>학생2</h1>
 <a href='form.html'>새 학생</a><br>
 <table border='1'>

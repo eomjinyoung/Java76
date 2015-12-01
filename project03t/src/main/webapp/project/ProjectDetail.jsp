@@ -10,6 +10,9 @@
   <title>프로젝트-상세정보</title>
 </head>
 <body>
+
+<jsp:include page="/Header.jsp"/>
+
 <h1>프로젝트2</h1>
 <form id='form1' action='update' method='post'>
 <table border='1'>
