@@ -12,6 +12,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import net.coobird.thumbnailator.Thumbnails;
+
 public class MultipartHelper {
 
   public static Map<String,String> parseMultipartData(
@@ -34,6 +36,23 @@ public class MultipartHelper {
             File file = new File(saveDir + "/" + filename);
             item.write(file);
             map.put(item.getFieldName(), filename);
+            
+            Thumbnails.of(new File(saveDir + "/" + filename))
+                      .size(60,44)
+                      .outputFormat("png")
+                      .outputQuality(1.0)
+                      .toFile(new File(saveDir + "/s-" + filename));
+            
+            /*
+            File imageFile=new File(saveDir + "/" + filename);
+            BufferedImage originalImage=ImageIO.read(imageFile);
+            BufferedImage thumbnail = 
+                Scalr.resize(originalImage, 
+                             Scalr.Method.SPEED, Scalr.Mode.FIT_TO_WIDTH,
+                             60, 44, Scalr.OP_ANTIALIAS);
+            ImageIO.write(thumbnail, "jpg", 
+                          new File(saveDir + "/s-" + filename));
+            */
           }
         }
       }

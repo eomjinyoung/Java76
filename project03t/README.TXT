@@ -41,7 +41,13 @@ Controller: Model과 View가 사용할 데이터를 가공한다.
   - StudentAddServlet.java 클래스 변경: 파일 업로드 처리
     => web03t의 MultipartHelper.java 클래스 가져옴
   - StudentDao.xml 변경: insert 문 변경   
-  
+  - StudentUpdateServlet.java 변경: 파일 업로드 처리
+  - /webapp/StudentDetail.jsp 변경: 사진 출력
+
+9. 목록에 썸네일 이미지 출력
+  - build.gradle 변경: Thumbnailator 라이브러리 추가
+    => 그래들 빌드: clean, eclipse
+  - 
   
   
   
