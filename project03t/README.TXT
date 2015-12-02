@@ -47,7 +47,8 @@ Controller: Model과 View가 사용할 데이터를 가공한다.
 9. 목록에 썸네일 이미지 출력
   - build.gradle 변경: Thumbnailator 라이브러리 추가
     => 그래들 빌드: clean, eclipse
-  - 
+  - MultipartHelper.java 변경 : 썸네일 이미지 생성 코드 추가
+  - StudentList.jsp 변경: 사진 정보 추가
   
   
   
