@@ -34,11 +34,7 @@
     <url-pattern>*</url-pattern>
   </filter-mapping>
 
-
-  <servlet>
-    <servlet-name>BoardListServlet</servlet-name>
-    <servlet-class>java76.pms.servlet.BoardListServlet</servlet-class>
-  </servlet>    
+   
   <servlet>
     <servlet-name>BoardAddServlet</servlet-name>
     <servlet-class>java76.pms.servlet.BoardAddServlet</servlet-class>
@@ -90,14 +86,10 @@
     <servlet-class>java76.pms.servlet.ErrorServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>CopyrightServlet</servlet-name>
-    <servlet-class>java76.pms.servlet.CopyrightServlet</servlet-class>
+    <servlet-name>dispatch</servlet-name>
+    <servlet-class>java76.pms.servlet.DispatcherServlet</servlet-class>
   </servlet>
   
-  <servlet-mapping>
-    <servlet-name>BoardListServlet</servlet-name>
-    <url-pattern>/board/list</url-pattern>
-  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BoardAddServlet</servlet-name>
     <url-pattern>/board/add</url-pattern>
@@ -149,10 +141,9 @@
     <url-pattern>/error</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>CopyrightServlet</servlet-name>
-    <url-pattern>/copyright</url-pattern>
+    <servlet-name>dispatch</servlet-name>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-
 </web-app>
 
 
