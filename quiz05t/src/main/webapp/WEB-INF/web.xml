@@ -33,17 +33,46 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>*</url-pattern>
   </filter-mapping>
-  
-  <servlet>
-    <servlet-name>dispatch</servlet-name>
-    <servlet-class>java76.pms.servlet.DispatcherServlet</servlet-class>
-  </servlet>
 
+
+  <servlet>
+    <servlet-name>BoardListServlet</servlet-name>
+    <servlet-class>java76.pms.servlet.BoardListServlet</servlet-class>
+  </servlet>    
+  <servlet>
+    <servlet-name>BoardAddServlet</servlet-name>
+    <servlet-class>java76.pms.servlet.BoardAddServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BoardUpdateServlet</servlet-name>
+    <servlet-class>java76.pms.servlet.BoardUpdateServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BoardDeleteServlet</servlet-name>
+    <servlet-class>java76.pms.servlet.BoardDeleteServlet</servlet-class>
+  </servlet>
+  
+
+  
   <servlet-mapping>
-    <servlet-name>dispatch</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <servlet-name>BoardListServlet</servlet-name>
+    <url-pattern>/board/list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BoardAddServlet</servlet-name>
+    <url-pattern>/board/add</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BoardUpdateServlet</servlet-name>
+    <url-pattern>/board/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BoardDeleteServlet</servlet-name>
+    <url-pattern>/board/delete</url-pattern>
   </servlet-mapping>
   
+ 
+
 </web-app>
 
 

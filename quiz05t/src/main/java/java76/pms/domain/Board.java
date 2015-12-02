@@ -11,15 +11,6 @@ public class Board  implements Serializable {
   protected String    content;
   protected int       views;
   protected Date      createdDate;
-  protected String    attachFile; // 컬럼명 = afile
-  public String getAttachFile() {
-    return attachFile;
-  }
-
-  public void setAttachFile(String attachFile) {
-    this.attachFile = attachFile;
-  }
-
   protected String    password;
   
   public Board() {}
