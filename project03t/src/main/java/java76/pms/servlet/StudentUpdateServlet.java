@@ -1,6 +1,7 @@
 package java76.pms.servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 
 import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
+import java76.pms.util.MultipartHelper;
 
 public class StudentUpdateServlet extends HttpServlet {  
   private static final long serialVersionUID = 1L;
@@ -48,12 +50,22 @@ public class StudentUpdateServlet extends HttpServlet {
       HttpServletRequest request, HttpServletResponse response) 
       throws ServletException, IOException {
     try {
+      Map<String,String> paramMap = MultipartHelper.parseMultipartData(
+          request, 
+          this.getServletContext().getRealPath("/file"));
+    
       Student student = new Student();
-      student.setName(request.getParameter("name"));
-      student.setEmail(request.getParameter("email"));
-      student.setTel(request.getParameter("tel"));
-      student.setCid(request.getParameter("cid"));
-  
+      student.setName(paramMap.get("name"));
+      student.setEmail(paramMap.get("email"));
+      student.setTel(paramMap.get("tel"));
+      student.setCid(paramMap.get("cid"));
+      
+      if (paramMap.get("photofile") != null) { // 사진을 변경했다면,
+        student.setPhoto(paramMap.get("photofile"));
+      } else if (paramMap.get("photo").length() > 0) { // 기존 사진이 있다면,
+        student.setPhoto(paramMap.get("photo"));
+      } // 그 밖에는 그냥 null. 사진을 넣지 않는다.
+      
       ApplicationContext iocContainer = 
           (ApplicationContext)this.getServletContext()
                                   .getAttribute("iocContainer");

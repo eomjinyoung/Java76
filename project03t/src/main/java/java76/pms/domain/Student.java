@@ -9,6 +9,7 @@ public class Student implements Serializable {
   protected String email;
   protected String tel;
   protected String cid; // class ID
+  protected String photo;
   
   public Student() {}
   
@@ -53,6 +54,14 @@ public class Student implements Serializable {
 
   public void setCid(String cid) {
     this.cid = cid;
+  }
+
+  public String getPhoto() {
+    return photo;
+  }
+
+  public void setPhoto(String photo) {
+    this.photo = photo;
   }
   
   

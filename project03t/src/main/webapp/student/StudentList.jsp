@@ -25,7 +25,9 @@
   </tr>
 <c:forEach var="student" items="${students}">    
   <tr>
-    <td>${student.email}</td>
+    <td>
+      <img height="60" width="44" src="../file/s-${student.photo}"> 
+      ${student.email}</td>
     <td><a href='update?email=${student.email}'>${student.name}</a></td>
     <td>${student.tel}</td>
     <td>${student.cid}</td>

@@ -14,7 +14,8 @@
 <jsp:include page="/Header.jsp"/>
 
 <h1>학생2</h1>
-<form id='form1' action='update' method='post'>
+<form id='form1' action='update' method='post'
+      enctype="multipart/form-data">
 <table border='1'>
 <tr>
   <th>이름</th>
@@ -31,6 +32,13 @@
 <tr>
   <th>기수</th>
   <td><input type='text' name='cid' value='${student.cid}'></td>
+</tr>
+<tr>
+  <th>사진</th>
+  <td><img width='200' height='300' 
+      src='../file/${(empty student.photo)?"anonymous.png":student.photo}'><br>
+      <input type='file' name='photofile'>
+      <input type='hidden' name='photo' value='${student.photo}'></td>
 </tr>
 </table>
 <p>

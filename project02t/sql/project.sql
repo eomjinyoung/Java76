@@ -37,3 +37,6 @@ create table board (
 
 alter table student
   add column pwd varchar(20);
+
+alter table student
+  add column photo varchar(255);
