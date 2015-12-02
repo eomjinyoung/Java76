@@ -60,7 +60,7 @@
 
 <script>
 function deleteBoard() {
-  document.getElementById('form1').action = 'delete';
+  document.getElementById('form1').action = 'delete.do';
 }
 </script>
 </body>
