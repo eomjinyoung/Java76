@@ -22,7 +22,10 @@
   1) 인스턴스와 메서드를 담을 새로운 타입을 정의한다.
      => RequestHandler
   2) 작업 내용은 클래스 주석 참조할 것!
-  
+
+4. DispatcherServlet 클래스 변경
+  - iocContainer에서 페이지 컨트롤러를 찾는 것이 아니라,
+    handlerMap에서 요청을 처리할 메서드를 찾는다.  
   
   
   
