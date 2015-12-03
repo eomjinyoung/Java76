@@ -5,4 +5,27 @@
    
 * 목표
 1) CRUD 코드를 한 클래스에 모은다.
-2) 
+  - 예) AuthController.java
+2) 요청 핸들러(메서드)에 URL을 지정한다.
+  - RequestMapping 애노테이션 사용.
+
+* 실습  
+1. AuthController 클래스 작성  
+  - LoginController, LogoutController를 합친다.
+  
+2. RequestMapping 애노테이션 작성
+  - AuthController의 login(), logout() 메서드에 적용
+
+3. ContextLoaderListener 클래스 변경
+  - 각 객체에서 RequestMapping 애노테이션이 붙은 메서드를 찾아서,
+    별도 테이블에 관리한다. 
+  1) 인스턴스와 메서드를 담을 새로운 타입을 정의한다.
+     => RequestHandler
+  
+  
+  
+  
+  
+  
+  
+  

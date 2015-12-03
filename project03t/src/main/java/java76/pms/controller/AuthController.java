@@ -8,15 +8,16 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java76.pms.annotation.RequestMapping;
 import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
 
-@Component("/auth/login.do")
-public class LoginController implements PageController {  
+@Component
+public class AuthController {  
   @Autowired StudentDao studentDao;
 
-  @Override
-  public String execute(
+  @RequestMapping("/auth/login.do")
+  public String login(
       HttpServletRequest request, HttpServletResponse response) 
           throws Exception {
     String email = request.getParameter("email");
@@ -44,6 +45,15 @@ public class LoginController implements PageController {
 
     session.setAttribute("loginUser", student);
     return "redirect:../board/list.do";
+  }
+  
+  @RequestMapping("/auth/logout.do")
+  public String logout(
+      HttpServletRequest request, HttpServletResponse response) 
+          throws Exception {
+    
+    request.getSession().invalidate();
+    return "redirect:LoginForm.jsp";
   }
 }
 
