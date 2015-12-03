@@ -18,29 +18,17 @@ public class BoardController {
   
   @RequestMapping("/board/list.do")
   public String list(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
-    int pageNo = 1;
-    int pageSize = 10;
+      int pageNo,
+      int pageSize,
+      String keyword,
+      String align,
+      HttpServletRequest request) throws Exception {
     
-    if (request.getParameter("pageNo") != null) {
-      pageNo = Integer.parseInt(request.getParameter("pageNo"));
-    }
-    
-    if (request.getParameter("pageSize") != null) {
-      pageSize = Integer.parseInt(request.getParameter("pageSize"));
-    }
-    
-    String keyword = "no";
-    String align = "desc";
-    
-    if (request.getParameter("keyword") != null) {
-      keyword = request.getParameter("keyword");
-    }
-    
-    if (request.getParameter("align") != null) {
-      align = request.getParameter("align");
-    }
+    // 파라미터 값이 넘어오지 않으면 기본 값으로 설정한다.
+    if (pageNo < 0) pageNo = 1;
+    if (pageSize < 0) pageSize = 10;
+    if (keyword == null) keyword = "no";
+    if (align == null) align = "desc";
     
     List<Board> boards = boardDao.selectList(
                  pageNo, pageSize, keyword, align);
@@ -52,46 +40,36 @@ public class BoardController {
   
   @RequestMapping("/board/add.do")
   public String add(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
+      String title, String content, String password) throws Exception {
     Board board = new Board();
-    board.setTitle(request.getParameter("title"));
-    board.setContent(request.getParameter("content"));
-    board.setPassword(request.getParameter("password"));
+    board.setTitle(title);
+    board.setContent(content);
+    board.setPassword(password);
 
     boardDao.insert(board);
     
     return "redirect:list.do";
   }
   
-  @RequestMapping("/board/update.do")
-  public String update(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
-    if (request.getMethod().equals("GET")) {
-      return get(request, response);
-    } else {
-      return post(request, response);
-    }
-  }
-
-  private String get(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
-    int no = Integer.parseInt(request.getParameter("no"));
+  @RequestMapping("/board/detail.do")
+  private String detail(
+      int no,
+      HttpServletRequest request) throws Exception {
+    
     Board board = boardDao.selectOne(no);
     request.setAttribute("board", board);
     return "/board/BoardDetail.jsp";
   }
 
-  private String post(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
+  @RequestMapping("/board/update.do")
+  private String update(
+      int no, String title, String content, String password,
+      HttpServletRequest request) throws Exception {
     Board board = new Board();
-    board.setNo(Integer.parseInt(request.getParameter("no")));
-    board.setTitle(request.getParameter("title"));
-    board.setContent(request.getParameter("content"));
-    board.setPassword(request.getParameter("password"));
+    board.setNo(no);
+    board.setTitle(title);
+    board.setContent(content);
+    board.setPassword(password);
 
     if (boardDao.update(board) <= 0) {
       request.setAttribute("errorCode", "401");
