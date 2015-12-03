@@ -15,7 +15,7 @@
 <jsp:include page="/Header.jsp"/>
 
 <h1>학생2</h1>
-<form id='form1' action='update' method='post'
+<form id='form1' action='update.do' method='post'
       enctype="multipart/form-data">
 <table border='1'>
 <tr>

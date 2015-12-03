@@ -6,7 +6,7 @@
 프로젝트 관리 시스템 - 
 <c:if test="${not empty loginUser}">
 	${loginUser.name}(${loginUser.cid})
-	<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>
+	<a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
 </c:if>
 <c:if test="${empty loginUser}">
   <a href="${pageContext.request.contextPath}/auth/LoginForm.jsp">로그인</a>

@@ -15,7 +15,7 @@
 <jsp:include page="/Header.jsp"/>
 
 <h1>프로젝트2</h1>
-<form id='form1' action='update' method='post'>
+<form id='form1' action='update.do' method='post'>
 <table border='1'>
 <tr>
   <th>번호</th>
