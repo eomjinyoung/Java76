@@ -1,11 +1,13 @@
 package java76.pms.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,38 +15,27 @@ import java76.pms.annotation.RequestMapping;
 import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
 import java76.pms.util.MultipartHelper;
+import net.coobird.thumbnailator.Thumbnails;
 
 @Component
 public class StudentController {
+  public static final String SAVED_DIR = "/file";
   @Autowired StudentDao studentDao;
 
   @RequestMapping("/student/list.do")
   public String list(
-      HttpServletRequest request, HttpServletResponse response) throws Exception {
-    int pageNo = 1;
-    int pageSize = 10;
+      int pageNo,
+      int pageSize,
+      String keyword,
+      String align,
+      HttpServletRequest request) throws Exception {
+    if (pageNo < 0) pageNo = 1;
+    if (pageSize < 0) pageSize = 10;
+    if (keyword == null) keyword = "email";
+    if (align == null) align = "asc";
 
-    if (request.getParameter("pageNo") != null) {
-      pageNo = Integer.parseInt(request.getParameter("pageNo"));
-    }
-
-    if (request.getParameter("pageSize") != null) {
-      pageSize = Integer.parseInt(request.getParameter("pageSize"));
-    }
-
-    // 정렬 처리
-    String keyword = "email";
-    String align = "asc";
-
-    if (request.getParameter("keyword") != null) {
-      keyword = request.getParameter("keyword");
-    }
-
-    if (request.getParameter("align") != null) {
-      align = request.getParameter("align");
-    }
-
-    List<Student> students = studentDao.selectList(pageNo, pageSize, keyword, align);
+    List<Student> students = studentDao.selectList(
+                             pageNo, pageSize, keyword, align);
 
     request.setAttribute("students", students);
 
@@ -53,19 +44,36 @@ public class StudentController {
   }
   
   @RequestMapping("/student/add.do")
-  public String add(HttpServletRequest request, HttpServletResponse response) throws Exception {
+  public String add(
+      String name,
+      String email,
+      String tel,
+      String cid,
+      String password,
+      FileItem photofile,
+      HttpServletRequest request) throws Exception {
 
-    Map<String,String> paramMap = null; /*MultipartHelper.parseMultipartData(
-        request, 
-        request.getServletContext().getRealPath("/file"));
-    */
+    String newFileName = null;
+    
+    if (photofile != null) {
+      newFileName = MultipartHelper.generateFilename(photofile.getName());  
+      ServletContext servletContext = request.getServletContext();
+      File attachfile = new File(
+          servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
+      photofile.write(attachfile);
+      
+      makeThumbnailImage(
+        servletContext.getRealPath(SAVED_DIR) + "/" + newFileName, 
+        servletContext.getRealPath(SAVED_DIR) + "/s-" + newFileName + ".png");
+    }
+    
     Student student = new Student();
-    student.setName(paramMap.get("name"));
-    student.setEmail(paramMap.get("email"));
-    student.setTel(paramMap.get("tel"));
-    student.setCid(paramMap.get("cid"));
-    student.setPhoto(paramMap.get("photofile"));
-    student.setPassword(paramMap.get("password"));
+    student.setName(name);
+    student.setEmail(email);
+    student.setTel(tel);
+    student.setCid(cid);
+    student.setPassword(password);
+    student.setPhoto(newFileName);
 
     studentDao.insert(student);
 
@@ -73,21 +81,11 @@ public class StudentController {
 
   }
   
-  @RequestMapping("/student/update.do")
-  public String update(
-      HttpServletRequest request, HttpServletResponse response) 
+  @RequestMapping("/student/detail.do")
+  public String detail(
+      String email,
+      HttpServletRequest request) 
           throws Exception {
-    if (request.getMethod().equals("GET")) {
-      return get(request, response);
-    } else {
-      return post(request, response);
-    }
-  }
-
-  private String get(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
-    String email = request.getParameter("email");
 
     Student student = studentDao.selectOne(email);
     request.setAttribute("student", student);
@@ -95,27 +93,42 @@ public class StudentController {
     return "/student/StudentDetail.jsp";
   }
 
-  private String post(
-      HttpServletRequest request, HttpServletResponse response) 
-          throws Exception {
-    Map<String,String> paramMap = null; /*MultipartHelper.parseMultipartData(
-        request, 
-        request.getServletContext().getRealPath("/file"));
-    */
+  @RequestMapping("/student/update.do")
+  public String post(
+      String name,
+      String email,
+      String tel,
+      String cid,
+      String photo,
+      FileItem photofile,
+      HttpServletRequest request) throws Exception {
+
+    String newFileName = null;
+    
+    if (photofile != null) {
+      newFileName = MultipartHelper.generateFilename(photofile.getName());  
+      ServletContext servletContext = request.getServletContext();
+      File attachfile = new File(
+          servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
+      photofile.write(attachfile);
+      
+      makeThumbnailImage(
+          servletContext.getRealPath(SAVED_DIR) + "/" + newFileName, 
+          servletContext.getRealPath(SAVED_DIR) + "/s-" + newFileName + ".png");
+    }
     
     Student student = new Student();
-    student.setName(paramMap.get("name"));
-    student.setEmail(paramMap.get("email"));
-    student.setTel(paramMap.get("tel"));
-    student.setCid(paramMap.get("cid"));
-
-    if (paramMap.get("photofile") != null) { 
-      student.setPhoto(paramMap.get("photofile"));
-      
-    } else if (paramMap.get("photo").length() > 0) { 
-      student.setPhoto(paramMap.get("photo"));
-    } 
-
+    student.setName(name);
+    student.setEmail(email);
+    student.setTel(tel);
+    student.setCid(cid);
+    
+    if (newFileName != null) {
+      student.setPhoto(newFileName);
+    } else if (newFileName == null && photo.length() > 0) {
+      student.setPhoto(photo);
+    }
+    
     if (studentDao.update(student) <= 0) {
       request.setAttribute("errorCode", "401");
       return "/student/StudentAuthError.jsp";
@@ -125,14 +138,23 @@ public class StudentController {
   }
   
   @RequestMapping("/student/delete.do")
-  public String delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-    String email = request.getParameter("email");
+  public String delete(
+      String email,
+      HttpServletRequest request) throws Exception {
 
     if (studentDao.delete(email) <= 0) {
       request.setAttribute("errorCode", "401");
       return "/student/StudentAuthError.jsp";
     }
     return "redirect:list.do";
+  }
+  
+  private void makeThumbnailImage(String originPath, String thumbPath) 
+      throws IOException {
+    Thumbnails.of(new File(originPath))
+    .size(60,44)
+    .outputFormat("png")
+    .outputQuality(1.0)
+    .toFile(new File(thumbPath));
   }
 }
