@@ -28,4 +28,13 @@
     <property name="password" value="1111"/>
   </bean>
   
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+  	<!-- DAO 인터페이스가 선언된 패키지 지정한다.-->
+  	<property name="basePackage" value="java76.pms.dao" />
+  </bean>
 </beans>
+
+
+
+
+

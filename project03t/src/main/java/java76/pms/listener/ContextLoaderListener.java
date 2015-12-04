@@ -25,7 +25,14 @@ public class ContextLoaderListener implements ServletContextListener {
   public void contextInitialized(ServletContextEvent sce) {
     ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
         sce.getServletContext().getInitParameter("contextConfigLocation"));
-        
+    
+    // IoC 컨테이너에 들어있는 빈 확인!
+    String[] names = iocContainer.getBeanDefinitionNames();
+    for (String name : names) {
+      System.out.println("==>" + 
+                  iocContainer.getBean(name).getClass().getName());
+    }
+    
     ServletContext servletContext = sce.getServletContext();
     servletContext.setAttribute("iocContainer", iocContainer);
     

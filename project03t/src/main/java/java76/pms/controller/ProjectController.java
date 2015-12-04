@@ -1,6 +1,7 @@
 package java76.pms.controller;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +30,13 @@ public class ProjectController {
     if (keyword == null) keyword = "no";
     if (align == null) align = "desc";
     
-    List<Project> projects = projectDao.selectList(
-                 pageNo, pageSize, keyword, align);
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("keyword", keyword);
+    paramMap.put("align", align);
+    
+    List<Project> projects = projectDao.selectList(paramMap);
     
     request.setAttribute("projects", projects);
     

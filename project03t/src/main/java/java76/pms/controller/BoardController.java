@@ -1,6 +1,7 @@
 package java76.pms.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +35,13 @@ public class BoardController {
     if (keyword == null) keyword = "no";
     if (align == null) align = "desc";
     
-    List<Board> boards = boardDao.selectList(
-                 pageNo, pageSize, keyword, align);
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("keyword", keyword);
+    paramMap.put("align", align);
+    
+    List<Board> boards = boardDao.selectList(paramMap);
     
     request.setAttribute("boards", boards);
     
@@ -124,7 +130,11 @@ public class BoardController {
     int no = Integer.parseInt(request.getParameter("no"));
     String password = request.getParameter("password");
 
-    if (boardDao.delete(no, password) <= 0) {
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("no", no);
+    paramMap.put("password", password);
+    
+    if (boardDao.delete(paramMap) <= 0) {
       request.setAttribute("errorCode", "401");
       return "/board/BoardAuthError.jsp";
     } 

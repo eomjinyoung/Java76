@@ -2,6 +2,7 @@ package java76.pms.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -34,8 +35,13 @@ public class StudentController {
     if (keyword == null) keyword = "email";
     if (align == null) align = "asc";
 
-    List<Student> students = studentDao.selectList(
-                             pageNo, pageSize, keyword, align);
+    HashMap<String,Object> paramMap = new HashMap<>();
+    paramMap.put("startIndex", (pageNo - 1) * pageSize);
+    paramMap.put("length", pageSize);
+    paramMap.put("keyword", keyword);
+    paramMap.put("align", align);
+    
+    List<Student> students = studentDao.selectList(paramMap);
 
     request.setAttribute("students", students);
 
