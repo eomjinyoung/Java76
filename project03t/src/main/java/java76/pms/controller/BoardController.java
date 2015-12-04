@@ -7,10 +7,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
@@ -23,17 +24,11 @@ public class BoardController {
   
   @RequestMapping("/board/list")
   public String list(
-      int pageNo,
-      int pageSize,
-      String keyword,
-      String align,
-      HttpServletRequest request) throws Exception {
-    
-    // 파라미터 값이 넘어오지 않으면 기본 값으로 설정한다.
-    if (pageNo < 0) pageNo = 1;
-    if (pageSize < 0) pageSize = 10;
-    if (keyword == null) keyword = "no";
-    if (align == null) align = "desc";
+      @RequestParam(defaultValue="1") int pageNo,
+      @RequestParam(defaultValue="10") int pageSize,
+      @RequestParam(defaultValue="no") String keyword,
+      @RequestParam(defaultValue="desc") String align,
+        HttpServletRequest request) throws Exception {
     
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
@@ -53,7 +48,7 @@ public class BoardController {
       String title, 
       String content, 
       String password,
-      FileItem file,
+      MultipartFile file,
       HttpServletRequest request) throws Exception {
     
     String newFileName = null;
@@ -63,7 +58,7 @@ public class BoardController {
       File attachfile = new File(
           request.getServletContext().getRealPath(SAVED_DIR) 
           + "/" + newFileName);
-      file.write(attachfile);
+      file.transferTo(attachfile);
     }
     
     Board board = new Board();
@@ -94,7 +89,7 @@ public class BoardController {
       String content, 
       String password,
       String attachFile, /* 원래 파일 명 */
-      FileItem file,
+      MultipartFile file,
       HttpServletRequest request) throws Exception {
     
     String newFileName = null;
@@ -104,7 +99,7 @@ public class BoardController {
       File attachfile = new File(
           request.getServletContext().getRealPath(SAVED_DIR) 
           + "/" + newFileName);
-      file.write(attachfile);
+      file.transferTo(attachfile);
     }
     
     Board board = new Board();
