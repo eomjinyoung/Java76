@@ -59,7 +59,7 @@ public class StudentController {
     String newFileName = null;
     
     if (photofile != null) {
-      newFileName = MultipartHelper.generateFilename(photofile.getName());  
+      newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
       ServletContext servletContext = request.getServletContext();
       File attachfile = new File(
           servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
@@ -109,7 +109,7 @@ public class StudentController {
     String newFileName = null;
     
     if (photofile != null) {
-      newFileName = MultipartHelper.generateFilename(photofile.getName());  
+      newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
       ServletContext servletContext = request.getServletContext();
       File attachfile = new File(
           servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
