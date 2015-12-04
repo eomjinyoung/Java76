@@ -1,19 +1,23 @@
 package java76.pms.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java76.pms.annotation.RequestMapping;
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
+import java76.pms.util.MultipartHelper;
 
 @Component
-public class BoardController {  
+public class BoardController { 
+  public static final String SAVED_DIR = "/attachfile";
   @Autowired BoardDao boardDao;
   
   @RequestMapping("/board/list.do")
@@ -40,11 +44,27 @@ public class BoardController {
   
   @RequestMapping("/board/add.do")
   public String add(
-      String title, String content, String password) throws Exception {
+      String title, 
+      String content, 
+      String password,
+      FileItem file,
+      HttpServletRequest request) throws Exception {
+    
+    String newFileName = null;
+    
+    if (file != null) {
+      newFileName = MultipartHelper.generateFilename(file.getName());  
+      File attachfile = new File(
+          request.getServletContext().getRealPath(SAVED_DIR) 
+          + "/" + newFileName);
+      file.write(attachfile);
+    }
+    
     Board board = new Board();
     board.setTitle(title);
     board.setContent(content);
     board.setPassword(password);
+    board.setAttachFile(newFileName);
 
     boardDao.insert(board);
     
@@ -52,7 +72,7 @@ public class BoardController {
   }
   
   @RequestMapping("/board/detail.do")
-  private String detail(
+  public String detail(
       int no,
       HttpServletRequest request) throws Exception {
     
@@ -62,15 +82,36 @@ public class BoardController {
   }
 
   @RequestMapping("/board/update.do")
-  private String update(
-      int no, String title, String content, String password,
+  public String update(
+      int no, 
+      String title, 
+      String content, 
+      String password,
+      String attachFile, /* 원래 파일 명 */
+      FileItem file,
       HttpServletRequest request) throws Exception {
+    
+    String newFileName = null;
+    
+    if (file != null) {
+      newFileName = MultipartHelper.generateFilename(file.getName());  
+      File attachfile = new File(
+          request.getServletContext().getRealPath(SAVED_DIR) 
+          + "/" + newFileName);
+      file.write(attachfile);
+    }
+    
     Board board = new Board();
     board.setNo(no);
     board.setTitle(title);
     board.setContent(content);
     board.setPassword(password);
-
+    if (newFileName != null) {
+      board.setAttachFile(newFileName);
+    } else if (newFileName == null && attachFile.length() > 0) {
+      board.setAttachFile(attachFile);
+    }
+    
     if (boardDao.update(board) <= 0) {
       request.setAttribute("errorCode", "401");
       return "/board/BoardAuthError.jsp";

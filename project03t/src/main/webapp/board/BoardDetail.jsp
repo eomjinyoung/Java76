@@ -18,7 +18,8 @@
 <h1>게시물 정보(with JSP + EL + JSTL)</h1>
 
 <c:if test="${not empty board}">
-<form id='form1' action='update.do' method='post'>
+<form id='form1' action='update.do' method='post'
+      enctype="multipart/form-data">
 <table border='1'>
 <tr>
   <th>번호</th>
@@ -42,10 +43,10 @@
   <td>${board.createdDate}</td>
 </tr>
 <tr>
-  <th>사진</th>
-  <td><a href='../attachfile/${student.attachFile}'>${student.attachFile}</a><br>
+  <th>첨부파일</th>
+  <td><a href='../attachfile/${board.attachFile}'>${board.attachFile}</a><br>
       <input type='file' name='file'>
-      <input type='hidden' name='attachFile' value='${student.attachFile}'></td>
+      <input type='hidden' name='attachFile' value='${board.attachFile}'></td>
 </tr>
 <tr>
   <th>암호</th>

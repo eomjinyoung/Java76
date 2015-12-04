@@ -32,6 +32,7 @@ create table board (
   views   int default 0,
   cre_dt  datetime not null,
   pwd     varchar(20),
+  afile   varchar(255),
   constraint board_pk primary key (bno)
 );
 

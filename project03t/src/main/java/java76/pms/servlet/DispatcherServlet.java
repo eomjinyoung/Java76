@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+
 import java76.pms.domain.RequestHandler;
 import java76.pms.util.MultipartHelper;
 
@@ -26,7 +28,7 @@ public class DispatcherServlet extends HttpServlet {
       throws ServletException, IOException {
     try {
       //0) 멀티 파트 처리
-      Map<String,String> multipartParamMap = null;
+      Map<String,Object> multipartParamMap = null;
       
       if (request.getMethod().equals("POST") 
           && request.getHeader("Content-Type")
@@ -64,7 +66,8 @@ public class DispatcherServlet extends HttpServlet {
         paramType = params[i].getType();
         
         //파라미터 타입에 맞는 값을 배열에 저장한다.
-        if (paramType == String.class) {
+        if (paramType == String.class ||
+            paramType == FileItem.class) {
           paramValues[i] = getParameter(params[i].getName(), 
               request, multipartParamMap);
         } else if (paramType == HttpServletRequest.class) {
@@ -78,8 +81,8 @@ public class DispatcherServlet extends HttpServlet {
         } else if (paramType == int.class) {
           try {
             paramValues[i] =Integer.parseInt(
-                getParameter(params[i].getName(),
-                    request, multipartParamMap));
+              (String)getParameter(
+                  params[i].getName(), request, multipartParamMap));
           } catch (Exception e) {
             paramValues[i] = -1;
           }
@@ -105,9 +108,9 @@ public class DispatcherServlet extends HttpServlet {
     }
   }
   
-  private String getParameter(String name,
+  private Object getParameter(String name,
       HttpServletRequest request, 
-      Map<String,String> multipartParamMap) {
+      Map<String,Object> multipartParamMap) {
     if (multipartParamMap != null) {
       return multipartParamMap.get(name);
     } else {

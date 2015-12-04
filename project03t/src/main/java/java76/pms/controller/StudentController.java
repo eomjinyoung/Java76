@@ -55,10 +55,10 @@ public class StudentController {
   @RequestMapping("/student/add.do")
   public String add(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-    Map<String,String> paramMap = MultipartHelper.parseMultipartData(
+    Map<String,String> paramMap = null; /*MultipartHelper.parseMultipartData(
         request, 
         request.getServletContext().getRealPath("/file"));
-
+    */
     Student student = new Student();
     student.setName(paramMap.get("name"));
     student.setEmail(paramMap.get("email"));
@@ -98,10 +98,11 @@ public class StudentController {
   private String post(
       HttpServletRequest request, HttpServletResponse response) 
           throws Exception {
-    Map<String,String> paramMap = MultipartHelper.parseMultipartData(
+    Map<String,String> paramMap = null; /*MultipartHelper.parseMultipartData(
         request, 
         request.getServletContext().getRealPath("/file"));
-
+    */
+    
     Student student = new Student();
     student.setName(paramMap.get("name"));
     student.setEmail(paramMap.get("email"));
