@@ -8,3 +8,8 @@
      파라미터를 조사하여 그에 맞는 값을 자동으로 넘겨준다.
 - DAO 구현체 자동 생성
   => mybatis MapperScannerConfigurer를 사용하여 DAO 구현체를 없앤다.
+  
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+  <!-- DAO 인터페이스가 선언된 패키지 지정한다.-->
+  <property name="basePackage" value="java76.pms.dao" />
+</bean>
