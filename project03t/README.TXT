@@ -1,20 +1,26 @@
-[주제: DAO 구현체 자동 생성]
-* 목표
-- mybatis 3.x 버전에 추가된 DAO 구현체 자동 생성 기능을 도입
-- 개발자가 직접 DAO를 구현하는 것을 없앤다.
-
+[주제: Spring Web MVC 프레임워크 적용]
 * 실습
-1) 스프링 설정 파일에 DAO 구현체를 생성하는 공장을 등록한다.
-  - application-context.xml 파일에 다음 태그 추가
-<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  <property name="basePackage" value="org.mybatis.spring.sample.mapper" />
-</bean>
- 
-2) 기존 DAO 클래스를 인터페이스로 전환한다.
-  - SQL 맵퍼 파일의 namespace 이름이 DAO 인터페이스와 일치해야 한다.
-  - 메서드의 이름과 파라미터 타입은 SQL 맵퍼 파일에 선언된 SQL과 일치해야 한다.
+1. Spring WebMVC 라이브러리 추가한다.
+  - build.gradle 변경
+2. ContextLoaderListener를 스프링 클래스로 대체한다.
+  - web.xml 변경
+3. 요청 파라미터의 문자집할을 설정하는 필터를 스프링 필터로 대체한다.
+  - web.xml 변경
+4. 프론트 컨트롤러를 스프링 클래스로 대체한다.
+  - web.xml 변경
+5. 페이지 컨트롤러를 스프링 규격에 맞추어 변경한다.
+  - @RequestMapping을 스프링 애노테이션으로 대체한다.
+  - @Component 대신 @Controller 애노테이션으로 대체한다.
+6. 기존의 애노테이션, 리스너, 필터, 서블릿 삭제한다. 
+7. 스프링 프론트 컨트롤러(DispatcherServlet)을 위한 설정을 추가한다.
+  - 역할을 분담.
+    => ContextLoaderListener는 페이지 컨트롤러가 사용할 객체를 준비한다.
+       예) DAO, Service, 트랜잭션 등
+    => DispatcherServlet은 페이지 컨트롤러와 웹 관련 개체를 준비한다.
+       예) 페이지 컨트롤러, 파일 업로드 처리 객체 등
+  - /WEB-INF/conf/dispatch-servlet.xml 생성
+    => 페이지 컨트롤러 객체를 준비한다.
+  - java76/pms/application-context.xml 변경
+    => 페이지 컨트롤러 객체를 제외한다.
   
-  
-  
-  
-  
+     

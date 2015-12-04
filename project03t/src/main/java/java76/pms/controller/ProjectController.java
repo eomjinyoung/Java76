@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java76.pms.annotation.RequestMapping;
 import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
 

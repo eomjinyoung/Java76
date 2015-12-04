@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java76.pms.annotation.RequestMapping;
 import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
 import java76.pms.util.MultipartHelper;

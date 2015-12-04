@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.FileItem;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java76.pms.annotation.RequestMapping;
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.Board;
 import java76.pms.util.MultipartHelper;
 
-@Component
+@Controller
 public class BoardController { 
   public static final String SAVED_DIR = "/attachfile";
   @Autowired BoardDao boardDao;
   
-  @RequestMapping("/board/list.do")
+  @RequestMapping("/board/list")
   public String list(
       int pageNo,
       int pageSize,
