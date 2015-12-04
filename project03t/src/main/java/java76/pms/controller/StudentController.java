@@ -58,7 +58,7 @@ public class StudentController {
 
     String newFileName = null;
     
-    if (photofile != null) {
+    if (photofile.getSize() > 0) {
       newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
       ServletContext servletContext = request.getServletContext();
       File attachfile = new File(
@@ -108,7 +108,7 @@ public class StudentController {
 
     String newFileName = null;
     
-    if (photofile != null) {
+    if (photofile.getSize() > 0) {
       newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
       ServletContext servletContext = request.getServletContext();
       File attachfile = new File(
