@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>프론트 컨트롤러에서 이 JSP를 인클루드 하기</h1>
+<h1>파라미터 값 확인</h1>
+name: ${param.userName}<br>
+age: ${param.userAge}<br>
 </body>
 </html>

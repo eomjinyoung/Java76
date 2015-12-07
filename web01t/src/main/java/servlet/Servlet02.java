@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -11,10 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /* 클라이언트가 보낸 쿠키 정보를 꺼내기 */
-@WebServlet("/step10/servlet02")
+@WebServlet(
+    value="/step10/servlet02",
+    loadOnStartup=2)
 public class Servlet02 extends HttpServlet {
   private static final long serialVersionUID = 1L;
   
+  public Servlet02() {
+    System.out.println("Servlet02()");
+  }
+  
+  @Override
+  public void init(ServletConfig config) throws ServletException {
+    System.out.println("init()-2");
+    super.init(config);
+  }
   @Override
   protected void doGet(
       HttpServletRequest request, HttpServletResponse response) 
