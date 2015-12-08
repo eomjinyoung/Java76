@@ -27,9 +27,11 @@ Test07.java
 Test08.java
   - 요청 핸들러의 파라미터로 선언할 수 있는 타입들.    
   
+Test09.java
+  - 요청 핸들러의 리턴 가능한 값의 타입.  
   
-  
-  
+Test10.java
+  - 문자열을 primitive type, String 이외의 타입으로 변환하는 방법  
   
   
   

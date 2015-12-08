@@ -1,8 +1,11 @@
 package examweb.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import examweb.domain.Member;
 
 @Controller 
 @RequestMapping("/test07/*") 
@@ -77,5 +80,11 @@ public class Test07 {
     return "/test07/e4.jsp";
   }
   
+  /* 요청 파라미터 값을 Value Object에 바로 받기 */
+  @RequestMapping("e5")
+  public String e5(Member member, Model model) {
+    model.addAttribute("member", member);
+    return "/test07/e5.jsp";
+  }
   
 }
