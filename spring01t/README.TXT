@@ -35,8 +35,16 @@ Test10.java
 
 Test11.java
   - 클라이언트로부터 JSP를 감추기
-   
+
+Test12.java
+  - @CookieValue 애노테이션 사용하기
   
+Test13.java
+  - GET/POST 구분하기   
+
+Test14.java
+  - ServletContext는 메서드의 파라미터로 받을 수 없다.
+  - 대신 필드를 통해 주입 받아라!  
   
   
   
