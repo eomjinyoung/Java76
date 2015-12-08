@@ -3,7 +3,6 @@ package java76.pms.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,17 +14,17 @@ import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
 
 @Controller
+@RequestMapping("/auth/*")
 public class AuthController {  
   @Autowired StudentDao studentDao;
 
-  @RequestMapping("/auth/login.do")
+  @RequestMapping("login")
   public String login(
       String email,
       String password,
       String saveEmail,
-      HttpServletRequest request, 
-      HttpServletResponse response) 
-          throws Exception {
+      HttpServletResponse response, 
+      HttpSession session) {
 
     Cookie emailCookie = null;
     if (saveEmail != null) { // 이메일 저장을 체크했으면,
@@ -43,8 +42,6 @@ public class AuthController {
     
     Student student = studentDao.login(paramMap);
 
-    HttpSession session = request.getSession();
-
     if (student == null) { // 로그인 실패!
       session.invalidate(); // 세션을 무효화시킴. => 새로 세션 객체 생성!
       return "/auth/LoginFail.jsp";
@@ -54,10 +51,8 @@ public class AuthController {
     return "redirect:../board/list.do";
   }
   
-  @RequestMapping("/auth/logout.do")
-  public String logout(HttpSession session) 
-          throws Exception {
-    
+  @RequestMapping("logout")
+  public String logout(HttpSession session) {
     session.invalidate();
     return "redirect:LoginForm.jsp";
   }
