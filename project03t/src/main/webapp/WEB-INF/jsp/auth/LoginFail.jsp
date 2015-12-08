@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Refresh" content="2;url=LoginForm.jsp">
+<meta http-equiv="Refresh" content="2;url=login.do">
 <title>로그인 결과</title>
 </head>
 <body>

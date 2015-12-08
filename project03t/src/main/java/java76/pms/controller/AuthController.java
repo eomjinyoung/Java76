@@ -50,7 +50,7 @@ public class AuthController {
 
     if (student == null) { // 로그인 실패!
       session.invalidate(); // 세션을 무효화시킴. => 새로 세션 객체 생성!
-      return "/auth/LoginFail.jsp";
+      return "auth/LoginFail";
     }
 
     session.setAttribute("loginUser", student);
@@ -60,7 +60,7 @@ public class AuthController {
   @RequestMapping("logout")
   public String logout(HttpSession session) {
     session.invalidate();
-    return "redirect:LoginForm.jsp";
+    return "redirect:login.do";
   }
 }
 
