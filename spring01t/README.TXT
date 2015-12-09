@@ -46,7 +46,12 @@ Test14.java
   - ServletContext는 메서드의 파라미터로 받을 수 없다.
   - 대신 필드를 통해 주입 받아라!  
   
-  
+Test15.java
+  - @SessionAttributes를 활용하여 데이터를 세션에 보관하기 
+  - s1.do : 이름 입력 받는 폼 => s1.jsp
+  - s2.do : 나이 입력 받는 폼 => s2.jsp
+  - s3.do : 전화 입력 받는 폼 => s3.jsp
+  - s4.do : 모든 데이터 출력  => s4.jsp
   
   
   
