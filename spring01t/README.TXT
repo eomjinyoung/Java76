@@ -52,6 +52,12 @@ Test15.java
   - s2.do : 나이 입력 받는 폼 => s2.jsp
   - s3.do : 전화 입력 받는 폼 => s3.jsp
   - s4.do : 모든 데이터 출력  => s4.jsp
-  
+
+Test16.java
+  - @ModelAttribute 사용법
+ 
+Test17.java
+  - @SessionAttributes와 @ModelAttribute 함께 사용하기
+     
   
   

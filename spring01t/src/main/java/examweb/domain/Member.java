@@ -7,6 +7,11 @@ public class Member {
   int     age;
   Date    joinDate;
   
+  @Override
+  public String toString() {
+    return "Member [name=" + name + ", age=" + age + ", joinDate=" + joinDate + "]";
+  }
+  
   public String getName() {
     return name;
   }
