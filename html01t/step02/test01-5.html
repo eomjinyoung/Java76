@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test01</title>
+
+<style type="text/css">
+* {
+  border: 1px solid red;
+  padding: 5px;
+}
+
+/* 특정 상태(pseudo selector)를 가리키는 태그를 찾는다.
+   => 마우스가 엘리먼트 위에 놓인 상태 =>  :hover
+   => 해당 상태에서 벗어나면 적용되었는 모양이 취소된다.
+ */
+p:HOVER { 
+  background-color: black;
+  color: white;
+}
+</style>
+
+</head>
+<body>
+<div>
+   <h1>h1.......</h1>
+   <nav>
+     <h2>h2.......</h2>
+     <p>내용 내용 내용 내용 내용</p>
+     <h2>h2.......</h2>
+     <p>내용2 내용2 내용2 내용2 내용2</p>
+   </nav>
+   
+   <h1>h1.......</h1>
+   <nav>
+     <h2>h2.......</h2>
+     <p>내용3 내용3 내용3 내용3 내용3</p>
+     <h2>h2.......</h2>
+     <p>내용4 내용4 내용4 내용4 내용4</p>
+   </nav>
+   <p>내용5 내용5 내용5 내용5 내용5</p>
+</div>
+<p>내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>

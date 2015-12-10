@@ -1,4 +1,4 @@
-[HTML(Hyper-Text Markup Language) - 1단계]
+[1단계 - HTML(Hyper-Text Markup Language)]
 1. 기본 구조
 => test01.html (HTML 4.01)
 => test02.html (HTML 5)
@@ -39,4 +39,6 @@
 1) div - UI 컴포넌트를 묶을 때 사용하는 태그
 2) span - 특정 데이터를 분류할 때 사용하는 태그
 
-
+[2단계 - CSS(Cascading Style Sheet)]
+1. test01.html : 셀렉터1
+2. 
