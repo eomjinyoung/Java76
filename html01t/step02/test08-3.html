@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test04</title>
+
+<style type="text/css">
+/* 폰트 크기 설정 */
+body {
+  font-family: 나눔명조, Verdana, Geneva, Arial, sans-serif;
+  font-size: small;
+} 
+
+/* 다른 태그의 폰크 크기 설정 
+   => 구체적으로 폰트의 크기를 지정하기 보다는
+      기준이 되는 폰트 크기의 비율을 지정한다.
+ */
+
+h1 {
+  /*font-size: 3em;*/   /* 기준 크기 대비 3배 */
+  /*font-size: 400%;*/  /* %를 사용하여 크기를 지정할 수 있다.*/
+  font-size: 50px;      /* 구체적으로 수치를 사용하여 크기를 지정할 수 있다.*/
+}
+
+</style>
+
+</head>
+<body>
+  <div>div
+     <h1>h1.........</h1>
+     <nav id="n01">nav#n01
+       <h2 class="g3 g1">h2.g3.g1 - 제목 1</h2>
+       <p class="g1">p.g1 - 내용 내용 내용 내용 내용</p>
+       <h2 class="g2">h2.g2 - 제목 2</h2>
+       <p class="g2">p.g2 - 내용2 내용2 내용2 내용2 내용2</p>
+     </nav>
+     
+     <h1>h1.........</h1>
+     <nav id="n02">nav#n02
+       <h2 class="g1 g3">h2.g1.g3 - 제목 3</h2>
+       <p class="g1">p.g1 - 내용3 내용3 내용3 내용3 내용3</p>
+       <h2 class="g2 g3">h2.g2.g3 - 제목 4</h2>
+       <p class="g2">p.g2 - 내용4 내용4 내용4 내용4 내용4</p>
+     </nav>
+     <p class="g1">p.g1 - 내용5 내용5 내용5 내용5 내용5</p>
+  </div>
+  <p class="g2 g3">p.g2.g3 - 내용6 내용6 내용6 내용6 내용6</p>
+</body>
+</html>
