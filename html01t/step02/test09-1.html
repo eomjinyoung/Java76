@@ -5,20 +5,42 @@
 <title>test04</title>
 
 <style type="text/css">
-/* 폰트 다루기
-1) font-family : 폰트 패밀리
-   => sans-serif(고딕체), 
-      serif(명조체), 
-      monospace(고정 너비), 
-      cursive(흘림체), 
-      fantasy
-2) font : 폰트 패밀리에 소속되어 있는 폰트
-   => sans-serif(고딕체) : 맑은 고딕, 돋움체, 굴림체, Arial 
-   => serif(명조체) : 궁서체, 바탕체, Time New Roman
-   => monospace(고정폭) : monaco, consolas, Currier New
-   => cursive(흘림체) : 나눔 손글씨
-   => fantasy :       
+/* 배경 다루기 */
+
+/* 색상의 표현
+- 미리 상수로 정의된 색상: aqua, black, white, gray, ...
+  더 많은 정보는 wikipedia의 "web color" 참고.
+- rgb(%,%,%): rgb(100%,0%,0%), rgb(0%,0%,100%)
+- rgb(0 ~ 255, 0 ~ 255, 0 ~ 255): rgb(255,0,0)
+- #RRGGBB: #ff0000(red), #0000ff(blue), #00ff00(green)
+  => 단축 표현법: #RGB 예) #f47 ==> #ff4477
+  
  */
+
+/* 색상 이름으로 지정하기 */
+h1 {
+  background-color: yellow;
+} 
+
+/* RGB(Red, Green, Blue) 값을 %로 표현하기 */
+p:nth-child(2) {
+  background-color: rgb(100%, 0%, 0%);
+}
+
+/* RGB 값을 0 ~ 255(8비트)로 표현하기 */
+#n01 h2 {
+  background-color: rgb(100, 255, 100);
+}
+
+/* RGB 값을 16진수로 표현하기 */
+#n02 > p.g2 {
+  background-color: #0000ff;
+}
+
+/* RGB 값 16진수로 표현하기 => 단축 표기법 */
+#n02 h2:nth-child(3) {
+  background-color: #f80; /* #ff8800의 단축 표기 */ 
+}
 
 </style>
 
