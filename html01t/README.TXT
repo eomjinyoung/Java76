@@ -40,5 +40,4 @@
 2) span - 특정 데이터를 분류할 때 사용하는 태그
 
 [2단계 - CSS(Cascading Style Sheet)]
-1. test01.html : 셀렉터1
-2. 
+
