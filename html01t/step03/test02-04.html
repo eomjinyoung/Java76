@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>함수 선언</h1>
+
+<script>
+"use strict";
+
+//함수의 내장 변수 "arguments"
+//=> 모든 아규먼트를 저장하고 있는 배열이다.
+function plus(a, b) {
+	console.log(a, arguments[0]);
+	console.log(b, arguments[1])
+	return a + b;
+}
+
+var sum = plus(10, 20);
+console.log(sum);
+
+</script>
+</body>
+</html>
