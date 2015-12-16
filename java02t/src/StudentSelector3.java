@@ -6,20 +6,18 @@ public class StudentSelector3 {
   // 2인 1조 
   public static void main(String[] args) throws Exception {
     String[] names = {
-      "김종원", "강수철", "이강현", "이지현", "송영호", "이승렬",
-      "김재한", "오규영", "김응철",  "이상훈", "유승우", "김장석"
+      "김종원", "강수철", "이강현", "이지현", "송영호" 
     };
     
     String[] names2 = {
-      "박중권", "임은총", "한정우", "조기진",  "김대진", "권민수", 
-      "윤태웅", "정지호", /*"곽장신",*/ "정다인", "허순종",  "황유정", /*"채희민"*/  
+      "김재한", "김응철",  "이상훈", "유승우", "김장석"
     };
     
     String[] names3 = {
-        "송영호", "송영호", "송영호x", "송영호", "송영호", "송영호",
-        "송영호", "송영호", "송영호", "송영호", "송영호", "송영호"
-       
+      "박중권", "조기진", "김대진", "권민수", "이승렬", "오규영",
+      "윤태웅", "정지호", "정다인", "허순종",  "황유정"   
     };
+    
     
     ArrayList<String> list = new ArrayList<String>();
     for (String name : names) {
@@ -29,6 +27,11 @@ public class StudentSelector3 {
     ArrayList<String> list2 = new ArrayList<String>();
     for (String name : names2) {
       list2.add(name);
+    }
+    
+    ArrayList<String> list3 = new ArrayList<String>();
+    for (String name : names3) {
+      list3.add(name);
     }
     
     Scanner scanner = new Scanner(System.in);
@@ -42,11 +45,14 @@ public class StudentSelector3 {
       selectedNo = (int)(Math.random() * list2.size());
       System.out.print(list2.remove(selectedNo) + " ");
       
-//      if (++count == 1) {
-//        System.out.println();
-//        count = 0;
-//      }
-      //Thread.currentThread().sleep(400);
+      for (int i = 0; i < (int)(Math.random() * 100); i++) ;
+      selectedNo = (int)(Math.random() * list3.size());
+      System.out.print(list3.remove(selectedNo) + " ");
+      
+      for (int i = 0; i < (int)(Math.random() * 100); i++) ;
+      selectedNo = (int)(Math.random() * list3.size());
+      System.out.print(list3.remove(selectedNo) + " ");
+      
       scanner.nextLine();
     }
 
