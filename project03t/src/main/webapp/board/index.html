@@ -40,7 +40,7 @@ xhr.onreadystatechange = function(event) {
           tr = document.createElement("tr");
           tr.innerHTML = "<tr>" +
             "<td>" + board.no + "</td>" + 
-            "<td><a class='detailLnk' href='detail.do?no=" + board.no + "'>"
+            "<td><a class='detailLnk' href='#' boardNo='" + board.no + "'>"
             		+ board.title + "</a></td>" +
             "<td>" + board.views + "</td>" +
             "<td>" + board.createdDate + "</td>" +
@@ -67,7 +67,14 @@ xhr.send();
 // 게시물 제목을 클릭했을 때 호출될 함수
 function clickDetailLnk(event) {
 	event.preventDefault(); // AJAX로 처리할 것이기 때문에 a 태그의 실행을 취소한다.
-	alert('okok');
+	
+	// 사용자 정의 속성은 getAttribute()를 통해 값을 꺼낼 수 있다.
+	//console.log(event.target.getAttribute("boardNo"));
+	
+	// 다른 페이지로 이동 
+	// => 자바스크립트 내장 객체 location을 이용한다.
+	// => 윈도우 프로그래밍에서 다른 윈도우를 띄우는 것과 같다.
+	location.href = "form.html?no=" + event.target.getAttribute("boardNo");
 	  
 }
 

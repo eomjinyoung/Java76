@@ -56,6 +56,44 @@
 ** 이 웹 애플리케이션의 모든 권리는 Java76기에 있습니다. &copy; Java76. **
 </address></p>
 <script>
+var no = location.href.split('?')[1].split('=')[1];
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(event) {
+  if (xhr.readyState == 4) {
+    if (xhr.status == 200) {
+      console.log(xhr.responseText);
+      var ajaxResult = JSON.parse(xhr.responseText).ajaxResult;
+      if (ajaxResult.status == "success") {
+    	    var board = ajaxResult.data;
+        document.querySelector("#fno").value = board.no;
+        document.querySelector("#ftitle").value = board.title;
+        document.querySelector("#fcontent").value = board.content;
+        document.querySelector("#fviews").innerHTML = board.views;
+        document.querySelector("#fcreatedDate").innerHTML = board.createdDate;
+      }
+    } else {
+      alert("서버와의 연결이 원활하지 않습니다.");
+    } 
+  }
+};
+xhr.open('get', 'ajax/detail.do?no=' + no, true); 
+xhr.setRequestHeader("Accept", "application/json");
+xhr.send();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function deleteBoard() {
   // 암호 텍스트 상자에 입력된 내용을 가져온다.
   var password = document.getElementById('inputPassword').value;
