@@ -111,12 +111,63 @@ if (no < 0) { // 새 글 입력을 위한 폼으로 전환한다.
 
 // 등록 버튼을 위한 이벤트 리스너 추가하기
 document.querySelector('#addBtn').addEventListener('click', function(event) {
-	alert('add');
+	var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(event) {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        console.log(xhr.responseText);
+        
+        var ajaxResult = JSON.parse(xhr.responseText).ajaxResult;
+        
+        if (ajaxResult.status == "success") {
+          location.href = "index.html";
+        } else {
+            alert("게시물 등록에 실패했습니다.");
+        }
+          
+      } else {
+        alert("서버와의 연결이 원활하지 않습니다.");
+      } 
+    }
+  };
+  xhr.open('post', 'ajax/add.do', true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Accept", "application/json");
+  var queryString = "title=" + document.querySelector('#ftitle').value
+     + "&content=" + document.querySelector('#fcontent').value
+     + "&password=" + document.querySelector('#fpassword').value;
+  xhr.send(queryString);
 });
 
 //변경 버튼을 위한 이벤트 리스너 추가하기
 document.querySelector('#updateBtn').addEventListener('click', function(event) {
-  alert('update');
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(event) {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        console.log(xhr.responseText);
+        
+        var ajaxResult = JSON.parse(xhr.responseText).ajaxResult;
+        
+        if (ajaxResult.status == "success") {
+          location.href = "index.html";
+        } else {
+            alert("게시물 변경에 실패했습니다.");
+        }
+          
+      } else {
+        alert("서버와의 연결이 원활하지 않습니다.");
+      } 
+    }
+  };
+  xhr.open('post', 'ajax/update.do', true);
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.setRequestHeader("Accept", "application/json");
+  var queryString = "no=" + document.querySelector('#fno').value
+	   + "&title=" + document.querySelector('#ftitle').value
+     + "&content=" + document.querySelector('#fcontent').value
+     + "&password=" + document.querySelector('#fpassword').value;
+  xhr.send(queryString);
 });
 
 //삭제 버튼을 위한 이벤트 리스너 추가하기

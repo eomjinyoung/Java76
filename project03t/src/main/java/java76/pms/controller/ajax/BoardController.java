@@ -1,6 +1,5 @@
 package java76.pms.controller.ajax;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,16 +7,13 @@ import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.dao.BoardDao;
 import java76.pms.domain.AjaxResult;
 import java76.pms.domain.Board;
-import java76.pms.util.MultipartHelper;
 
 @Controller("ajax.BoardController")
 @RequestMapping("/board/ajax/*")
@@ -56,8 +52,8 @@ public class BoardController {
   }
       
   @RequestMapping(value="add", method=RequestMethod.POST)
-  public String add(Board board, MultipartFile file) throws Exception {
-    
+  public AjaxResult add(Board board/*, MultipartFile file*/) throws Exception {
+    /*
     if (file.getSize() > 0) {
       String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
       File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
@@ -65,10 +61,10 @@ public class BoardController {
       file.transferTo(attachfile);
       board.setAttachFile(newFileName);
     }
-
+    */
     boardDao.insert(board);
     
-    return "redirect:list.do";
+    return new AjaxResult("success", null);
   }
   
   @RequestMapping("detail")
@@ -78,11 +74,8 @@ public class BoardController {
   }
 
   @RequestMapping(value="update", method=RequestMethod.POST)
-  public String update(
-      Board board, 
-      MultipartFile file, 
-      Model model) throws Exception {
-    
+  public AjaxResult update(Board board/*, MultipartFile file*/) throws Exception {
+    /*
     if (file.getSize() > 0) {
       String newFileName = MultipartHelper.generateFilename(file.getOriginalFilename());  
       File attachfile = new File(servletContext.getRealPath(SAVED_DIR) 
@@ -92,13 +85,13 @@ public class BoardController {
     } else if (board.getAttachFile().length() == 0) {
       board.setAttachFile(null);
     }
+    */
     
     if (boardDao.update(board) <= 0) {
-      model.addAttribute("errorCode", "401");
-      return "board/BoardAuthError";
+      return new AjaxResult("failure", null);
     } 
     
-    return "redirect:list.do";
+    return new AjaxResult("success", null);
   }
   
   @RequestMapping("delete.do")
