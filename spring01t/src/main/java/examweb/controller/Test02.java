@@ -10,7 +10,7 @@ import examweb.domain.Board;
 
 @Controller
 @RequestMapping("/ajax/test01")  
-public class Test01 {
+public class Test02 {
   
   @RequestMapping
   public String execute(Model model) {

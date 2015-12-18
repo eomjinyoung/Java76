@@ -35,21 +35,7 @@
     <property name="prefix" value="/WEB-INF/jsp/"/>
     <property name="suffix" value=".jsp"/>
   </bean>
-  
-  <!-- 인터셉터를 등록 -->
-  <mvc:interceptors>
-    <mvc:interceptor>
-        <mvc:mapping path="/**"/>
-        <bean class="examweb.controller.Test18Interceptor"/>
-    </mvc:interceptor>
-    <mvc:interceptor>
-        <mvc:mapping path="/test17/*"/>
-        <bean class="examweb.controller.Test18Interceptor2"/>
-    </mvc:interceptor>
-  </mvc:interceptors>
-    
 
-  
 </beans>
 
 
