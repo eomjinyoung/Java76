@@ -102,20 +102,16 @@ public class BoardController {
   }
   
   @RequestMapping("delete.do")
-  public String delete(
-      int no, 
-      String password,
-      Model model) throws Exception {
+  public AjaxResult delete(int no, String password) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("no", no);
     paramMap.put("password", password);
     
     if (boardDao.delete(paramMap) <= 0) {
-      model.addAttribute("errorCode", "401");
-      return "board/BoardAuthError";
+      return new AjaxResult("failure", null);
     } 
 
-    return "redirect:list.do";
+    return new AjaxResult("success", null);
   }
 }

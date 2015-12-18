@@ -14,7 +14,7 @@
 
 <form id='form1'>
 <table border='1'>
-<tr>
+<tr class="detailForm">
   <th>번호</th>
   <td><input id="fno" type='text' name='no' readonly></td>
 </tr>
@@ -28,11 +28,11 @@
     <textarea id="fcontent" rows='10' name='content' cols='60'></textarea>
   </td>
 </tr>
-<tr>
+<tr class="detailForm">
   <th>조회수</th>
   <td><span id="fviews"></span></td>
 </tr>
-<tr>
+<tr class="detailForm">
   <th>등록일</th>
   <td><span id="fcreatedDate"></span></td>
 </tr>
@@ -48,8 +48,9 @@
 </tr>
 </table>
 <p>
-<button id='updateBtn' type='button'>변경</button>
-<button id='deleteBtn' type='button'>삭제</button>
+<button id='addBtn' type='button' class="newForm">등록</button>
+<button id='updateBtn' type='button' class="detailForm">변경</button>
+<button id='deleteBtn' type='button' class="detailForm">삭제</button>
 </p>
 </form>
 <p><address>
@@ -58,32 +59,97 @@
 <script>
 var no = location.href.split('?')[1].split('=')[1];
 
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function(event) {
-  if (xhr.readyState == 4) {
-    if (xhr.status == 200) {
-      console.log(xhr.responseText);
-      var ajaxResult = JSON.parse(xhr.responseText).ajaxResult;
-      if (ajaxResult.status == "success") {
-    	    var board = ajaxResult.data;
-        document.querySelector("#fno").value = board.no;
-        document.querySelector("#ftitle").value = board.title;
-        document.querySelector("#fcontent").value = board.content;
-        document.querySelector("#fviews").innerHTML = board.views;
-        document.querySelector("#fcreatedDate").innerHTML = board.createdDate;
-      }
-    } else {
-      alert("서버와의 연결이 원활하지 않습니다.");
-    } 
+if (no < 0) { // 새 글 입력을 위한 폼으로 전환한다.
+	// 상세정보 출력을 위한 폼 항목은 감춘다.
+	var elements = document.querySelectorAll('.detailForm');
+	for (var i = 0; i < elements.length; i++) {
+		elements[i].style.display = 'none';
+	}
+	
+	// 새 글 등록을 위한 폼 항목은 보인다.
+	var elements = document.querySelectorAll('.newForm');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = ''; // 빈 문자열을 주면 화면에 나타나게 한다.
   }
-};
-xhr.open('get', 'ajax/detail.do?no=' + no, true); 
-xhr.setRequestHeader("Accept", "application/json");
-xhr.send();
+  
+} else { // 상세정보 출력폼으로 전환한다.
+	// 새 글 등록을 위한 폼 항목은 감춘다.
+  var elements = document.querySelectorAll('.newForm');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = 'none';
+  }
+  
+  // 상세정보 출력을 위한 폼 항목은 보인다.
+  var elements = document.querySelectorAll('.detailForm');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = ''; // 빈 문자열을 주면 화면에 나타나게 한다.
+  }
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(event) {
+	  if (xhr.readyState == 4) {
+	    if (xhr.status == 200) {
+	      console.log(xhr.responseText);
+	      var ajaxResult = JSON.parse(xhr.responseText).ajaxResult;
+	      if (ajaxResult.status == "success") {
+	    	    var board = ajaxResult.data;
+	        document.querySelector("#fno").value = board.no;
+	        document.querySelector("#ftitle").value = board.title;
+	        document.querySelector("#fcontent").value = board.content;
+	        document.querySelector("#fviews").innerHTML = board.views;
+	        document.querySelector("#fcreatedDate").innerHTML = board.createdDate;
+	      }
+	    } else {
+	      alert("서버와의 연결이 원활하지 않습니다.");
+	    } 
+	  }
+	};
+	xhr.open('get', 'ajax/detail.do?no=' + no, true); 
+	xhr.setRequestHeader("Accept", "application/json");
+	xhr.send();
+}
 
+// 등록 버튼을 위한 이벤트 리스너 추가하기
+document.querySelector('#addBtn').addEventListener('click', function(event) {
+	alert('add');
+});
 
+//변경 버튼을 위한 이벤트 리스너 추가하기
+document.querySelector('#updateBtn').addEventListener('click', function(event) {
+  alert('update');
+});
 
-
+//삭제 버튼을 위한 이벤트 리스너 추가하기
+document.querySelector('#deleteBtn').addEventListener('click', function(event) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(event) {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        console.log(xhr.responseText);
+        
+        var ajaxResult = JSON.parse(xhr.responseText).ajaxResult;
+        
+        if (ajaxResult.status == "success") {
+          location.href = "index.html";
+        } else {
+        	  alert("게시물 삭제에 실패했습니다.");
+        }
+        	
+      } else {
+        alert("서버와의 연결이 원활하지 않습니다.");
+      } 
+    }
+  };
+  xhr.open(
+		  'get' 
+		  ,'ajax/delete.do?no=' 
+		    + document.querySelector('#fno').value 
+		    + '&password='
+		    + document.querySelector('#fpassword').value
+		  , true); 
+  xhr.setRequestHeader("Accept", "application/json");
+  xhr.send();
+});
 
 
 

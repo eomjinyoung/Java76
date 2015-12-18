@@ -11,7 +11,7 @@
   <a href="/project03t/auth/login.do">로그인</a>
 </div><h1>게시판</h1>
 
-<a href='add.do'>새 글</a><br>
+<button id="newBtn" type="button">새 글</button><br>
 
 <table id="listTable" border='1'>
   <tr>
@@ -63,6 +63,10 @@ xhr.onreadystatechange = function(event) {
 xhr.open('get', 'ajax/list.do', true); 
 xhr.setRequestHeader("Accept", "application/json");
 xhr.send();
+
+document.querySelector('#newBtn').addEventListener('click', function(event){
+	location.href = "form.html?no=-1";
+});
 
 // 게시물 제목을 클릭했을 때 호출될 함수
 function clickDetailLnk(event) {
