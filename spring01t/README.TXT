@@ -1,4 +1,4 @@
-[주제: 스프링 Web MVC 프레임워크 사용법 2]
+[주제: 스프링 Web MVC와 AJAX, JSON]
 Test12.java
   - @CookieValue 애노테이션 사용하기
   
