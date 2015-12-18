@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,17 +21,20 @@ import java76.pms.util.MultipartHelper;
 import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
+@RequestMapping("/student/*")
 public class StudentController {
   public static final String SAVED_DIR = "/file";
+  
   @Autowired StudentDao studentDao;
+  @Autowired ServletContext servletContext;
 
-  @RequestMapping("/student/list.do")
+  @RequestMapping("list")
   public String list(
       @RequestParam(defaultValue="1") int pageNo,
       @RequestParam(defaultValue="10") int pageSize,
       @RequestParam(defaultValue="email") String keyword,
       @RequestParam(defaultValue="asc") String align,
-        HttpServletRequest request) throws Exception {
+      Model model) throws Exception {
 
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
@@ -40,13 +44,18 @@ public class StudentController {
     
     List<Student> students = studentDao.selectList(paramMap);
 
-    request.setAttribute("students", students);
+    model.addAttribute("students", students);
 
-    return "/student/StudentList.jsp";
+    return "student/StudentList";
 
   }
   
-  @RequestMapping("/student/add.do")
+  @RequestMapping(value="add", method=RequestMethod.GET)
+  public String form() {
+    return "student/StudentForm";
+  }
+  
+  @RequestMapping(value="add", method=RequestMethod.POST)
   public String add(
       String name,
       String email,
@@ -54,13 +63,12 @@ public class StudentController {
       String cid,
       String password,
       MultipartFile photofile,
-      HttpServletRequest request) throws Exception {
+      Model model) throws Exception {
 
     String newFileName = null;
     
     if (photofile.getSize() > 0) {
       newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-      ServletContext servletContext = request.getServletContext();
       File attachfile = new File(
           servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
       photofile.transferTo(attachfile);
@@ -84,33 +92,30 @@ public class StudentController {
 
   }
   
-  @RequestMapping("/student/detail.do")
-  public String detail(
-      String email,
-      HttpServletRequest request) 
+  @RequestMapping("detail")
+  public String detail(String email, Model model) 
           throws Exception {
 
     Student student = studentDao.selectOne(email);
-    request.setAttribute("student", student);
+    model.addAttribute("student", student);
 
-    return "/student/StudentDetail.jsp";
+    return "student/StudentDetail";
   }
 
-  @RequestMapping("/student/update.do")
-  public String post(
+  @RequestMapping("update")
+  public String update(
       String name,
       String email,
       String tel,
       String cid,
       String photo,
       MultipartFile photofile,
-      HttpServletRequest request) throws Exception {
+      Model model) throws Exception {
 
     String newFileName = null;
     
     if (photofile.getSize() > 0) {
       newFileName = MultipartHelper.generateFilename(photofile.getOriginalFilename());  
-      ServletContext servletContext = request.getServletContext();
       File attachfile = new File(
           servletContext.getRealPath(SAVED_DIR) + "/" + newFileName);
       photofile.transferTo(attachfile);
@@ -133,20 +138,18 @@ public class StudentController {
     }
     
     if (studentDao.update(student) <= 0) {
-      request.setAttribute("errorCode", "401");
-      return "/student/StudentAuthError.jsp";
+      model.addAttribute("errorCode", "401");
+      return "student/StudentAuthError";
     } 
 
     return "redirect:list.do";
   }
   
-  @RequestMapping("/student/delete.do")
-  public String delete(
-      String email,
-      HttpServletRequest request) throws Exception {
+  @RequestMapping("delete")
+  public String delete(String email, Model model) throws Exception {
 
     if (studentDao.delete(email) <= 0) {
-      request.setAttribute("errorCode", "401");
+      model.addAttribute("errorCode", "401");
       return "/student/StudentAuthError.jsp";
     }
     return "redirect:list.do";

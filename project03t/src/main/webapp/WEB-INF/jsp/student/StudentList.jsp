@@ -15,7 +15,7 @@
 <jsp:include page="/Header.jsp"/>
 
 <h1>학생2</h1>
-<a href='form.html'>새 학생</a><br>
+<a href='add.do'>새 학생</a><br>
 <table border='1'>
   <tr>
     <th>이메일</th>

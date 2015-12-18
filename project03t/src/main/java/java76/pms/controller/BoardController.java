@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +33,7 @@ public class BoardController {
       @RequestParam(defaultValue="10") int pageSize,
       @RequestParam(defaultValue="no") String keyword,
       @RequestParam(defaultValue="desc") String align,
-        HttpServletRequest request) throws Exception {
+      Model model) throws Exception {
     
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
@@ -44,7 +43,7 @@ public class BoardController {
     
     List<Board> boards = boardDao.selectList(paramMap);
     
-    request.setAttribute("boards", boards);
+    model.addAttribute("boards", boards);
     
     return "board/BoardList";
   }

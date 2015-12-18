@@ -14,7 +14,7 @@
 <jsp:include page="/Header.jsp"/>
 
 <h1>프로젝트2</h1>
-<a href='form.html'>새 프로젝트</a><br>
+<a href='add.do'>새 프로젝트</a><br>
 <table border='1'>
   <tr>
     <th>번호</th>
