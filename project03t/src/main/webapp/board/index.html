@@ -40,13 +40,19 @@ xhr.onreadystatechange = function(event) {
           tr = document.createElement("tr");
           tr.innerHTML = "<tr>" +
             "<td>" + board.no + "</td>" + 
-            "<td><a href='detail.do?no=" + board.no + "'>" 
+            "<td><a class='detailLnk' href='detail.do?no=" + board.no + "'>"
             		+ board.title + "</a></td>" +
             "<td>" + board.views + "</td>" +
             "<td>" + board.createdDate + "</td>" +
             "</tr>";
         
           table.appendChild(tr);
+        }
+        
+        // 제목 링크에 클릭 이벤트 리스너를 등록한다.
+        var aList = document.querySelectorAll("a.detailLnk");
+        for (var i = 0; i < aList.length; i++) {
+        	  aList[i].addEventListener('click', clickDetailLnk);
         }
       }
     } else {
@@ -57,6 +63,14 @@ xhr.onreadystatechange = function(event) {
 xhr.open('get', 'ajax/list.do', true); 
 xhr.setRequestHeader("Accept", "application/json");
 xhr.send();
+
+// 게시물 제목을 클릭했을 때 호출될 함수
+function clickDetailLnk(event) {
+	event.preventDefault(); // AJAX로 처리할 것이기 때문에 a 태그의 실행을 취소한다.
+	alert('okok');
+	  
+}
+
 </script>
 
     </body>
