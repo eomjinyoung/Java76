@@ -1,19 +1,24 @@
 package examweb.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.google.gson.Gson;
 
 import examweb.domain.Board;
 
 @Controller
-@RequestMapping("/ajax/test01")  
+@RequestMapping("/ajax/test02")  
 public class Test02 {
   
   @RequestMapping
-  public String execute(Model model) {
+  public ResponseEntity<String> execute() {
     ArrayList<Board> list = new ArrayList<>();
     list.add(new Board().setNo(1)
                         .setTitle("제목입니다.1111")
@@ -25,8 +30,16 @@ public class Test02 {
                         .setTitle("제목입니다.3333")
                         .setContent("내용입니다...."));
     
-    model.addAttribute("list", list);
+    HashMap<String,Object> resultMap = new HashMap<>();
+    resultMap.put("status", "success");
+    resultMap.put("data", list);
     
-    return "ajax/test01";
+    HttpHeaders headers = new HttpHeaders();
+    headers.add("Content-Type", "text/plain;charset=UTF-8");
+    
+    return new ResponseEntity<>(
+        new Gson().toJson(resultMap),
+        headers,
+        HttpStatus.OK);
   }
 }
