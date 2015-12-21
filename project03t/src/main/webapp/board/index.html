@@ -29,29 +29,19 @@
 <script type="text/javascript" src="../js/bit.js"></script>
 <script>
 
-$.ajax('ajax/list.do', {
-	dataType: 'json',
-	error: function() {
-		alert("서버와의 연결이 원활하지 않습니다.");
-	},
-	success: function(resultObj) {
-		var table = $("#listTable");
-    var tr;
-    for (var board of resultObj.data) {
-      tr = $("<tr>");
-      tr.html("<tr>" +
-        "<td>" + board.no + "</td>" + 
-        "<td><a class='detailLnk' href='#' boardNo='" + board.no + "'>"
-            + board.title + "</a></td>" +
-        "<td>" + board.views + "</td>" +
-        "<td>" + board.createdDate + "</td>" +
-        "</tr>");
-    
-      table.append(tr);
-    }
-    // 제목 링크에 클릭 이벤트 리스너를 등록한다.
-    $("a.detailLnk").click(clickDetailLnk);
-	}
+$.getJSON('ajax/list.do', function(resultObj) {
+	var table = $("#listTable");
+  for (var board of resultObj.data) {
+    $("<tr>")
+      .html("<tr><td>" + board.no + 
+			      "</td><td><a class='detailLnk' href='#' boardNo='" 
+			          + board.no + "'>" + board.title + 
+			      "</a></td><td>" + board.views +
+			      "</td><td>" + board.createdDate + "</td></tr>")
+			.appendTo(table);
+  }
+  // 제목 링크에 클릭 이벤트 리스너를 등록한다.
+  $("a.detailLnk").click(clickDetailLnk);
 });
 
 
@@ -62,7 +52,7 @@ $('#newBtn').click(function(event){
 // 게시물 제목을 클릭했을 때 호출될 함수
 function clickDetailLnk(event) {
 	event.preventDefault(); 
-	location.href = "form.html?no=" + event.target.getAttribute("boardNo");
+	location.href = "form.html?no=" + $(event.target).attr("boardNo");
 }
 
 </script>

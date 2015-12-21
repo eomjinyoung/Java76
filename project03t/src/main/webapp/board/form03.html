@@ -98,8 +98,8 @@ if (no < 0) { // 새 글 입력을 위한 폼으로 전환한다.
 	        $("#fno").val(board.no);
 	        $("#ftitle").val(board.title);
 	        $("#fcontent").val(board.content);
-	        $("#fviews").val(board.views);
-	        $("#fcreatedDate").val(board.createdDate);
+	        $("#fviews").text(board.views);
+	        $("#fcreatedDate").text(board.createdDate);
 	      }
 	    } else {
 	      alert("서버와의 연결이 원활하지 않습니다.");

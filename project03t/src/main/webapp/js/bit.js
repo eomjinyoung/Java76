@@ -1,12 +1,16 @@
 function bit(selector) {
 	var el;
 	
-	if (selector.indexOf("<") == 0) { 
+	if (selector instanceof HTMLElement) { // 파라미터가 태그 객체라면,
+		el = [selector];
+		
+	} else if (selector.indexOf("<") == 0) { // 파라미터가 문자열이고 <..>라면,
 		// selector 값이 < 로 시작한다면; 예) <p>
 		// 태그를 생성하여 배열에 담는다.
 		var tagName = selector.substr(1, selector.length - 2);
 		el = [document.createElement(tagName)];
-	} else {
+		
+	} else { // 그 밖에 CSS 셀렉터 문법
 		// DOM API를 통해 찾은 순순한 태그 목록
 		el = document.querySelectorAll(selector);		
 	}
@@ -20,6 +24,7 @@ function bit(selector) {
 		  this[i].attachEvent('onclick', listener);
 		}
 	  }
+	  return this;
 	};
 	
 	// 폼 항목의 값을 설정하는 함수 추가 => getter/setter 겸용!
@@ -30,6 +35,7 @@ function bit(selector) {
 		for (var i = 0; i < this.length; i++) {
 		  this[i].value = value;
 		}
+		return this;
 	  }
 	};
 	
@@ -41,6 +47,7 @@ function bit(selector) {
 		for (var i = 0; i < this.length; i++) {
 		  this[i].innerHTML = value;
 		}
+		return this;
 	  }
 	};
 	
@@ -56,6 +63,7 @@ function bit(selector) {
 		for (var i = 0; i < this.length; i++) {
 		  this[i].textContent = value;
 		}
+		return this;
 	  }
 	};
 	
@@ -67,6 +75,41 @@ function bit(selector) {
 		for (var x = 0; x < children.length; x++) {
 		  this[i].appendChild(children[x]);
 		}
+	  }
+      return this;
+	};
+	
+	// 자식을 부모에게 추가하기 
+	el.appendTo = function(parents) {
+      for (var i = 0; i < parents.length; i++) {
+		for (var x = 0; x < this.length; x++) {
+		  parents[i].appendChild(this[x]);
+		}
+	  }
+      return this;
+	}
+	
+	// 스타일 설정하는 함수
+	el.css = function(styleName, value) {
+	  if (value == undefined) { // getter로 사용
+		return this[0].style[styleName];
+	  } else {
+		for (var i = 0; i < this.length; i++) {
+	      this[i].style[styleName] = value;
+		}
+		return this;
+	  }
+	};
+	
+	// 태그의 속성 값 : getter/setter
+	el.attr = function(attrName, value) {
+	  if (value == undefined) { // getter로 사용
+		return this[0].getAttribute(attrName);
+	  } else {
+		for (var i = 0; i < this.length; i++) {
+	      this[i].setAttribute(attrName, value);
+		}
+		return this;
 	  }
 	};
 	
@@ -113,20 +156,24 @@ bit.ajax = function(url, settings) {
   if (settings.method == undefined)
 	settings.method = 'GET';
   
-  xhr.open(settings.method, url, true);
+  var queryString = '';
+  if (settings.data != undefined) {
+	for (var propName in settings.data) {
+	  if (queryString.length > 0) 
+		queryString += '&';
+	  queryString += propName + '=' + settings.data[propName];
+	}
+  }
   
+  if (settings.method == 'GET') { //GET 요청은 URL 뒤에 데이터를 붙인다.
+	  url += queryString;
+  }
+  
+  xhr.open(settings.method, url, true);  
   xhr.setRequestHeader("Accept", "application/json");
   
   if (settings.method == 'POST') {
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	var queryString = '';
-	if (settings.data != undefined) {
-	  if (queryString.length > 0) 
-		queryString += '&';
-	  for (var propName in settings.data) {
-		queryString += propName + '=' + settings.data[propName];
-	  }
-	}
     xhr.send(queryString);
     
   } else {
@@ -134,6 +181,50 @@ bit.ajax = function(url, settings) {
   }
 };
 
+// ajax() 함수의 단축용
+bit.getJSON = function(url, success) {
+  bit.ajax(url, {
+	dataType: 'json',
+	success: success
+  });
+};
+
+bit.post = function(url, p2, p3, p4) {
+  var data = undefined, 
+      success = undefined, 
+      dataType = undefined;
+  
+  if (typeof p2 == 'object') {  // data
+	data = p2;
+	if (typeof p3 == 'function') {  // success
+	  success = p3;
+	  if (typeof p4 == 'string') {  // dataType
+		dataType = p4;
+	  }
+	} else if (typeof p3 == 'string') { // dataType
+      dataType = p3;
+	}
+  }
+  
+  if (typeof p2 == 'function') { // success
+	success = p2;
+	if (typeof p3 == 'string') { // dataType
+	  dataType = p3;
+	}
+  }
+  
+  if (typeof p2 == 'string') { // dataType
+	dataType = p2;
+  }
+  
+  bit.ajax(url, {
+	method: 'POST',
+	data: data,
+	dataType: dataType,
+	success: success
+  });
+  
+};
 
 
 
