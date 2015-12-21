@@ -1,0 +1,22 @@
+{
+  "name": "project03t",
+  "homepage": "https://github.com/eomjinyoung/Java76",
+  "authors": [
+    "Jinyoung <jinyoung.eom@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "jquery": "1.11.3"
+  }
+}
