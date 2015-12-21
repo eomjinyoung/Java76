@@ -42,7 +42,13 @@
         각 라이브러리 매니페스트 파일에서 main 만 배치한다.
         만약 그 라이브러리의 다른 파일도 배치하고 싶다면,
         install 설정에 main 파일 정보를 재정의하라!
-         
+    "install" : {
+      "path" : "src/main/webapp/lib",
+      "sources": {
+        "bootstrap": "bower_components/bootstrap/dist/**",
+        "jquery": "bower_components/jquery/dist/**"
+      }
+    }     
 
 
 
