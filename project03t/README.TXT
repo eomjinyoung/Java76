@@ -59,6 +59,8 @@
 7. 자식 엘리먼트를 추가하는 함수 만든다.
   - append()  
   
+=> 기존 코드 백업: index03.html, form03.html, bit03.js  
   
-  
+8. AJAX 함수 만든다.
+  - ajax()
   
