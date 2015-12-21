@@ -18,5 +18,13 @@
   "dependencies": {
     "bootstrap": "~3.3.6",
     "jquery": "1.11.3"
+  },
+  "install" : {
+	"path" : "src/main/webapp/lib",
+	"sources": {
+		"bootstrap": "bower_components/bootstrap/dist/**",
+		"jquery": "bower_components/jquery/dist/**"
+	}
   }
+  
 }

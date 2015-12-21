@@ -29,9 +29,20 @@
     ==> bower install을 실행하는 폴더에 bower.json 파일이 있다면,
         그 파일에 설정된 내용에 따라 의존 라이브러리를 자동으로 가져온다.       
 
-
-
-
+5. bower에서 가져온 라이브러리 파일을 특정 폴더(예: webapp)에 배치하기 
+  1) bower-installer 설치 
+    ==> npm install -g bower-installer
+  2) bower 매니페스트 파일(bower.json)에 배치 정보를 넣는다.
+    "install" : {
+      "path" : "예)src/main/webapp"
+    }
+  3) 배치하기 
+    ==> bower-installer 실행
+    ==> bower-installer는 라이브러리 폴더에서 파일을 가져올 때
+        각 라이브러리 매니페스트 파일에서 main 만 배치한다.
+        만약 그 라이브러리의 다른 파일도 배치하고 싶다면,
+        install 설정에 main 파일 정보를 재정의하라!
+         
 
 
 
