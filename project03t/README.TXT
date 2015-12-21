@@ -63,4 +63,8 @@
   
 8. AJAX 함수 만든다.
   - ajax()
-  
+ 
+=> 기존 코드 백업: index04.html, form04.html
+
+9. 기본의 bit.js 라이브러리를 jQuery 라이브러리로 대체한다.
+10. bootstrap 적용하기 

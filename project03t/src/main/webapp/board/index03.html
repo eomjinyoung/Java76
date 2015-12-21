@@ -39,13 +39,12 @@ xhr.onreadystatechange = function(event) {
         var tr;
         for (var board of resultObj.data) {
           tr = $("<tr>");
-          tr.html("<tr>" +
+          tr.html(
             "<td>" + board.no + "</td>" + 
             "<td><a class='detailLnk' href='#' boardNo='" + board.no + "'>"
             		+ board.title + "</a></td>" +
             "<td>" + board.views + "</td>" +
-            "<td>" + board.createdDate + "</td>" +
-            "</tr>");
+            "<td>" + board.createdDate + "</td>");
         
           table.append(tr);
         }
