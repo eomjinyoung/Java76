@@ -1,55 +1,28 @@
 package java76.pms.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java76.pms.dao.StudentDao;
-import java76.pms.domain.Student;
-import java76.pms.util.MultipartHelper;
-import net.coobird.thumbnailator.Thumbnails;
+import java76.pms.dao.CourseEnrollmentDao;
+import java76.pms.domain.CourseEnrollment;
 
 @Controller
-@RequestMapping("/student/*")
+@RequestMapping("/enroll/*")
 public class CourseEnrollmentController {
-  public static final String SAVED_DIR = "/file";
-  
-  @Autowired StudentDao studentDao;
-  @Autowired ServletContext servletContext;
+  @Autowired CourseEnrollmentDao enrollDao;
 
   @RequestMapping("list")
-  public String list(
-      @RequestParam(defaultValue="1") int pageNo,
-      @RequestParam(defaultValue="10") int pageSize,
-      @RequestParam(defaultValue="email") String keyword,
-      @RequestParam(defaultValue="asc") String align,
-      Model model) throws Exception {
-
-    HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("startIndex", (pageNo - 1) * pageSize);
-    paramMap.put("length", pageSize);
-    paramMap.put("keyword", keyword);
-    paramMap.put("align", align);
-    
-    List<Student> students = studentDao.selectList(paramMap);
-
-    model.addAttribute("students", students);
-
-    return "student/StudentList";
-
+  public String list(Model model) throws Exception {
+    List<CourseEnrollment> list = enrollDao.selectList();
+    model.addAttribute("enrolls", list);
+    return "enroll/EnrollList";
   }
   
+  /*
   @RequestMapping(value="add", method=RequestMethod.GET)
   public String form() {
     return "student/StudentForm";
@@ -163,4 +136,5 @@ public class CourseEnrollmentController {
     .outputQuality(1.0)
     .toFile(new File(thumbPath));
   }
+  */
 }
