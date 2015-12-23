@@ -35,10 +35,12 @@ public class DefaultStudentService implements StudentService {
     studentDao.insert(student);
   }
 
+  @Transactional
   public void remove(String email) {
     studentDao.delete(email);
   }
   
+  @Transactional
   public void change(Student student) {
     studentDao.update(student);
   }

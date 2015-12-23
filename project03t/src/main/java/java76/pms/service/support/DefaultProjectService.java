@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java76.pms.dao.ProjectDao;
 import java76.pms.domain.Project;
@@ -25,14 +26,17 @@ public class DefaultProjectService implements ProjectService {
     return projectDao.selectList(paramMap);
   }
 
+  @Transactional
   public void register(Project project) {
     projectDao.insert(project);
   }
 
+  @Transactional
   public void remove(int no) {
     projectDao.delete(no);
   }
   
+  @Transactional
   public void change(Project project) {
     projectDao.update(project);
   }

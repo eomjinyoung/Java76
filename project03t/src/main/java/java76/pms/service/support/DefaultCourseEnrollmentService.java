@@ -18,14 +18,17 @@ public class DefaultCourseEnrollmentService implements CourseEnrollmentService {
   @Autowired StudentService studentService;
   @Autowired CourseEnrollmentDao enrollDao;
   
+  @Transactional
   public void enroll(CourseEnrollment enroll) {
     enrollDao.insert(enroll);
   }
   
+  @Transactional
   public void change(CourseEnrollment enroll) {
     enrollDao.update(enroll);
   }
   
+  @Transactional
   public void remove(String email) {
     enrollDao.delete(email);
   }
@@ -38,6 +41,7 @@ public class DefaultCourseEnrollmentService implements CourseEnrollmentService {
     return enrollDao.selectList();
   }
   
+  @Transactional
   public void reject(String email) {
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
