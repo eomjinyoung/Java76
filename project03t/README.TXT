@@ -21,4 +21,7 @@
 <tx:annotation-driven transaction-manager="txManager"/>
   
   2) 서비스 객체에서 입력, 변경, 삭제에 관련된 메서드에 대해 트랜잭션을 적용한다.  
-    
+
+4. 서비스 클래스에 인터페이스 적용
+  - 기존 클래스를 인터페이스와 구현체로 분리한다.
+      
