@@ -16,7 +16,7 @@ public interface StudentDao {
 
   Student selectOne(String email);
 
-  Student login(Map<String,Object> paramMap);
+  Student selectOneByEmailPassword(Map<String,Object> paramMap);
 }
 
 

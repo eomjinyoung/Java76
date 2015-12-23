@@ -48,7 +48,7 @@
 		where email=#{email}
 	</select>
 	
-	<select id="login" resultType="student" parameterType="map">
+	<select id="selectOneByEmailPassword" resultType="student" parameterType="map">
 		<include refid="select_inc"/>
 		from student
 		where email=#{email} and pwd=sha1(#{password})
