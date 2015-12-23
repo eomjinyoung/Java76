@@ -59,9 +59,20 @@ public class CourseEnrollmentService {
     
     Student student = new Student();
     student.setEmail(enroll.getEmail());
-    student.setName(enroll.getName() + "12345678901234567890");
+    student.setName(enroll.getName());
     student.setTel(enroll.getTel());
     
     studentService.register(student);
+    
+    /* 트랜잭션 테스트 용
+    enroll.setName(enroll.getName() + "12345678901234567890");
+    enrollDao.update(enroll);
+    */
   }
 }
+
+
+
+
+
+

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java76.pms.dao.StudentDao;
 import java76.pms.domain.Student;
@@ -28,6 +29,16 @@ public class StudentService {
     return studentDao.selectList(paramMap);
   }
 
+  {
+    //Propagation.REQUIRED 
+    //Propagation.REQUIRES_NEW
+    //Propagation.MANDATORY
+    //Propagation.SUPPORTS
+    //Propagation.NOT_SUPPORTED
+    //Propagation.NEVER
+  }
+  
+  @Transactional// 기본: (propagation=Propagation.REQUIRED)
   public void register(Student student) {
     studentDao.insert(student);
   }
