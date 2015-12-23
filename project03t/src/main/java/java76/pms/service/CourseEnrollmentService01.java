@@ -4,16 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import java76.pms.dao.CourseEnrollmentDao;
 import java76.pms.domain.CourseEnrollment;
 import java76.pms.domain.Student;
 
-@Service
-public class CourseEnrollmentService {
+//@Service
+public class CourseEnrollmentService01 {
   @Autowired StudentService studentService;
   @Autowired CourseEnrollmentDao enrollDao;
   
@@ -47,21 +48,32 @@ public class CourseEnrollmentService {
     enrollDao.updateForStatus(paramMap);
   }
   
-  @Transactional
   public void approve(String email) {
-    HashMap<String,Object> paramMap = new HashMap<>();
-    paramMap.put("email", email);
-    paramMap.put("status", CourseEnrollment.STATUS_APPROVE);
+    DefaultTransactionDefinition txDef = new DefaultTransactionDefinition();
+    txDef.setName("t1");
+    txDef.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+    TransactionStatus txStatus = txManager.getTransaction(txDef);
     
-    enrollDao.updateForStatus(paramMap);
-    
-    CourseEnrollment enroll = enrollDao.selectOne(email);
-    
-    Student student = new Student();
-    student.setEmail(enroll.getEmail());
-    student.setName(enroll.getName() + "12345678901234567890");
-    student.setTel(enroll.getTel());
-    
-    studentService.register(student);
+    try {
+      HashMap<String,Object> paramMap = new HashMap<>();
+      paramMap.put("email", email);
+      paramMap.put("status", CourseEnrollment.STATUS_APPROVE);
+      
+      enrollDao.updateForStatus(paramMap);
+      
+      CourseEnrollment enroll = enrollDao.selectOne(email);
+      
+      Student student = new Student();
+      student.setEmail(enroll.getEmail());
+      student.setName(enroll.getName() + "12345678901234567890");
+      student.setTel(enroll.getTel());
+      
+      studentService.register(student);
+      txManager.commit(txStatus);
+      
+    } catch (Exception e) {
+      txManager.rollback(txStatus);
+      throw e;
+    }
   }
 }
