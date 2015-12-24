@@ -1,5 +1,8 @@
-package step01;
+package step02;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Computer {
   protected String model;
   protected String maker;
