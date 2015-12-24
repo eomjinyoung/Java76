@@ -14,7 +14,7 @@ public interface StudentService {
   void remove(String email);
   void change(Student student);
   Student retrieve(String email);
-  Student validate(String email, String password);
+  Student retrieve(String email, String password);
 }
 
 

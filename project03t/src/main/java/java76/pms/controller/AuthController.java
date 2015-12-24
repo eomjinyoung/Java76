@@ -40,7 +40,7 @@ public class AuthController {
     }
     response.addCookie(emailCookie);
 
-    Student student = studentService.validate(email, password);
+    Student student = studentService.retrieve(email, password);
 
     if (student == null) { // 로그인 실패!
       session.invalidate(); // 세션을 무효화시킴. => 새로 세션 객체 생성!
