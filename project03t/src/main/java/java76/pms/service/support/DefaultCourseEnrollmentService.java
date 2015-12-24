@@ -3,7 +3,6 @@ package java76.pms.service.support;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,39 +14,31 @@ import java76.pms.service.StudentService;
 
 @Service
 public class DefaultCourseEnrollmentService implements CourseEnrollmentService {
-  private static Logger log = 
-      Logger.getLogger(DefaultCourseEnrollmentService.class);
   
   @Autowired StudentService studentService;
   @Autowired CourseEnrollmentDao enrollDao;
   
   public void enroll(CourseEnrollment enroll) {
-    log.debug("enroll() 호출됨");
     enrollDao.insert(enroll);
   }
   
   public void change(CourseEnrollment enroll) {
-    log.debug("change() 호출됨");
     enrollDao.update(enroll);
   }
   
   public void remove(String email) {
-    log.debug("remove() 호출됨");
     enrollDao.delete(email);
   }
   
   public CourseEnrollment retrieveByEmail(String email) {
-    log.debug("retrieveByEmail() 호출됨");
     return enrollDao.selectOne(email);
   }
   
   public List<CourseEnrollment> getEnrollmentList() {
-    log.debug("getEnrollmentList() 호출됨");
     return enrollDao.selectList();
   }
   
   public void reject(String email) {
-    log.debug("reject() 호출됨");
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
     paramMap.put("status", CourseEnrollment.STATUS_REJECT);
@@ -56,7 +47,6 @@ public class DefaultCourseEnrollmentService implements CourseEnrollmentService {
   }
   
   public void approve(String email) {
-    log.debug("approve() 호출됨");
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("email", email);
     paramMap.put("status", CourseEnrollment.STATUS_APPROVE);

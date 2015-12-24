@@ -23,3 +23,16 @@
   
   <!-- AOP 애노테이션 처리자 등록 -->
   <aop:aspectj-autoproxy/>
+  
+  
+[참고: Aspect 객체의 메서드에서 pointcut 정보를 알아내기]
+=> 파라미터에 JoinPoint 타입의 변수를 선언하라.
+
+
+
+
+
+
+
+
+  

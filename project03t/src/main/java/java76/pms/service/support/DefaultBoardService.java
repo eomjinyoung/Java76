@@ -3,7 +3,6 @@ package java76.pms.service.support;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +12,10 @@ import java76.pms.service.BoardService;
 
 @Service
 public class DefaultBoardService implements BoardService {
-  private static Logger log = Logger.getLogger(DefaultBoardService.class);
-  
   @Autowired BoardDao boardDao;
   
   public List<Board> getBoardList(int pageNo, int pageSize, 
       String keyword, String align) {
-    log.debug("getBoardList() 호출됨");
-    
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("startIndex", (pageNo - 1) * pageSize);
     paramMap.put("length", pageSize);
@@ -31,12 +26,10 @@ public class DefaultBoardService implements BoardService {
   }
   
   public void register(Board board) {
-    log.debug("register() 호출됨");
     boardDao.insert(board);
   }
   
   public void remove(int no, String password) {
-    log.debug("remove() 호출됨");
     HashMap<String,Object> paramMap = new HashMap<>();
     paramMap.put("no", no);
     paramMap.put("password", password);
@@ -45,12 +38,10 @@ public class DefaultBoardService implements BoardService {
   }
   
   public void change(Board board) {
-    log.debug("change() 호출됨");
     boardDao.update(board);
   }
 
   public Board retieve(int no) {
-    log.debug("retieve() 호출됨");
     return boardDao.selectOne(no);
   }
 }
