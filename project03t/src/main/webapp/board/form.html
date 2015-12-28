@@ -95,7 +95,7 @@ if (no < 0) { // 새 글 입력을 위한 폼으로 전환한다.
 	$('.detailForm').css('display', '');
 	$('.newForm').css('display', 'none');
 	
-	$.getJSON('ajax/detail.do?no=' + no, function(resultObj) {
+	$.getJSON(contextRoot + '/board/ajax/detail.do?no=' + no, function(resultObj) {
 		var ajaxResult = resultObj.ajaxResult;
 		if (ajaxResult.status == "success") {
       var board = ajaxResult.data;
@@ -110,7 +110,7 @@ if (no < 0) { // 새 글 입력을 위한 폼으로 전환한다.
 
 // 등록 버튼을 위한 이벤트 리스너 추가하기
 $('#addBtn').click(function(event) {
-	$.post('ajax/add.do', {
+	$.post(contextRoot + '/board/ajax/add.do', {
 		title: $('#ftitle').val(),
 		content: $('#fcontent').val(),
 		password: $('#fpassword').val()
@@ -127,7 +127,7 @@ $('#addBtn').click(function(event) {
 
 //변경 버튼을 위한 이벤트 리스너 추가하기
 $('#updateBtn').click(function(event) {
-  $.post('ajax/update.do', {
+  $.post(contextRoot + '/board/ajax/update.do', {
 	    no: $('#fno').val(),
 	    title: $('#ftitle').val(),
 	    content: $('#fcontent').val(),
@@ -145,7 +145,7 @@ $('#updateBtn').click(function(event) {
 
 //삭제 버튼을 위한 이벤트 리스너 추가하기
 $('#deleteBtn').click(function(event) {
-	$.getJSON('ajax/delete.do?no=' + $('#fno').val() 
+	$.getJSON(contextRoot + '/board/ajax/delete.do?no=' + $('#fno').val() 
 	         + '&password=' + $('#fpassword').val(), 
 	  function(resultObj) {
 	    var ajaxResult = resultObj.ajaxResult;
