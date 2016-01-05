@@ -8,13 +8,13 @@ insert into LVL_CODE values('LC006', '부장');
 
 /* 매니저 등록 */
 insert into MANAGERS(NAME,PHOT,EMAIL,TEL,LEVEL)
-values('홍길동','temp.png','hong@test.com','111-1111','LC001');
+  values('홍길동','temp.png','hong@test.com','111-1111','LC001');
 insert into MANAGERS(NAME,PHOT,EMAIL,TEL,LEVEL)
-values('임꺽정','temp.png','leem@test.com','111-1112','LC001');
+  values('임꺽정','temp.png','leem@test.com','111-1112','LC001');
 insert into MANAGERS(NAME,PHOT,EMAIL,TEL,LEVEL)
-values('유관순','temp.png','yoo@test.com','111-1113','LC002');
+  values('유관순','temp.png','yoo@test.com','111-1113','LC002');
 insert into MANAGERS(NAME,PHOT,EMAIL,TEL,LEVEL)
-values('안중근','temp.png','ahn@test.com','111-1114','LC002');
+  values('안중근','temp.png','ahn@test.com','111-1114','LC002');
 
 /* 강의 분류 코드 등록 */
 insert into CAT_CODE values('CT-JA', 'JAVA');
@@ -51,18 +51,29 @@ insert into PHOTOES(CID,PHOT) values('JR703','jr701_1.png');
 
 /* 강의 정보 등록 */
 insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
-values('자바프로그래밍-100기','정부지원 자바 개발자 양성 과정',30,800,'CT-JA');
+  values('자바프로그래밍-100기','정부지원 자바 개발자 양성 과정',30,800,'CT-JA');
 insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
-values('자바프로그래밍-101기','정부지원 자바 개발자 양성 과정',30,800,'CT-JA');
+  values('자바프로그래밍-101기','정부지원 자바 개발자 양성 과정',30,800,'CT-JA');
 insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
-values('윈도우 프로그래밍-80기','정부지원 윈도우 개발자 양성 과정',25,600,'CT-CP');
+  values('윈도우 프로그래밍-80기','정부지원 윈도우 개발자 양성 과정',25,600,'CT-CP');
 insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
-values('윈도우 프로그래밍-81기','정부지원 윈도우 개발자 양성 과정',25,600,'CT-CP');
+  values('윈도우 프로그래밍-81기','정부지원 윈도우 개발자 양성 과정',25,600,'CT-CP');
 insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
-values('리눅스 관리','정부지원 리눅스 관리자 양성 과정',30,400,'CT-LI');
+  values('리눅스 관리','정부지원 리눅스 관리자 양성 과정',30,400,'CT-LI');
+
+/* 강사 등록 */
+insert into TRAINERS(NAME,PHOT,EMAIL,TEL)
+  values('홍강사','hong.png','hongt@test.com','222-1111');
+insert into TRAINERS(NAME,PHOT,EMAIL,TEL)
+  values('김강사','kim.png','kimt@test.com','222-1112');
+insert into TRAINERS(NAME,PHOT,EMAIL,TEL)
+  values('박강사','park.png','parkt@test.com','222-1113');  
 
 
-
-
-
+  
+  
+  
+  
+  
+  
 
