@@ -69,6 +69,12 @@ insert into TRAINERS(NAME,PHOT,EMAIL,TEL)
 insert into TRAINERS(NAME,PHOT,EMAIL,TEL)
   values('박강사','park.png','parkt@test.com','222-1113');  
 
+/* 강의에 강사 배정 */
+insert into LEC_TRAIN(LNO,TNO) values(1, 1);
+insert into LEC_TRAIN(LNO,TNO) values(1, 2);
+insert into LEC_TRAIN(LNO,TNO) values(2, 1);
+insert into LEC_TRAIN(LNO,TNO) values(2, 2);
+insert into LEC_TRAIN(LNO,TNO) values(3, 3);
 
   
   
