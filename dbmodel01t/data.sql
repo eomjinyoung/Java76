@@ -49,3 +49,20 @@ insert into PHOTOES(CID,PHOT) values('JR701','jr701_1.png');
 insert into PHOTOES(CID,PHOT) values('JR702','jr701_1.png');
 insert into PHOTOES(CID,PHOT) values('JR703','jr701_1.png');
 
+/* 강의 정보 등록 */
+insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
+values('자바프로그래밍-100기','정부지원 자바 개발자 양성 과정',30,800,'CT-JA');
+insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
+values('자바프로그래밍-101기','정부지원 자바 개발자 양성 과정',30,800,'CT-JA');
+insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
+values('윈도우 프로그래밍-80기','정부지원 윈도우 개발자 양성 과정',25,600,'CT-CP');
+insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
+values('윈도우 프로그래밍-81기','정부지원 윈도우 개발자 양성 과정',25,600,'CT-CP');
+insert into LECTURES(TITLE,DETL,CAPA,HOURS,CATEG)
+values('리눅스 관리','정부지원 리눅스 관리자 양성 과정',30,400,'CT-LI');
+
+
+
+
+
+
