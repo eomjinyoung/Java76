@@ -32,4 +32,7 @@ step03 - DML
 step04 - DQL
   => test01.sql : 
 
-                    
+step05 - 정렬, 페이징처리
+
+step06 - 조인
+                   
