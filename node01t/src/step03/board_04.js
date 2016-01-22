@@ -1,4 +1,4 @@
-// 요청 핸들러를 맵으로 관리한다.
+// 각 요청 별로 함수를 만들고 호출한다.
 var http = require('http');
 var mysql = require('mysql');
 var url = require('url');
@@ -13,10 +13,24 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-// 요청 핸들러 맵 객체를 준비한다.
-var handlerMap = {};
 
-handlerMap["/board/list.do"] = function(request, response) {
+var httpServer = http.createServer(function(request, response) {
+	var urlInfo = url.parse(request.url, true);
+	if (urlInfo.pathname == '/board/list.do') {
+		list(request, response);
+	} else if (urlInfo.pathname == "/board/detail.do") {
+		detail(request, response);
+	} else {
+		notSupport(request, response);
+	}	
+});
+
+// 3) HTTP 서버 가동
+httpServer.listen(8989);
+console.log("서버 실행 중...");
+
+// "/board/list.do" 요청 처리 함수
+function list(request, response) {
 	connection.query(
 	  'select bno, title, views, cre_dt from board', 
 	  function(err, rows, fields) { 
@@ -54,9 +68,10 @@ handlerMap["/board/list.do"] = function(request, response) {
 		  response.write("</html>\n");
 		  response.end();
 	});
-};
+}
 
-handlerMap["/board/detail.do"] = function(request, response) {
+// "/board/detail.do" 요청 처리 함수 
+function detail(request, response) {
 	var urlInfo = url.parse(request.url, true);
 	
 	connection.query(
@@ -103,31 +118,13 @@ handlerMap["/board/detail.do"] = function(request, response) {
 		  response.write("</tr>\n");
 		  
 		  response.write("</table>");
-		  response.write("<p><a href='delete.do?no=" 
-				  + rows[0].bno + "'>삭제</a><p>\n");
 		  response.write("</body>\n");
 		  response.write("</html>\n");
 		  response.end();
 	});
-};
+}
 
-handlerMap["/board/delete.do"] = function(request, response) {
-	response.writeHead(200, {
-		'Content-Type' : 'text/html;charset=UTF-8' 
-	  });
-	response.write("<!DOCTYPE html>\n");
-	response.write("<html>\n");
-	response.write("<head>\n");
-	response.write("<meta charset=\"UTF-8\">\n");
-	response.write("<title>게시판</title>\n");
-	response.write("</head>\n");
-	response.write("<body>\n");
-	response.write("<h1>게시물 삭제</h1>\n");
-	response.write("</body>\n");
-	response.write("</html>\n");
-	response.end();
-};
-
+// 지원되지 않는 URL 요청 처리 함수 
 function notSupport(request, response) {
 	response.writeHead(200, {
 		'Content-Type' : 'text/html;charset=UTF-8' 
@@ -145,21 +142,7 @@ function notSupport(request, response) {
 	response.end();
 }
 
-var httpServer = http.createServer(function(request, response) {
-	var urlInfo = url.parse(request.url);
-	
-	var handler = handlerMap[urlInfo.pathname];
-	
-	if (handler) {
-		handler(request, response);
-	} else {
-		notSupport(request, response);
-	}	
-});
 
-// 3) HTTP 서버 가동
-httpServer.listen(8989);
-console.log("서버 실행 중...");
 
 
 
