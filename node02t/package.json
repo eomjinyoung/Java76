@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.14.2",
     "dateformat": ">= 1.0.12",
     "express": "^4.13.4",
     "mysql": ">=2.10.2"
