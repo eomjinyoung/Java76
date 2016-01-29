@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java76.pms.domain.AjaxResult;
@@ -24,7 +23,9 @@ public class FileuploadController {
   @Autowired ServletContext servletContext;
       
   @RequestMapping(value="add", method=RequestMethod.POST)
-  public AjaxResult add(Board board, @RequestParam("files") MultipartFile[] files) throws Exception {
+  public AjaxResult add(
+      Board board, 
+      MultipartFile[] files) throws Exception {
     ArrayList<String> filenames = new ArrayList<>();
     
     for (MultipartFile file : files) {

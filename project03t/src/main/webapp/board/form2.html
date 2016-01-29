@@ -71,20 +71,23 @@
 $('#ffile').fileupload({
 	url: contextRoot + '/fileupload/ajax/add.do',
 	dataType: 'json',
-	singleFileUploads: false,
+	singleFileUploads: false, // 서버에 한 번만 요청을 보내라.
 	add: function (e, data) {
-    data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+    //data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+    console.log("파일을 추가하였음...");
+    
     $('#addBtn').click(function(event) {
-    	data.formData = {
-    			title: $('#ftitle').val(),
-    			content: $('#fcontent').val(),
-    			password: $('#fpassword').val(),
-    	};
+    	  console.log("서버에 전송함...");
+	    	data.formData = {
+	    			title: $('#ftitle').val(),
+	    			content: $('#fcontent').val(),
+	    			password: $('#fpassword').val()
+	    	};
      	data.submit();
     });
   },
   done: function (e, data) {
-	  console.log(data.result);
+	  console.log(data.result.ajaxResult);
   }
 });
 
