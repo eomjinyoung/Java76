@@ -4,6 +4,7 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:jee="http://www.springframework.org/schema/jee"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -11,7 +12,9 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee.xsd">
   
   <!-- 페이지 컨트롤러 객체는 프론트 컨트롤러가 관리하기 때문에 제외한다. 
        즉 @Controller 애노테이션이 붙은 것은 제외하자!
@@ -32,6 +35,9 @@
               value="java76.pms.domain" />          
   </bean>
   
+  <jee:jndi-lookup id="dataSource" 
+        jndi-name="java:comp/env/jdbc/java76db"/>
+  <!--        
   <bean id="dataSource" 
         class="org.apache.commons.dbcp.BasicDataSource" 
         destroy-method="close">
@@ -40,6 +46,7 @@
     <property name="username" value="java76"/>
     <property name="password" value="1111"/>
   </bean>
+  -->
   
   <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
   	<!-- DAO 인터페이스가 선언된 패키지 지정한다.-->
