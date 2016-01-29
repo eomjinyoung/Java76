@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>게시판</title>
+  <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../css/common.css">
+</head>
+<body>
+
+<div class="container">        
+<header>
+프로젝트 관리 시스템 - 
+  <a href="/project03t/auth/login.do">로그인</a>
+</header>
+
+<section>
+<h1>게시물 폼</h1>
+
+<form id='form1' class="form-horizontal">
+  <div class="form-group">
+    <label for="ftitle" class="col-sm-2 control-label">제목</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="ftitle" placeholder="제목">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fcontent" class="col-sm-2 control-label">내용</label>
+    <div class="col-sm-10">
+      <textarea id="fcontent" class="form-control" 
+                rows='10' cols='60' placeholder="제목"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="ffile" class="col-sm-2 control-label">첨부파일</label>
+    <div class="col-sm-10">
+      <input type='file' class="form-control" id="ffile" 
+            name="files" multiple>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="fpassword" class="col-sm-2 control-label">암호</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="fpassword" 
+             placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id='addBtn' type='button' 
+        class="btn btn-primary btn-xs">등록</button>
+    </div>
+  </div>
+</form>
+</section>
+
+<footer>
+<p><address>
+** 이 웹 애플리케이션의 모든 권리는 Java76기에 있습니다. &copy; Java76. **
+</address></p>
+</footer>
+</div><!-- container div -->
+
+<script type="text/javascript" src="../lib/jquery/jquery.js"></script>
+<script src="../lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="../lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="../lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="../js/common.js"></script>
+<script>
+
+$('#ffile').fileupload({
+	url: contextRoot + '/fileupload/ajax/add.do',
+	dataType: 'json',
+	singleFileUploads: false,
+	add: function (e, data) {
+    data.context = $('<p/>').text('Uploading...').appendTo(document.body);
+    $('#addBtn').click(function(event) {
+    	data.formData = {
+    			title: $('#ftitle').val(),
+    			content: $('#fcontent').val(),
+    			password: $('#fpassword').val(),
+    	};
+     	data.submit();
+    });
+  },
+  done: function (e, data) {
+	  console.log(data.result);
+  }
+});
+
+// 등록 버튼을 위한 이벤트 리스너 추가하기
+/*
+$('#addBtn').click(function(event) {
+	$.post(contextRoot + '/board/ajax/add2.do', {
+		title: $('#ftitle').val(),
+		content: $('#fcontent').val(),
+		password: $('#fpassword').val()
+		
+	}, function(resultObj) {
+		var ajaxResult = resultObj.ajaxResult;
+		if (ajaxResult.status == "success") {
+      location.href = "index.html";
+    } else {
+        alert("게시물 등록에 실패했습니다.");
+    }
+	}, 'json');
+});
+*/
+</script>
+</body>
+</html>
